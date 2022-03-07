@@ -5,6 +5,8 @@ from django.http import HttpResponse
 #forms
 from .forms import IndexCardForm
 
+from .models import IndexCard
+
 from django.views import View
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
@@ -16,12 +18,11 @@ def index(request):
 
 
 def index_card_view(request):
-    # Checking for POST request
+    form = IndexCardForm(request.POST)
     if request.method == 'POST':
-        # Creating a Form object
-        form = IndexCardForm(request.POST)
     # Checking if the inputs are valid
         if form.is_valid():
+            form.save()
             return HttpResponse(
                 'Hello {} from Section {}'.format(
                 # Getting data from our form that have been validated
