@@ -75,8 +75,13 @@ WSGI_APPLICATION = 'enlistmentbuddy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'csci42',
+        'USER': 'postgres',
+        'USER': 'carmen',
+        'PASSWORD': 'user password',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
