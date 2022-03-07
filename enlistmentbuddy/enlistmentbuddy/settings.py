@@ -59,7 +59,7 @@ ROOT_URLCONF = 'enlistmentbuddy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'enlistmentbuddy/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
