@@ -5,6 +5,7 @@ from django.urls import reverse
 
 
 class IndexCard(models.Model):
-    name = models.CharField(max_length=100)
-    section = models.CharField(max_length=5)
-    age = models.IntegerField()
+    code = models.CharField(max_length=20, null=True)
+    section = models.CharField(max_length=20, null=True)
+    venue = models.CharField(max_length=20, null=True)
+    professor = models.CharField(max_length=50, null=True)

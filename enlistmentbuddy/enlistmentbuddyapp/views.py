@@ -24,10 +24,12 @@ def index_card_view(request):
         if form.is_valid():
             form.save()
             return HttpResponse(
-                'Hello {} from Section {}'.format(
+                'Code: {} Section: {} Venue: {} Professor: {}'.format(
                 # Getting data from our form that have been validated
-                form.cleaned_data['name'],
-                form.cleaned_data['section']
+                form.cleaned_data['code'],
+                form.cleaned_data['section'],
+                form.cleaned_data['venue'],
+                form.cleaned_data['professor']
                 )
             )
     else:

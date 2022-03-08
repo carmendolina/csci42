@@ -9,7 +9,8 @@ class IndexCardForm(forms.ModelForm):
     class Meta:
         model = IndexCard
         fields = [
-            "name",
+            "code",
             "section",
-            "age",
+            "venue",
+            "professor"
         ]
