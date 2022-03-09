@@ -1,13 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Index Card{% endblock %}
+
+{% block title %} Enlistment Buddy {% endblock %}
+
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/modal.css' %}">
 {% endblock %}
+
 {% block content %}
-    <form action="/index_card" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-    </form>
+<section>
+    <button onclick="openModal()">EDIT</button>
+</section>
+<section>
+    <!-- put main website here -->
+</section>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div>
+            <form action="/index_card" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="../static/js/modal.js"></script>
 {% endblock %}
