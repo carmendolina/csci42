@@ -14,16 +14,17 @@ from django.views.generic.detail import DetailView
 
 #insert functions here
 def index(request):
-    return HttpResponse('Hello World! This came from the index view')
+    return redirect('index_card')
 
 
 def index_card_view(request):
     form = IndexCardForm(request.POST)
+    classes = IndexCard.objects.all()
     if request.method == 'POST':
     # Checking if the inputs are valid
         if form.is_valid():
             form.save()
-            return HttpResponse(
+            return render(
                 'Code: {} Section: {} Venue: {} Professor: {}'.format(
                 # Getting data from our form that have been validated
                 form.cleaned_data['code'],

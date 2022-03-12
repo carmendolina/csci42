@@ -22,3 +22,39 @@ button:hover {
     transition: 300ms ease-in-out;
     cursor: pointer;
 }
+/* Table Attributes */
+th
+{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 16px;
+    color: #4C576C;
+    padding: 16px;
+    background-color: #DEE6F7;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+td, tr
+{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    color: #2E3646;
+    padding: 16px;
+    box-shadow: 0px 1px 0px #DEE6F7, inset 0px 1px 0px #DEE6F7;
+}
+
+table
+{
+    padding: 10px;
+    border-collapse: collapse;
+    width: 75vw;
+    background: white;
+    margin: 16px 0 72px;
+}
