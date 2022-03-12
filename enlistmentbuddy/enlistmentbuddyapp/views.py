@@ -35,4 +35,4 @@ def index_card_view(request):
             )
     else:
         form = IndexCardForm()
-    return render(request, 'index.html', {'form': form})
+    return render(request, 'index.html', {'form': form, 'class_info': classes})

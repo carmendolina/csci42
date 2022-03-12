@@ -27,19 +27,51 @@
         </div>
     </div>
 </div>
+
 <table>
     <tr>
-        <th>Code</th>
-        <th>Section</th> 
-        <th>Venue</th> 
-        <th>Professor</th>
+        <th>-</th>
+        <th>Monday</th>
+        <th>Tuesday</th> 
+        <th>Wednesday</th> 
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
     </tr>
     <tr>
-        <td>code</td>
-        <td>section</td>    
-        <td>venue</td>
-        <td>professor</td>
+        <th>9:00</th>
+        <th> 
+            <!-- I need to be able to call ANY info -->
+            <div>{{ class_info.first.code }}</div>
+            <div>{{ class_info.first.section }}</div>
+            <div>{{ class_info.first.venue }}</div>
+            <div>{{ class_info.first.professor }}</div>
+        </th>
+        <th> -- </th> 
+        <th> -- </th> 
+        <th> -- </th>
+        <th> -- </th>
+        <th> -- </th>
     </tr>
+    <tr>
+        <th>9:30</th>
+        <th> -- </th>
+        <th> -- </th> 
+        <th> -- </th> 
+        <th> -- </th>
+        <th> -- </th>
+        <th> -- </th>
+    </tr>
+    <!--shows information per class in table form
+    {% for this_class in class_info %}
+    <tr>
+        <td>{{ this_class.code }}</td>
+        <td>{{ this_class.section }}</td>    
+        <td>{{ this_class.venue }}</td>
+        <td>{{ this_class.professor }}</td>
+    </tr>
+    {% endfor %}
+    -->
 </table>
 {% endblock %}
 
