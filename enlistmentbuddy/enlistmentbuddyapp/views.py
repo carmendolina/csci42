@@ -29,7 +29,7 @@ def index_card_view(request):
                 # Getting data from our form that have been validated
                 form.cleaned_data['code'],
                 form.cleaned_data['section'],
-                form.cleaned_data['schedule'],
+                form.cleaned_data['sched'],
                 form.cleaned_data['start'],
                 form.cleaned_data['end'],
                 form.cleaned_data['venue'],
