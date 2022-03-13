@@ -24,18 +24,17 @@ def index_card_view(request):
     # Checking if the inputs are valid
         if form.is_valid():
             form.save()
-            return render(
-                'Code: {} Section: {} Schedule: {} Start Time: {} End Time: {} Venue: {} Professor: {}'.format(
+            #return render(
+                #'Code: {} Section: {} Schedule: {} Start Time: {} End Time: {} Venue: {} Professor: {}'.format(
                 # Getting data from our form that have been validated
-                form.cleaned_data['code'],
-                form.cleaned_data['section'],
-                form.cleaned_data['sched'],
-                form.cleaned_data['start'],
-                form.cleaned_data['end'],
-                form.cleaned_data['venue'],
-                form.cleaned_data['professor']
-                )
-            )
+                #form.cleaned_data['code'],
+                #form.cleaned_data['section'],
+                #form.cleaned_data['sched'],
+                #form.cleaned_data['start'],
+                #form.cleaned_data['end'],
+                #form.cleaned_data['venue'],
+                #form.cleaned_data['professor']
+                #)
     else:
         form = IndexCardForm()
     return render(request, 'index.html', {'form': form, 'class_info': classes})

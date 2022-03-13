@@ -30,12 +30,21 @@
                 <th>9:00</th>
                 <th> 
                     <!-- I need to be able to call ANY info -->
+                    <div>{{ class_info.first.sched }}</div>
                     <div>{{ class_info.first.code }}</div>
                     <div>{{ class_info.first.section }}</div>
                     <div>{{ class_info.first.venue }}</div>
                     <div>{{ class_info.first.professor }}</div>
+                    <div>{{ class_info.first.start }}-{{ class_info.first.end }}</div>
                 </th>
-                <th> -- </th> 
+                <th> 
+                    <div>{{ class_info.last.sched }}</div>
+                    <div>{{ class_info.last.code }}</div>
+                    <div>{{ class_info.last.section }}</div>
+                    <div>{{ class_info.last.venue }}</div>
+                    <div>{{ class_info.last.professor }}</div>
+                    <div>{{ class_info.last.start }}-{{ class_info.last.end }}</div>     
+                </th> 
                 <th> -- </th> 
                 <th> -- </th>
                 <th> -- </th>
