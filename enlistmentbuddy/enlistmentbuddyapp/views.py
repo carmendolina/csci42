@@ -35,6 +35,7 @@ def index_card_view(request):
                 #form.cleaned_data['venue'],
                 #form.cleaned_data['professor']
                 #)
+            return redirect("index_card")
     else:
         form = IndexCardForm()
     return render(request, 'index.html', {'form': form, 'class_info': classes})
