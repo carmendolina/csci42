@@ -2,6 +2,7 @@
     --cream: #FFF8E4;
     --midpurple1: #5D4988;
     --midyellow: #FFCC49;
+    --lightpurple: #AE9FCD;
 }
 
 html {
@@ -11,7 +12,7 @@ html {
 html, body, main {
     margin: 0px;
     padding: 0px;
-    border: 0px;
+    border: none;
     font-family: 'Inter', sans-serif;
 }
 
@@ -53,14 +54,11 @@ button:hover {
 /* Table Attributes */
 th
 {
-    font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 11px;
     line-height: 16px;
-    color: #4C576C;
     padding: 16px;
-    background-color: #DEE6F7;
     text-align: left;
     text-transform: uppercase;
 }
@@ -72,15 +70,18 @@ td, tr
     font-size: 14px;
     line-height: 20px;
     padding: 10px;
-    color: #2E3646;
-    padding: 16px;
-    box-shadow: 0px 1px 0px #DEE6F7, inset 0px 1px 0px #DEE6F7;
 }
 
 table
 {
     padding: 10px;
-    border-collapse: collapse;
     width: 50vw;
     background: white;
+    border-radius: 25px;
 }
+
+table, th, tr, td {
+    border: none !important;
+    outline: none !important;
+    border-collapse: collapse !important;
+};
