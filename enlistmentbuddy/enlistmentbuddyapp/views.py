@@ -25,10 +25,13 @@ def index_card_view(request):
         if form.is_valid():
             form.save()
             return render(
-                'Code: {} Section: {} Venue: {} Professor: {}'.format(
+                'Code: {} Section: {} Schedule: {} Start Time: {} End Time: {} Venue: {} Professor: {}'.format(
                 # Getting data from our form that have been validated
                 form.cleaned_data['code'],
                 form.cleaned_data['section'],
+                form.cleaned_data['schedule'],
+                form.cleaned_data['start'],
+                form.cleaned_data['end'],
                 form.cleaned_data['venue'],
                 form.cleaned_data['professor']
                 )

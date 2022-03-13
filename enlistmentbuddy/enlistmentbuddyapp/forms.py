@@ -11,6 +11,9 @@ class IndexCardForm(forms.ModelForm):
         fields = [
             "code",
             "section",
+            "sched",
+            "start",
+            "end",
             "venue",
             "professor"
         ]

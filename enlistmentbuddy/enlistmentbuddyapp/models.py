@@ -7,5 +7,10 @@ from django.urls import reverse
 class IndexCard(models.Model):
     code = models.CharField(max_length=20, null=True)
     section = models.CharField(max_length=20, null=True)
+    sched = models.CharField(max_length=10, null=True)
+    #start = models.CharField(max_length=10, null=True)
+    #end = models.CharField(max_length=10, null=True)
+    start = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    end = models.TimeField(auto_now=False, auto_now_add=False, null=True)
     venue = models.CharField(max_length=20, null=True)
     professor = models.CharField(max_length=50, null=True)
