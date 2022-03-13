@@ -63,7 +63,7 @@ th
     text-transform: uppercase;
 }
 
-td, tr
+td
 {
     font-style: normal;
     font-weight: normal;
@@ -71,6 +71,12 @@ td, tr
     line-height: 20px;
     padding: 10px;
 }
+
+td, th {
+    width: 86px;
+}
+
+.time { width: inherit;}
 
 table
 {
@@ -84,4 +90,5 @@ table, th, tr, td {
     border: none !important;
     outline: none !important;
     border-collapse: collapse !important;
+    text-align: center;
 };

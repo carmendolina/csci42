@@ -18,17 +18,17 @@
         </section>
         <table id="timetable">
             <tr>
-                <th> </th>
-                <th>Monday</th>
-                <th>Tuesday</th> 
-                <th>Wednesday</th> 
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
+                <th class="time"> </th>
+                <th>M</th>
+                <th>T</th> 
+                <th>W</th> 
+                <th>T</th>
+                <th>F</th>
+                <th>S</th>
             </tr>
             <tr>
-                <th>9:00</th>
-                <th> 
+                <th class="time">9:00</th>
+                <td> 
                     <!-- I need to be able to call ANY info -->
                     <!-- Ok for each element its Array.id_no.info -->
                     <div>{{ class_info.0.sched }}</div>
@@ -59,13 +59,13 @@
                 <th> -- </th>
             </tr>
             <tr>
-                <th>9:30</th>
-                <th> -- </th>
-                <th> -- </th> 
-                <th> -- </th> 
-                <th> -- </th>
-                <th> -- </th>
-                <th> -- </th>
+                <th class="time">9:30</th>
+                <td> -- </td>
+                <td> -- </td> 
+                <td> -- </td> 
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
             </tr>
             <!--shows information per class in table form
             {% for this_class in class_info %}
