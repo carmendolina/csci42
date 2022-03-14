@@ -24,7 +24,11 @@ def index_card_view(request):
     classes = IndexCard.objects.all()
     thislist = setting_time()
     mondaylist = monday()
+    tuesdaylist = tuesday()
     wednesdaylist = wednesday()
+    thursdaylist = thursday()
+    fridaylist = friday()
+    saturdaylist = saturday()
     #over here peeps
 
     if request.method == 'POST':
@@ -41,7 +45,11 @@ def index_card_view(request):
             'class_info': classes, 
             'time': thislist,
             'monday': mondaylist,
-            'wednesday': wednesdaylist
+            'tuesday': tuesdaylist,
+            'wednesday': wednesdaylist,
+            'thursday': thursdaylist,
+            'friday': fridaylist,
+            'saturday': saturdaylist
             #over here peeps
         }
     )
@@ -56,20 +64,45 @@ def monday():
         mondays.append(mondayclass)
     return mondays
 
+def tuesday():
+    tuesdays = []
+    tueslist = IndexCard.objects.filter(sched__contains='T-') |  IndexCard.objects.filter(sched__iexact='T')
+    for tuesdayclass in tueslist:
+        tuesdays.append(tuesdayclass)
+    return tuesdays
+
 def wednesday():
     wednesdays = []
     for wednesdayclass in IndexCard.objects.filter(sched__contains='W'):
         wednesdays.append(wednesdayclass)
     return wednesdays
 
+def thursday():
+    thursdays = []
+    for thursdayclass in IndexCard.objects.filter(sched__contains='TH'):
+        thursdays.append(thursdayclass)
+    return thursdays
+
+def friday():
+    fridays = []
+    for fridayclass in IndexCard.objects.filter(sched__contains='F'):
+        fridays.append(fridayclass)
+    return fridays
+
+def saturday():
+    saturdays = []
+    for saturdayclass in IndexCard.objects.filter(sched__contains='SAT'):
+        saturdays.append(saturdayclass)
+    return saturdays
+
 def setting_time():
     starttime = datetime.datetime(100,1,1,7,00,00) # first 3 are dummy last 3 are hour/min/sec
     endtime = datetime.datetime(100,1,1,21,30,00)
-    timelist = [];
+    timelist = []
     while (starttime < endtime):
-        timelist.append(starttime.time);
+        timelist.append(starttime.time)
         starttime += datetime.timedelta(0,30*60) # days, seconds, then other fields.
-    return timelist;
+    return timelist
 
 #sources:
 #Time - https://stackoverflow.com/questions/100210/what-is-the-standard-way-to-add-n-seconds-to-datetime-time-in-python

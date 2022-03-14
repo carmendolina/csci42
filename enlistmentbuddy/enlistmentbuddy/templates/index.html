@@ -22,7 +22,7 @@
                 <th>M</th>
                 <th>T</th> 
                 <th>W</th> 
-                <th>T</th>
+                <th>TH</th>
                 <th>F</th>
                 <th>S</th>
             </tr>
@@ -31,33 +31,75 @@
             <tr> 
                 <!-- creates first column of times-->
                 <td class="time">{{ x }}</td>
-				<td>
                 <!-- if there are classes in monday, make it, otherwise blank column-->
                 <!-- copy from here, rename monday-->
-                {% for class in monday %}         
-                    {% if class.start  <= x and class.end >= x %}  
-                        <div>{{ class.code }}</div>
-                        <div>{{ class.section }}</div>
-                        <div>{{ class.venue }}</div>
-                        <div>{{ class.professor }}</div>
-                        <div>{{ class.start }}-{{ class.end }}</div>  
-                    {% endif %}
-                {% endfor %}
+				<td>
+                    {% for class in monday %}         
+                        {% if class.start  <= x and class.end >= x %}  
+                            <div>{{ class.code }}</div>
+                            <div>{{ class.section }}</div>
+                            <div>{{ class.venue }}</div>
+                            <div>{{ class.professor }}</div>
+                            <!--<div>{{ class.start }}-{{ class.end }}</div>-->
+                        {% endif %}
+                    {% endfor %}
                 </td>
                 <!-- copy till here -->
-                <!-- replace below (line 49) with copy pasta of tuesday -->
-                <td> </td>
-				{% for class in wednesday %}
-                {% if class.start  <= x and class.end >= x %}           
-                    <td>
-                        <div>{{ class.code }}</div>
-                        <div>{{ class.section }}</div>
-                        <div>{{ class.venue }}</div>
-                        <div>{{ class.professor }}</div>
-                        <div>{{ class.start }}-{{ class.end }}</div>  
-                    </td>  
-                {% endif %}
-                {% endfor %}
+                <td>
+                    {% for class in tuesday %}         
+                        {% if class.start  <= x and class.end >= x %}  
+                            <div>{{ class.code }}</div>
+                            <div>{{ class.section }}</div>
+                            <div>{{ class.venue }}</div>
+                            <div>{{ class.professor }}</div>
+                            <!--<div>{{ class.start }}-{{ class.end }}</div>-->
+                        {% endif %}
+                    {% endfor %}
+                </td>
+				<td>
+                    {% for class in wednesday %}         
+                        {% if class.start  <= x and class.end >= x %}  
+                            <div>{{ class.code }}</div>
+                            <div>{{ class.section }}</div>
+                            <div>{{ class.venue }}</div>
+                            <div>{{ class.professor }}</div>
+                            <!--<div>{{ class.start }}-{{ class.end }}</div>-->
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for class in thursday %}         
+                        {% if class.start  <= x and class.end >= x %}  
+                            <div>{{ class.code }}</div>
+                            <div>{{ class.section }}</div>
+                            <div>{{ class.venue }}</div>
+                            <div>{{ class.professor }}</div>
+                            <!--<div>{{ class.start }}-{{ class.end }}</div>-->  
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for class in friday %}         
+                        {% if class.start  <= x and class.end >= x %}  
+                            <div>{{ class.code }}</div>
+                            <div>{{ class.section }}</div>
+                            <div>{{ class.venue }}</div>
+                            <div>{{ class.professor }}</div>
+                            <!--<div>{{ class.start }}-{{ class.end }}</div>--> 
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for class in saturday %}         
+                        {% if class.start  <= x and class.end >= x %}  
+                            <div>{{ class.code }}</div>
+                            <div>{{ class.section }}</div>
+                            <div>{{ class.venue }}</div>
+                            <div>{{ class.professor }}</div>
+                            <!--<div>{{ class.start }}-{{ class.end }}</div>--> 
+                        {% endif %}
+                    {% endfor %}
+                </td>
             </tr>
             {% endfor %}
         </table>
