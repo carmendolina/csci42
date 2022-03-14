@@ -30,7 +30,23 @@
             {% for x in time %}
             <tr> 
                 <td class="time">{{ x }}</td>
-                {% for class in class_info %}
+				{% if monday %}
+					{% for class in monday %}
+						{% if class.start  <= x and class.end >= x %}           
+						<td>
+							<div>{{ class.code }}</div>
+							<div>{{ class.section }}</div>
+							<div>{{ class.venue }}</div>
+							<div>{{ class.professor }}</div>
+							<div>{{ class.start }}-{{ class.end }}</div>  
+						</td>  
+						{% endif %}
+					{% endfor %}
+				{% else %}
+					<td> </td>
+				{% endif %}
+					<td> </td>
+				{% for class in wednesday %}
                 {% if class.start  <= x and class.end >= x %}           
                     <td>
                         <div>{{ class.code }}</div>
