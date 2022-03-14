@@ -26,47 +26,23 @@
                 <th>F</th>
                 <th>S</th>
             </tr>
-            <tr>
-                <td class="time">9:00</td>
-                <td> 
-                    <!-- I need to be able to call ANY info -->
-                    <!-- Ok for each element its Array.id_no.info -->
-                    <div>{{ class_info.0.sched }}</div>
-                    <div>{{ class_info.0.code }}</div>
-                    <div>{{ class_info.0.section }}</div>
-                    <div>{{ class_info.0.venue }}</div>
-                    <div>{{ class_info.0.professor }}</div>
-                    <div>{{ class_info.0.start }}-{{ class_info.0.end }}</div>
-                </td>
-                <td> 
-                    <div>{{ class_info.1.sched }}</div>
-                    <div>{{ class_info.1.code }}</div>
-                    <div>{{ class_info.1.section }}</div>
-                    <div>{{ class_info.1.venue }}</div>
-                    <div>{{ class_info.1.professor }}</div>
-                    <div>{{ class_info.1.start }}-{{ class_info.1.end }}</div>     
-                </td> 
-                <td> 
-                    <div>{{ class_info.2.sched }}</div>
-                    <div>{{ class_info.2.code }}</div>
-                    <div>{{ class_info.2.section }}</div>
-                    <div>{{ class_info.2.venue }}</div>
-                    <div>{{ class_info.2.professor }}</div>
-                    <div>{{ class_info.2.start }}-{{ class_info.2.end }}</div>  
-                </td> 
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
+            <!-- creates all times -->
+            {% for x in time %}
+            <tr> 
+                <td class="time">{{ x }}</td>
+                {% for class in class_info %}
+                {% if class.start  <= x and class.end >= x %}           
+                    <td>
+                        <div>{{ class.code }}</div>
+                        <div>{{ class.section }}</div>
+                        <div>{{ class.venue }}</div>
+                        <div>{{ class.professor }}</div>
+                        <div>{{ class.start }}-{{ class.end }}</div>  
+                    </td>  
+                {% endif %}
+                {% endfor %}
             </tr>
-            <tr>
-                <td class="time">9:30</td>
-                <td> -- </td>
-                <td> -- </td> 
-                <td> -- </td> 
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-            </tr>
+            {% endfor %}
         </table>
         <!--shows information per class in table form
         <table id="timetable">
