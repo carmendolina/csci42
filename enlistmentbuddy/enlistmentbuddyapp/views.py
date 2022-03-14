@@ -25,6 +25,7 @@ def index_card_view(request):
     thislist = setting_time()
     mondaylist = monday()
     wednesdaylist = wednesday()
+    #over here peeps
 
     if request.method == 'POST':
     # Checking if the inputs are valid
@@ -34,8 +35,20 @@ def index_card_view(request):
     else:
         form = IndexCardForm()
 
-    return render(request, 'index.html', {'form': form, 'class_info': classes, 'time': thislist, 'monday': mondaylist, 'wednesday': wednesdaylist})
+    return render(request, 'index.html', 
+        {
+            'form': form, 
+            'class_info': classes, 
+            'time': thislist,
+            'monday': mondaylist,
+            'wednesday': wednesdaylist
+            #over here peeps
+        }
+    )
 
+#sources:
+#https://docs.djangoproject.com/en/4.0/topics/db/queries/
+# copy and paste function, rename day of week to corresponding day, then put in def index_card_view, and add it into return
 
 def monday():
     mondays = []

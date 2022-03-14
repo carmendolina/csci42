@@ -29,9 +29,12 @@
             <!-- creates all times -->
             {% for x in time %}
             <tr> 
+                <!-- creates first column of times-->
                 <td class="time">{{ x }}</td>
+				<td>
+                <!-- if there are classes in monday, make it, otherwise blank column-->
+                <!-- copy from here, rename monday-->
                 {% for class in monday %}         
-                    <td>
                     {% if class.start  <= x and class.end >= x %}  
                         <div>{{ class.code }}</div>
                         <div>{{ class.section }}</div>
@@ -39,11 +42,11 @@
                         <div>{{ class.professor }}</div>
                         <div>{{ class.start }}-{{ class.end }}</div>  
                     {% endif %}
-                    </td>  
                 {% endfor %}
-
+                </td>
+                <!-- copy till here -->
+                <!-- replace below (line 49) with copy pasta of tuesday -->
                 <td> </td>
-
 				{% for class in wednesday %}
                 {% if class.start  <= x and class.end >= x %}           
                     <td>
