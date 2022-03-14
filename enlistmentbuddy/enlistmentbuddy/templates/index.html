@@ -30,7 +30,7 @@
             {% for x in time %}
             <tr> 
                 <!-- creates first column of times-->
-                <td class="time">{{ x }}</td>
+                <td class="time">{{ x|time:"H:i" }}</td>
                 <!-- if there are classes in monday, make it, otherwise blank column-->
                 <!-- copy from here, rename monday-->
 				<td>
