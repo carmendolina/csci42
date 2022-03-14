@@ -16,4 +16,4 @@ class IndexCard(models.Model):
     professor = models.CharField(max_length=50, null=True)
 
     def __str__(self):
-        return '{} {} {}-{}'.format(self.code, self.section, self.start, self.end)
+        return '{} {} {} {}-{}'.format(self.code, self.section, self.sched, self.start.strftime('%H:%M'), self.end.strftime('%H:%M'))
