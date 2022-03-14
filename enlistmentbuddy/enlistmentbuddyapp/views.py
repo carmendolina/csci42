@@ -34,7 +34,7 @@ def index_card_view(request):
     else:
         form = IndexCardForm()
 
-    return render(request, 'index.html', {'form': form, 'class_info': classes, 'range': range(0,5+1), 'time': thislist, 'monday': mondaylist, 'wednesday': wednesdaylist})
+    return render(request, 'index.html', {'form': form, 'class_info': classes, 'time': thislist, 'monday': mondaylist, 'wednesday': wednesdaylist})
 
 
 def monday():
