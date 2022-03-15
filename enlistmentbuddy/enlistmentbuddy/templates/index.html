@@ -134,7 +134,7 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <div>
-            <form action="/index_card" medivod="post">
+            <form action="/index_card" method="post">
                 {% csrf_token %}
                 {{ form }}
                 <input type="submit" value="Submit">
