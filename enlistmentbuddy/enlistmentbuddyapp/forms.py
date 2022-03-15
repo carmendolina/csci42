@@ -20,31 +20,31 @@ class IndexCardForm(forms.ModelForm):
         ]
         widgets = {
             'code': TextInput(attrs={
-                'class': "coursecode",
-                'placeholder': 'CSCI 42'
+                'class': "coursecode forminput",
+                'placeholder': 'ex. CSCI 42'
             }),
             'section': TextInput(attrs={
-                'class': "section",
-                'placeholder': 'B'
+                'class': "section forminput sectioninput",
+                'placeholder': 'ex. B'
             }),
             'sched': TextInput(attrs={
-                'class': "forminput",
-                'placeholder': 'M-W-F, T-TH'
+                'class': "forminput sectioninput",
+                'placeholder': 'ex. M-W-F; T-TH; SAT'
             }),
             'start': TextInput(attrs={
-                'class': "forminput",
-                'placeholder': '09:00, 14:00'
+                'class': "timeinput forminput sectioninput",
+                'placeholder': 'ex. 09:00'
             }),
             'end': TextInput(attrs={
-                'class': "forminput",
-                'placeholder': '10:00, 13:30'
+                'class': "timeinput forminput sectioninput",
+                'placeholder': 'ex. 13:30'
             }),
             'venue': TextInput(attrs={
-                'class': "forminput",
-                'placeholder': 'ONLINE'
+                'class': "forminput sectioninput",
+                'placeholder': 'ex. ONLINE'
             }),
             'professor': TextInput(attrs={
-                'class': "forminput",
-                'placeholder': 'JONGKO'
+                'class': "forminput sectioninput",
+                'placeholder': 'ex. JONGKO'
             })
         }

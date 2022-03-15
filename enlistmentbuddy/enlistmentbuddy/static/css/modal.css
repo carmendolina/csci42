@@ -1,6 +1,7 @@
 :root {
     --cream: #FFF8E4;
     --midpurple1: #5D4988;
+    --midpurple2: #826DAD;
     --midyellow: #FFCC49;
     --lightpurple: #AE9FCD;
     --darkpurple: #231149;
@@ -29,28 +30,147 @@
 /* Modal Content */
 .modal-content {
     background-color: var(--darkpurple);
-    color: var(--cream);
     margin: 0 auto;
-    padding: 20px;
-    padding-bottom: 10px;
+    padding: 28px;
     border-radius: 25px;
-    width: 429px;
-    height: 429px;
+    width: 85vw;
+    height: 85vh;
     text-align: center;
-    align-items: center;
 }
 .close {
-    color: #7C7C7C;
+    color: var(--lightpurple);
     float: left;
     font-size: 28px;
+    transition: 100ms ease-in-out;
 }
 .close:hover,
 .close:focus {
-    color: #000;
+    color: var(--midyellow);
     text-decoration: none;
     cursor: pointer;
+    transition: 100ms ease-in-out;
 }
 
-.coursecode {
+.forminput {
+    padding: 16px;
+    border-radius: 6px;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    transition: 100ms ease-in-out;
+    box-shadow: inset 0px -5.5px 8px rgba(174, 159, 205, 0.399);
+}
+
+.forminput::placeholder {
+    font-style: italic;
+    color: var(--lightpurple);
+}
+
+.forminput:focus {
+    outline: solid 2px var(--lightpurple);
+    transition: 100ms ease-in-out;
+}
+
+form {
+    width: 100%;
+}
+
+.forminput-wrap {
+    display: flex;
+    padding: 28px;
+    height: 100%;
+}
+
+.coursecode-div {
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    align-content: center;
+    justify-self: flex-start;
+    margin: 0 0 33px 0;
+    width: 100%;
+}
+
+.coursecode-div h1 {
+    font-size: 44px;
+    margin: 0 22px 0 0;
+}
+
+.sectiongroup h2 {
+    margin: 0 1% 0 0;
+}
+
+.form-group h4 {
+    margin: 0;
+    font-weight: 600;
+    color: var(--darkpurple);
+}
+
+.sectioninput {
+    padding: 8px 16px !important;
+    margin: 2% 0 0;
+}
+
+.form-submit input {
     font-weight: 800;
+    font-size: large;
+}
+
+.form-submit {
+    float: right;
+    margin: -5% 0;
+}
+
+.form-section {
+    background-color: var(--lightpurple);
+    border-radius: 25px;
+    display: grid;
+    width: max-content;
+}
+
+.sectiongroup {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--midpurple2);
+    border-radius: 25px 25px 0 0;
+    padding: 2% 7%;
+}
+
+.sectiongroup h2 {
+    color: white;
+    font-weight: 700;
+}
+
+.section {
+    width: 20%;
+    padding: 8px 16px !important;
+    margin: 16px;
+}
+
+.section-inner {
+    justify-self: flex-start;
+    margin: 5%;
+    text-align: left;
+}
+
+.startend {
+    display: inline-flex;
+    align-items: center;
+}
+
+.timeinput {
+    width: 70% !important;
+}
+
+.section-inner .form-group {
+    margin: 4% 2%;
+}
+
+.startend .form-group {
+    margin: 2% 2%;
+}
+
+.form-group span {
+    font-weight: 400;
+    font-style: italic;
+    font-size: small;
 }
