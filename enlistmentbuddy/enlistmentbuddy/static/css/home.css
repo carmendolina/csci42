@@ -26,9 +26,16 @@ main {
 }
 
 #content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.textareas {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 28px;
+    grid-template-columns: 1fr 6fr;
+    gap: 20px;
+    margin: 0 28px 0 0;
+    align-items: flex-end;
 }
 
 button {
@@ -51,44 +58,98 @@ button:hover {
     transition: 300ms ease-in-out;
     cursor: pointer;
 }
-/* Table Attributes */
-th
-{
-    font-style: normal;
-    font-weight: bold;
-    font-size: 11px;
-    line-height: 16px;
-    padding: 16px;
-    text-align: left;
-    text-transform: uppercase;
+
+textarea {
+    height: 30vh;
+    border-radius: 25px;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    color: var(--lightpurple);
+    padding: 28px;
 }
 
-td
-{
+textarea:active {
     font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 20px;
-    padding: 10px;
+    color: var(--midpurple1);
+}
+
+/* Table Attributes */
+.time {
+    font-weight: bold;
+    padding: 0 0 16px 0;
+    text-align: left;
+    text-transform: uppercase;
+    align-self: flex-start;
+}
+
+.dayh {
+    font-weight: bold;
+    padding: 1% 0 0;
 }
 
 td, th {
     width: 86px;
 }
 
-.time { width: inherit;}
+/* .time { width: inherit; } */
 
-table
+#timetable
 {
-    padding: 10px;
+    display: grid;
+    padding: 5%;
     width: 50vw;
     background: white;
     border-radius: 25px;
-}
-
-table, th, tr, td {
-    border: none !important;
+    font-size: 11px;
+    font-style: normal;
     outline: none !important;
     border-collapse: collapse !important;
     text-align: center;
-};
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr 2fr;
+    margin: -1.5px;
+    height: 10vh !important;
+    align-self: center;
+}
+
+.daytable {
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-column: span 6;
+}
+
+.classinfo {
+    background-color: white;
+}
+
+.day {
+    border: solid 3px var(--lightpurple);
+    margin: 0 -1.5px;
+}
+
+.timerow {
+    height: fit-content !important;
+}
+
+.timerow .time, .timerow .dayh {
+    padding-bottom: 10%;
+}
+
+.infowrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100%;
+    align-content: center;
+}
+
+.classinfo:nth-child(1), .classinfo:nth-child(2) {
+    font-weight: 700;
+}
+
+.classinfo:nth-child(3), .classinfo:nth-child(4) {
+    font-style: italic;
+}

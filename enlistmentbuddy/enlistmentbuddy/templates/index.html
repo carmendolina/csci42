@@ -15,101 +15,116 @@
             <button onclick="openModal()">
                 <img src="../static/img/button-edit.svg">
             </button>
+            <textarea>Paste from AISIS Class Schedule here...</textarea>
         </section>
-        <table id="timetable">
-            <tr>
-                <th class="time"> </th>
-                <th>M</th>
-                <th>T</th> 
-                <th>W</th> 
-                <th>TH</th>
-                <th>F</th>
-                <th>S</th>
-            </tr>
+        <section id="timetable">
+            <div class="row timerow">
+                <div class="time"> </div>
+                <div class="dayh">M</div>
+                <div class="dayh">T</div> 
+                <div class="dayh">W</div> 
+                <div class="dayh">Th</div>
+                <div class="dayh">F</div>
+                <div class="dayh">S</div>
+            </div>
             <!-- creates all times -->
             {% for x in time %}
-            <tr> 
+            <div class="row"> 
                 <!-- creates first column of times-->
-                <td class="time">{{ x|time:"H:i" }}</td>
+                <div class="time">{{ x|time:"H:i" }}</div>
                 <!-- if there are classes in monday, make it, otherwise blank column-->
                 <!-- copy from here, rename monday-->
-				<td>
-                    {% for class in monday %}         
-                        {% if class.start  <= x and class.end >= x %}  
-                            <div>{{ class.code }}</div>
-                            <div>{{ class.section }}</div>
-                            <div>{{ class.venue }}</div>
-                            <div>{{ class.professor }}</div>
-                            <!--<div>{{ class.start }}-{{ class.end }}</div>-->
-                        {% endif %}
-                    {% endfor %}
-                </td>
-                <!-- copy till here -->
-                <td>
-                    {% for class in tuesday %}         
-                        {% if class.start  <= x and class.end >= x %}  
-                            <div>{{ class.code }}</div>
-                            <div>{{ class.section }}</div>
-                            <div>{{ class.venue }}</div>
-                            <div>{{ class.professor }}</div>
-                            <!--<div>{{ class.start }}-{{ class.end }}</div>-->
-                        {% endif %}
-                    {% endfor %}
-                </td>
-				<td>
-                    {% for class in wednesday %}         
-                        {% if class.start  <= x and class.end >= x %}  
-                            <div>{{ class.code }}</div>
-                            <div>{{ class.section }}</div>
-                            <div>{{ class.venue }}</div>
-                            <div>{{ class.professor }}</div>
-                            <!--<div>{{ class.start }}-{{ class.end }}</div>-->
-                        {% endif %}
-                    {% endfor %}
-                </td>
-                <td>
-                    {% for class in thursday %}         
-                        {% if class.start  <= x and class.end >= x %}  
-                            <div>{{ class.code }}</div>
-                            <div>{{ class.section }}</div>
-                            <div>{{ class.venue }}</div>
-                            <div>{{ class.professor }}</div>
-                            <!--<div>{{ class.start }}-{{ class.end }}</div>-->  
-                        {% endif %}
-                    {% endfor %}
-                </td>
-                <td>
-                    {% for class in friday %}         
-                        {% if class.start  <= x and class.end >= x %}  
-                            <div>{{ class.code }}</div>
-                            <div>{{ class.section }}</div>
-                            <div>{{ class.venue }}</div>
-                            <div>{{ class.professor }}</div>
-                            <!--<div>{{ class.start }}-{{ class.end }}</div>--> 
-                        {% endif %}
-                    {% endfor %}
-                </td>
-                <td>
-                    {% for class in saturday %}         
-                        {% if class.start  <= x and class.end >= x %}  
-                            <div>{{ class.code }}</div>
-                            <div>{{ class.section }}</div>
-                            <div>{{ class.venue }}</div>
-                            <div>{{ class.professor }}</div>
-                            <!--<div>{{ class.start }}-{{ class.end }}</div>--> 
-                        {% endif %}
-                    {% endfor %}
-                </td>
-            </tr>
+                <section class="daytable">
+                    <div class="day">
+                        {% for class in monday %}         
+                            {% if class.start  <= x and class.end >= x %}  
+                            <div class="infowrap">
+                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.section }}</div>
+                                <div class="classinfo">{{ class.venue }}</div>
+                                <div class="classinfo">{{ class.professor }}</div>
+                            </div>
+                                <!--<div>{{ class.start }}-{{ class.end }}</div>-->
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <!-- copy till here -->
+                    <div class="day">
+                        {% for class in tuesday %}         
+                            {% if class.start  <= x and class.end >= x %}  
+                            <div class="infowrap">
+                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.section }}</div>
+                                <div class="classinfo">{{ class.venue }}</div>
+                                <div class="classinfo">{{ class.professor }}</div>
+                            </div>
+                                <!--<div>{{ class.start }}-{{ class.end }}</div>-->
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="day">
+                        {% for class in wednesday %}         
+                            {% if class.start  <= x and class.end >= x %}  
+                            <div class="infowrap">
+                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.section }}</div>
+                                <div class="classinfo">{{ class.venue }}</div>
+                                <div class="classinfo">{{ class.professor }}</div>
+                            </div>
+                                <!--<div>{{ class.start }}-{{ class.end }}</div>-->
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="day">
+                        {% for class in thursday %}         
+                            {% if class.start  <= x and class.end >= x %}  
+                            <div class="infowrap">
+                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.section }}</div>
+                                <div class="classinfo">{{ class.venue }}</div>
+                                <div class="classinfo">{{ class.professor }}</div>
+                            </div>
+                                <!--<div>{{ class.start }}-{{ class.end }}</div>-->  
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="day">
+                        {% for class in friday %}         
+                            {% if class.start  <= x and class.end >= x %}  
+                            <div class="infowrap">
+                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.section }}</div>
+                                <div class="classinfo">{{ class.venue }}</div>
+                                <div class="classinfo">{{ class.professor }}</div>
+                            </div>
+                                <!--<div>{{ class.start }}-{{ class.end }}</div>--> 
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="day">
+                        {% for class in saturday %}         
+                            {% if class.start  <= x and class.end >= x %}  
+                            <div class="infowrap">
+                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.section }}</div>
+                                <div class="classinfo">{{ class.venue }}</div>
+                                <div class="classinfo">{{ class.professor }}</div>
+                            </div>
+                                <!--<div>{{ class.start }}-{{ class.end }}</div>--> 
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
             {% endfor %}
-        </table>
+        </section>
         <!--shows information per class in table form
         <table id="timetable">
-        {% for this_class in class_info %}
-            <tr>
-                <td>{{ this_class.code }}</td>
-                <td>{{ this_class.section }}</td>  
-            </tr>
+        {% for divis_class in class_info %}
+            <div class="row">
+                <div class="day">{{ divis_class.code }}</div>
+                <div class="day">{{ divis_class.section }}</div>  
+            </div>
         {% endfor %}
         </table>
     -->
@@ -119,7 +134,7 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <div>
-            <form action="/index_card" method="post">
+            <form action="/index_card" medivod="post">
                 {% csrf_token %}
                 {{ form }}
                 <input type="submit" value="Submit">
