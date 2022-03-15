@@ -136,8 +136,32 @@
         <div>
             <form action="/index_card" method="post">
                 {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Submit">
+                <!-- {{ form }}
+                <input type="submit" value="Submit"> -->
+                <div class="form-group">
+                    {{ form.code }}
+                </div>
+                <div class="form-group">
+                    {{ form.section }}
+                </div>
+                <div class="form-group">
+                    {{ form.sched }}
+                </div>
+                <div class="form-group">
+                    {{ form.start }}
+                </div>
+                <div class="form-group">
+                    {{ form.end }}
+                </div>
+                <div class="form-group">
+                    {{ form.venue }}
+                </div>
+                <div class="form-group">
+                    {{ form.professor }}
+                </div>
+                <div class="form-group">
+                    <input class="btn" type="submit" value="Submit">
+                </div>
             </form>
         </div>
     </div>

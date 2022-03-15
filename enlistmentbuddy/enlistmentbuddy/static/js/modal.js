@@ -4,7 +4,7 @@ var close = document.getElementsByClassName("close")[0];
 var form = document.getElementById("form");
 
 function openModal() {
-    modal.style.display = "block";
+    modal.style.display = "flex";
 }
         
 window.onclick = function(event) {

@@ -3,6 +3,7 @@
     --midpurple1: #5D4988;
     --midyellow: #FFCC49;
     --lightpurple: #AE9FCD;
+    --darkpurple: #231149;
 }
 
 html {
@@ -38,7 +39,7 @@ main {
     align-items: flex-end;
 }
 
-button {
+button, .btn {
     background: var(--cream);
     display: flex;
     align-items: center;
@@ -53,7 +54,7 @@ button {
     transition: 300ms ease-in-out;
 }
 
-button:hover {
+button:hover, .btn:hover {
     background: var(--midyellow);
     transition: 300ms ease-in-out;
     cursor: pointer;
