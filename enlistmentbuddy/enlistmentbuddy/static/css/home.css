@@ -64,14 +64,20 @@ textarea {
     border-radius: 25px;
     border: none;
     font-family: 'Inter', sans-serif;
-    font-style: italic;
-    color: var(--lightpurple);
+    color: var(--midpurple1);
     padding: 28px;
+    resize: none;
+    transition: 300ms ease-in-out;
 }
 
-textarea:active {
-    font-style: normal;
-    color: var(--midpurple1);
+textarea::placeholder {
+    font-style: italic;
+    color: var(--lightpurple);
+}
+
+textarea:focus {
+    outline: solid 2px var(--lightpurple);
+    transition: 100ms ease-in-out;
 }
 
 /* Table Attributes */
