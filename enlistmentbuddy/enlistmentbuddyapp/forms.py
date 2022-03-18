@@ -48,3 +48,10 @@ class IndexCardForm(forms.ModelForm):
                 'placeholder': 'ex. JONGKO'
             })
         }
+
+class CopyPasteForm(forms.ModelForm):
+    class Meta:
+        model = IndexCard
+        fields = [
+            'copypaste'
+        ]

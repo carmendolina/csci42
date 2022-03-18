@@ -140,40 +140,40 @@
                 <input type="submit" value="Submit"> -->
                 <div class="coursecode-div">
                     <h1>Course Code</h1>
-                    {{ form.code }}
+                    {{ indexcardform.code }}
                 </div>
                 <div class="form-section">
                     <div class="form-group sectiongroup">
                         <h2>Section</h2>
-                        {{ form.section }}
+                        {{ indexcardform.section }}
                     </div>
                     <div class="section-inner">
                         <div class="form-group">
                             <h4>Schedule</h4>
-                            {{ form.sched }}
+                            {{ indexcardform.sched }}
                         </div>
                         <div class="startend">
                             <div class="form-group">
                                 <h4>Start <span>(military time)</span></h4>
-                                {{ form.start }}
+                                {{ indexcardform.start }}
                             </div>
                             <div class="form-group">
                                 <h4>End <span>(military time)</span></h4>
-                                {{ form.end }}
+                                {{ indexcardform.end }}
                             </div>
                         </div>
                         <div class="form-group">
                             <h4>Venue</h4>
-                            {{ form.venue }}
+                            {{ indexcardform.venue }}
                         </div>
                         <div class="form-group">
                             <h4>Professor</h4>
-                            {{ form.professor }}
+                            {{ indexcardform.professor }}
                         </div>
                     </div>
                 </div>
                 <div class="form-submit">
-                    <input class="btn" type="submit" value="+">
+                    <input class="btn" type="submit" name="indexsubmit" value="+">
                 </div>
             </form>
         </div>

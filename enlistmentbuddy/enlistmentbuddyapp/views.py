@@ -4,6 +4,7 @@ from django.http import HttpResponse
 
 #forms
 from .forms import IndexCardForm
+#from .forms import CopyPasteForm
 
 from .models import IndexCard
 
@@ -20,7 +21,8 @@ def index(request):
 
 
 def index_card_view(request):
-    form = IndexCardForm(request.POST)
+    indexcardform = IndexCardForm(request.POST)
+    #copypasteform = CopyPasteForm(request.POST)
     classes = IndexCard.objects.all()
     thislist = setting_time()
     mondaylist = monday()
@@ -33,15 +35,24 @@ def index_card_view(request):
 
     if request.method == 'POST':
     # Checking if the inputs are valid
-        if form.is_valid():
-            form.save()
-            return redirect("index_card")
+        if 'indexsubmit' in request.POST:
+            indexcardform = IndexCardForm(request.POST)
+            if indexcardform.is_valid():
+                indexcardform.save()
+                return redirect("index_card")
+        #elif 'copypastesubmit' in request.POST:
+            #copypasteform = CopyPasteForm(request.POST)
+            #if copypasteform.is_valid():
+                #copypasteform.save()
+                #return redirect("index_card")
     else:
-        form = IndexCardForm()
+        indexcardform = IndexCardForm()
+        #copypasteform = CopyPasteForm()
 
     return render(request, 'index.html', 
         {
-            'form': form, 
+            'indexcardform': indexcardform, 
+            #'copypasteform': copypasteform,
             'class_info': classes, 
             'time': thislist,
             'monday': mondaylist,
