@@ -17,4 +17,4 @@ class IndexCard(models.Model):
     copypaste = models.CharField(max_length=1000, null=True)
 
     def __str__(self):
-        return '{} {} {} {}-{}'.format(self.code, self.section, self.sched, self.start.strftime('%H:%M'), self.end.strftime('%H:%M'))
+        return '{} {} {} '.format(self.code, self.section, self.sched)
