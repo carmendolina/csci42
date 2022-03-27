@@ -31,6 +31,7 @@ def index_card_view(request):
     thursdaylist = thursday()
     fridaylist = friday()
     saturdaylist = saturday()
+    courselist = coursecodes()
     #over here peeps
 
     if request.method == 'POST':
@@ -60,7 +61,8 @@ def index_card_view(request):
             'wednesday': wednesdaylist,
             'thursday': thursdaylist,
             'friday': fridaylist,
-            'saturday': saturdaylist
+            'saturday': saturdaylist,
+            'courses': courselist,
             #over here peeps
         }
     )
@@ -114,6 +116,13 @@ def setting_time():
         timelist.append(starttime.time)
         starttime += datetime.timedelta(0,30*60) # days, seconds, then other fields.
     return timelist
+
+def coursecodes():
+    courselist = []
+    for course in IndexCard.objects.all():
+        if course.code not in courselist:
+            courselist.append(course.code)
+    return courselist
 
 #sources:
 #Time - https://stackoverflow.com/questions/100210/what-is-the-standard-way-to-add-n-seconds-to-datetime-time-in-python

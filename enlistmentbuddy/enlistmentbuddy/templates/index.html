@@ -10,6 +10,12 @@
 
 {% block content %}
 <main>
+    <!--shows information per class in table form-->
+    <table>
+        {% for course in courses %}
+            <td>{{ course }}</td>
+        {% endfor %}
+    </table> -->
     <section id="content">
         <section class="textareas">
             <button onclick="openModal()">
@@ -124,16 +130,6 @@
             </div>
             {% endfor %}
         </section>
-        <!--shows information per class in table form
-        <table id="timetable">
-        {% for this_class in class_info %}
-            <div class="row">
-                <div class="day">{{ this_class.code }}</div>
-                <div class="day">{{ this_class.section }}</div>  
-            </div>
-        {% endfor %}
-        </table>
-    -->
     </section>
 </main>
 <div id="myModal" class="modal">
