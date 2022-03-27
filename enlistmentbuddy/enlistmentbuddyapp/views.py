@@ -32,6 +32,7 @@ def index_card_view(request):
     fridaylist = friday()
     saturdaylist = saturday()
     courselist = coursecodes()
+    thiscourse = courselist[1];
     #over here peeps
 
     if request.method == 'POST':
@@ -62,7 +63,9 @@ def index_card_view(request):
             'thursday': thursdaylist,
             'friday': fridaylist,
             'saturday': saturdaylist,
+
             'courses': courselist,
+            'trycourse': thiscourse,
             #over here peeps
         }
     )
@@ -123,6 +126,9 @@ def coursecodes():
         if course.code not in courselist:
             courselist.append(course.code)
     return courselist
+
+def checkoverlap():
+    return null
 
 #sources:
 #Time - https://stackoverflow.com/questions/100210/what-is-the-standard-way-to-add-n-seconds-to-datetime-time-in-python

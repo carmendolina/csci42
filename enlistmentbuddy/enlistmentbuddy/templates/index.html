@@ -10,8 +10,9 @@
 
 {% block content %}
 <main>
-    <!--shows information per class in table form-->
+    <!--shows information per class in table form
     <table>
+        <td>{{ trycourse }}</td>
         {% for course in courses %}
             <td>{{ course }}</td>
         {% endfor %}
