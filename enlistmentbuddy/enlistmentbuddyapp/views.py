@@ -1,3 +1,4 @@
+from ast import Index
 from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
@@ -32,7 +33,8 @@ def index_card_view(request):
     fridaylist = friday()
     saturdaylist = saturday()
     courselist = coursecodes()
-    thiscourse = courselist[1];
+    thiscourse = courselist[1]
+    testlist = sortClasses()
     #over here peeps
 
     if request.method == 'POST':
@@ -72,7 +74,7 @@ def index_card_view(request):
             'thursday': thursdaylist,
             'friday': fridaylist,
             'saturday': saturdaylist,
-
+            'testlister':testlist,
             'courses': courselist,
             'trycourse': thiscourse,
             #over here peeps
@@ -166,8 +168,52 @@ def coursecodes():
             courselist.append(course.code)
     return courselist
 
-def checkoverlap():
-    return null
+def checkoccupied(list, code):
+    for course in list:
+        if (course == code):
+            return True
+    return False
+
+
+def checkoverlap(start1, end1, start2, end2):
+    if (start1<start2<end1) or (start1<end2<end1):
+        return True
+    return False
+
+def scheduleoverlap(xdays,ydays):
+    if ("SAT" in xdays and "SAT" in ydays):
+        return True
+    elif ("TH" in xdays and "TH" in ydays):
+        return True
+    elif ("T" in xdays and "T" in ydays):
+        return True
+    elif ("M" in xdays and "M" in ydays):
+        return True
+    elif ("W" in xdays and "W" in ydays):
+        return True
+    elif ("F" in xdays and "F" in ydays):
+        return True  
+    return False
+
+
+def sortClasses():
+    classlist = []
+    classoccupy = []
+
+    for course in IndexCard.objects.all():
+        for x in classlist:
+            if (checkoccupied(classoccupy,course.code) or (checkoverlap(x.start,x.end,course.start,course.end) and scheduleoverlap(x.sched,course.sched))):
+                break
+            elif (classlist.index(x)==len(classlist)-1):
+                classoccupy.append(course.code)
+                classlist.append(course)
+        if len(classoccupy) == 0:
+            classoccupy.append(course.code)
+            classlist.append(course)
+    return classoccupy
+        
+
+
 
 #sources:
 #Time - https://stackoverflow.com/questions/100210/what-is-the-standard-way-to-add-n-seconds-to-datetime-time-in-python

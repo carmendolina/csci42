@@ -18,6 +18,9 @@
         {% endfor %}
     </table> -->
     <section id="content">
+        {% for course in testlister %}
+        <td>{{ course }}</td>
+        {% endfor %}
         <section class="textareas">
             <button onclick="openModal()">
                 <img src="../static/img/button-edit.svg">
