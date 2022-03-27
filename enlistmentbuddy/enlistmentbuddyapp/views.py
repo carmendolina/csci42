@@ -32,9 +32,12 @@ def index_card_view(request):
     thursdaylist = thursday()
     fridaylist = friday()
     saturdaylist = saturday()
+
     courselist = coursecodes()
     thiscourse = courselist[1]
     testlist = sortClasses()
+
+    helpme = imtesting()
     #over here peeps
 
     if request.method == 'POST':
@@ -174,7 +177,6 @@ def checkoccupied(list, code):
             return True
     return False
 
-
 def checkoverlap(start1, end1, start2, end2):
     if (start1<start2<end1) or (start1<end2<end1):
         return True
@@ -195,6 +197,29 @@ def scheduleoverlap(xdays,ydays):
         return True  
     return False
 
+def imtesting():
+    baseclasslist = []
+    classesbycourse = []
+    courselist = coursecodes()
+    tempclasses = []
+
+    for course in courselist:
+        tempclasses = []
+        #print (course)
+        tempclasses.append(course)
+        tempclasses.append(IndexCard.objects.filter(code__contains=course))
+        #print(tempclasses)
+        classesbycourse.append(tempclasses)
+    
+    #print (len(classesbycourse))
+    for x in range(0,len(classesbycourse)):
+        print (classesbycourse[x][0])
+        for y in range(0,len(classesbycourse[x][1])):
+            print (classesbycourse[x][1][y])
+    #for course in classesbycourse:
+    #    print (course[0])
+    #    for classes in course[1]:
+    #        print (classes)
 
 def sortClasses():
     classlist = []
