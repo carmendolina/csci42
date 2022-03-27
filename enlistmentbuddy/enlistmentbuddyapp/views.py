@@ -44,7 +44,16 @@ def index_card_view(request):
         elif 'copypastesubmit' in request.POST:
             copypasteform = CopyPasteForm(request.POST)
             if copypasteform.is_valid():
-                copypasteform.save()
+                #copypasteform.save()
+                #https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
+                text = request.POST.get('copypaste')
+                print(text)
+                #if len(text.split("\t")) > 14:
+                #smth smth join every 14 together
+                fieldlist = split(text)
+                print(fieldlist[0])
+                newClass = IndexCard(code=fieldlist[0], section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
+                newClass.save()
                 return redirect("index_card")
     else:
         indexcardform = IndexCardForm()
@@ -70,6 +79,36 @@ def index_card_view(request):
 #sources:
 #https://docs.djangoproject.com/en/4.0/topics/db/queries/
 # copy and paste function, rename day of week to corresponding day, then put in def index_card_view, and add it into return
+
+def timeConvert(text):
+    return text[:2] + ':' + text[2:]
+
+def split(text):
+    splitfields = []
+    moresplit = []
+    timesplit = []
+    namesplit = []
+    finalfields = []
+    #for copiedText in text:
+    listOfClasses = text
+    splitByTabIndents = text.split("\t")
+    for x in splitByTabIndents:
+        splitfields.append(x)
+    for y in splitfields[4].split(" "):
+        moresplit.append(y)
+    for z in moresplit[1].split("-"):
+        timesplit.append(z)
+    for a in splitfields[6].split(","):
+        namesplit.append(a)
+    finalfields.append(splitfields[0])
+    finalfields.append(splitfields[1])
+    finalfields.append(moresplit[0])
+    finalfields.append(timeConvert(timesplit[0]))
+    finalfields.append(timeConvert(timesplit[1]))
+    finalfields.append(splitfields[5])
+    finalfields.append(namesplit[0])
+
+    return finalfields
 
 def monday():
     mondays = []
