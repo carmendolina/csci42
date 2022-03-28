@@ -18,20 +18,27 @@
         {% endfor %}
     </table> -->
     <section id="content">
-        {% for course in testlister %}
+        <!-- {% for course in testlister %}
         <td>{{ course }}</td>
-        {% endfor %}
+        {% endfor %} -->
         <section class="textareas">
-            <button onclick="openModal()">
-                <img src="../static/img/button-edit.svg">
-            </button>
-            <!-- carmen send help this is the basic stuff i thinkkk? -->
-            <form action="/index_card" method="post">
+            <form class="ta_form" action="/index_card" method="post">
                 {% csrf_token %}
-                {{ copypasteform }}
-                <input class="btn" type="submit" name="copypastesubmit" value="Submit">
-            </form> -->
-            <textarea placeholder="Paste from AISIS Class Schedule here..."></textarea>
+                <div class="ta_buttons">
+                    <button class="ta_edit" onclick="openModal()">
+                        <img src="../static/img/button-edit.svg">
+                    </button>
+                    <button class="ta_add" onclick="">
+                        <img src="../static/img/button-add.svg">
+                    </button>
+                    <button class="ta_trash" onclick="">
+                        <img src="../static/img/button-trash.svg">
+                    </button>
+                </div>
+                {{ copypasteform.copypaste }}
+                <input class="btn ta_gen" type="submit" name="copypastesubmit" value="Generate a Schedule">
+            </form>
+            <!-- <textarea placeholder="Paste from AISIS Class Schedule here..."></textarea> -->
         </section>
         <section id="timetable">
             <div class="row timerow">

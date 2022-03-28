@@ -34,7 +34,7 @@ def index_card_view(request):
     saturdaylist = saturday()
 
     courselist = coursecodes()
-    thiscourse = courselist[1]
+    # thiscourse = courselist[1]
     testlist = sortClasses()
 
     helpme = imtesting()
@@ -79,7 +79,7 @@ def index_card_view(request):
             'saturday': saturdaylist,
             'testlister':testlist,
             'courses': courselist,
-            'trycourse': thiscourse,
+            # 'trycourse': thiscourse,
             #over here peeps
         }
     )

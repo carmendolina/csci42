@@ -33,7 +33,7 @@ main {
 
 .textareas {
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr;
     gap: 20px;
     margin: 0 28px 0 0;
     align-items: flex-end;
@@ -52,6 +52,7 @@ button, .btn {
     height: 60px;
     width: 60px;
     transition: 300ms ease-in-out;
+    font-family: 'Inter', sans-serif;
 }
 
 button:hover, .btn:hover {
@@ -60,8 +61,32 @@ button:hover, .btn:hover {
     cursor: pointer;
 }
 
-textarea {
-    height: 30vh;
+.ta_form {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: auto auto;
+    column-gap: 20px;
+    row-gap: 28px;
+}
+
+.ta_buttons {
+    grid-column: 1;
+    grid-row: 1;
+    display: grid;
+    row-gap: 20px;
+    align-self: flex-end;
+}
+
+.ta_gen {
+    grid-column: 2;
+    grid-row: 2;
+    width: 100% !important;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+textarea, .textarea {
+    height: 30vh !important;
     border-radius: 25px;
     border: none;
     font-family: 'Inter', sans-serif;
@@ -69,14 +94,19 @@ textarea {
     padding: 28px;
     resize: none;
     transition: 300ms ease-in-out;
+    grid-column: 2;
+    grid-row: 1;
 }
 
-textarea::placeholder {
+textarea::placeholder, .textarea::placeholder {
     font-style: italic;
     color: var(--lightpurple);
+    vertical-align: text-top;
+    margin: 0;
+    word-wrap: normal;
 }
 
-textarea:focus {
+textarea:focus, .textarea:focus {
     outline: solid 2px var(--lightpurple);
     transition: 100ms ease-in-out;
 }

@@ -1,6 +1,7 @@
 from django import forms
 from .models import IndexCard
 from django.forms import TextInput
+from django.forms import Textarea
 
 from .models import (
     IndexCard
@@ -55,3 +56,9 @@ class CopyPasteForm(forms.ModelForm):
         fields = [
             'copypaste'
         ]
+        widgets = {
+            'copypaste': Textarea(attrs={
+                'class': "textarea",
+                'placeholder': 'Paste from AISIS Class Schedule here...'
+            }),
+        }
