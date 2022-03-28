@@ -46,8 +46,13 @@ def index_card_view(request):
     # Checking if the inputs are valid
         if 'indexsubmit' in request.POST:
             indexcardform = CourseForm(request.POST)
-            if indexcardform.is_valid():
-                indexcardform.save()
+            codeform = CodeForm(request.POST)
+            if codeform.is_valid():
+                text = request.POST.get('name')
+                newCode = ClassCode(name=text)
+                newCode.save()
+                newClass = ClassModel(code=newCode, section=request.POST.get('section'), sched=request.POST.get('sched'), start=request.POST.get('start'), end=request.POST.get('end'), venue=request.POST.get('venue'), professor=request.POST.get('professor'))
+                newClass.save()
                 return redirect("index_card")
         elif 'copypastesubmit' in request.POST:
             copypasteform = ClassCopyPasteForm(request.POST)
