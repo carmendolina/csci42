@@ -65,7 +65,9 @@ def index_card_view(request):
                 #smth smth join every 14 together
                 fieldlist = split(text)
                 #print(fieldlist[4])
-                newClass = ClassModel(code=fieldlist[0], section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
+                newCode = ClassCode(name=fieldlist[0])
+                newCode.save()
+                newClass = ClassModel(code=newCode, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
                 newClass.save()
                 return redirect("index_card")
     else:
