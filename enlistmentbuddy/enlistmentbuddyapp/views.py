@@ -1,4 +1,5 @@
 from ast import Index
+from tabnanny import check
 from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
@@ -37,7 +38,7 @@ def index_card_view(request):
     codeform = CodeForm(request.POST)
     courselist = coursecodes()
     # thiscourse = courselist[1]
-    testlist = sortClasses()
+    #testlist = sortClasses()
     listofcourses = []
     for course in ClassCode.objects.all():
         listofcourses.append(course.name)
@@ -99,7 +100,7 @@ def index_card_view(request):
             'thursday': thursdaylist,
             'friday': fridaylist,
             'saturday': saturdaylist,
-            'testlister':testlist,
+            #'testlister':testlist,
             'courses': courselist,
             # 'trycourse': thiscourse,
             #over here peeps
@@ -199,25 +200,11 @@ def checkoccupied(list, code):
             return True
     return False
 
-def checkoverlap(start1, end1, start2, end2):
-    if (start1<start2<end1) or (start1<end2<end1) or (start1==start2):
-        return True
-    return False
-
-def scheduleoverlap(xdays,ydays):
-    if ("SAT" in xdays and "SAT" in ydays):
-        return True
-    elif ("TH" in xdays and "TH" in ydays):
-        return True
-    elif ("T" in xdays and "T" in ydays):
-        return True
-    elif ("M" in xdays and "M" in ydays):
-        return True
-    elif ("W" in xdays and "W" in ydays):
-        return True
-    elif ("F" in xdays and "F" in ydays):
-        return True  
-    return False
+def checkoverlap(classes, list2):
+    for x in list2:
+        if (x.start<classes.start<x.end) or (x.start<classes.end<x.end) or (x.start==classes.start):
+            return False
+    return True
 
 def imtesting():
     baseclasslist = []
@@ -243,21 +230,67 @@ def imtesting():
     #    for classes in course[1]:
     #        print (classes)
 
-def sortClasses():
-    classlist = []
-    classoccupy = []
+def classtester(occupiedclasses, className):
+    for occupied in occupiedclasses:
+        if (occupiedclasses == className.code):
+            return False
+    return True
 
-    for course in ClassModel.objects.all():
-        for x in classlist:
-            if (checkoccupied(classoccupy,course.code) or (checkoverlap(x.start,x.end,course.start,course.end) and scheduleoverlap(x.sched,course.sched))):
-                break
-            elif (classlist.index(x)==len(classlist)-1):
-                classoccupy.append(course.code)
-                classlist.append(course)
-        if len(classoccupy) == 0:
-            classoccupy.append(course.code)
-            classlist.append(course)
-    return classlist
+def scheduleoverlap(classes,ydays):
+    for x in ydays:
+        if ("SAT" in classes and "SAT" in x.sched):
+            return False
+        elif ("TH" in classes and "TH" in ydays.sched):
+            return False
+        elif ("T" in classes and "T" in ydays.sched):
+            return False
+        elif ("M" in classes and "M" in ydays.sched):
+            return False
+        elif ("W" in classes and "W" in ydays.sched):
+            return False
+        elif ("F" in classes and "F" in ydays.sched):
+            return False  
+    return True
+
+#def sortClasses():
+#    classlist = []
+#    classoccupy = []
+#
+#    while(len(classoccupy) != ClassCode.objects.all().count()):
+#        for classes in ClassModel.objects.all():
+#            if (classtester(classoccupy,classes)):
+#                print("pakyu")
+#                if (scheduleoverlap(classes.sched,classoccupy) and checkoverlap(classes,classlist)):
+#                    print("pakshet")
+#                    classlist.append(classes)
+#                    classoccupy.append(classes.code)
+#                    print(len(classoccupy))
+#                    print(ClassCode.objects.all().count())
+#                        break
+#                    sortClasses()
+#                    
+#                    classlist.pop()
+#                    classoccupy.pop()
+#                
+#        return classlist
+#    return classlist
+
+                    
+    
+    #classlist = []
+    #classoccupy = []
+#
+    #for course in ClassModel.objects.all():
+    #    for x in classlist:
+    #        if (checkoccupied(classoccupy,course.code) or (checkoverlap(x.start,x.end,course.start,course.end) and scheduleoverlap(x.sched,course.sched))):
+    #            break
+    #        elif (classlist.index(x)==len(classlist)-1):
+    #            classoccupy.append(course.code)
+    #            classlist.append(course)
+    #    if len(classoccupy) == 0:
+    #        classoccupy.append(course.code)
+    #        classlist.append(course)
+    #return classlist
         
 
 
