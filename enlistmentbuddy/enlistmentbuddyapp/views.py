@@ -53,11 +53,11 @@ def index_card_view(request):
                 #copypasteform.save()
                 #https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
                 text = request.POST.get('copypaste')
-                print(text)
+                #print(text)
                 #if len(text.split("\t")) > 14:
                 #smth smth join every 14 together
                 fieldlist = split(text)
-                print(fieldlist[0])
+                #print(fieldlist[4])
                 newClass = IndexCard(code=fieldlist[0], section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
                 newClass.save()
                 return redirect("index_card")
@@ -89,7 +89,7 @@ def index_card_view(request):
 # copy and paste function, rename day of week to corresponding day, then put in def index_card_view, and add it into return
 
 def timeConvert(text):
-    return text[:2] + ':' + text[2:]
+    return text[:2] + ':' + text[2:4]
 
 def split(text):
     splitfields = []
