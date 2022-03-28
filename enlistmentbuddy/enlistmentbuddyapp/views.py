@@ -38,6 +38,9 @@ def index_card_view(request):
     courselist = coursecodes()
     # thiscourse = courselist[1]
     testlist = sortClasses()
+    listofcourses = []
+    for course in ClassCode.objects.all():
+        listofcourses.append(course.name)
 
     #elpme = imtesting()
     #over here peeps
@@ -50,8 +53,16 @@ def index_card_view(request):
             if codeform.is_valid():
                 text = request.POST.get('name')
                 newCode = ClassCode(name=text)
-                newCode.save()
-                newClass = ClassModel(code=newCode, section=request.POST.get('section'), sched=request.POST.get('sched'), start=request.POST.get('start'), end=request.POST.get('end'), venue=request.POST.get('venue'), professor=request.POST.get('professor'))
+                
+                if (newCode.name not in listofcourses):
+                    newCode.save()
+                    print ("its not in")
+                    newClass = ClassModel(code=newCode, section=request.POST.get('section'), sched=request.POST.get('sched'), start=request.POST.get('start'), end=request.POST.get('end'), venue=request.POST.get('venue'), professor=request.POST.get('professor'))
+                else:
+                    for course in ClassCode.objects.all():
+                        if (course.name == newCode.name):
+                            newClass = ClassModel(code=course, section=request.POST.get('section'), sched=request.POST.get('sched'), start=request.POST.get('start'), end=request.POST.get('end'), venue=request.POST.get('venue'), professor=request.POST.get('professor'))
+                        
                 newClass.save()
                 return redirect("index_card")
         elif 'copypastesubmit' in request.POST:
@@ -189,7 +200,7 @@ def checkoccupied(list, code):
     return False
 
 def checkoverlap(start1, end1, start2, end2):
-    if (start1<start2<end1) or (start1<end2<end1):
+    if (start1<start2<end1) or (start1<end2<end1) or (start1==start2):
         return True
     return False
 
@@ -236,7 +247,7 @@ def sortClasses():
     classlist = []
     classoccupy = []
 
-    for course in IndexCard.objects.all():
+    for course in ClassModel.objects.all():
         for x in classlist:
             if (checkoccupied(classoccupy,course.code) or (checkoverlap(x.start,x.end,course.start,course.end) and scheduleoverlap(x.sched,course.sched))):
                 break
@@ -246,7 +257,7 @@ def sortClasses():
         if len(classoccupy) == 0:
             classoccupy.append(course.code)
             classlist.append(course)
-    return classoccupy
+    return classlist
         
 
 

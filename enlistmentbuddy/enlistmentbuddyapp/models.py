@@ -12,7 +12,7 @@ class ClassCode(models.Model):
 class ClassModel(models.Model):
     code = models.ForeignKey(
         ClassCode, on_delete=models.CASCADE,
-    verbose_name="Class Code", null=True)
+    verbose_name="Class Code", null=True, blank=True)
     section = models.CharField(max_length=20, null=True)
     sched = models.CharField(max_length=10, null=True)
     #start = models.CharField(max_length=10, null=True)
