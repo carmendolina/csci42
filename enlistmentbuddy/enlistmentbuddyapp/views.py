@@ -6,8 +6,10 @@ from django.http import HttpResponse
 #forms
 from .forms import IndexCardForm
 from .forms import CopyPasteForm
+from .forms import ClassCopyPasteForm
+from .forms import CourseForm, CodeForm
 
-from .models import IndexCard
+from .models import IndexCard, ClassModel, ClassCode
 
 from django.views import View
 from django.views.generic.list import ListView
@@ -22,9 +24,9 @@ def index(request):
 
 
 def index_card_view(request):
-    indexcardform = IndexCardForm(request.POST)
-    copypasteform = CopyPasteForm(request.POST)
-    classes = IndexCard.objects.all()
+    indexcardform = CourseForm(request.POST)
+    copypasteform = ClassCopyPasteForm(request.POST)
+    classes = ClassModel.objects.all()
     thislist = setting_time()
     mondaylist = monday()
     tuesdaylist = tuesday()
@@ -32,23 +34,23 @@ def index_card_view(request):
     thursdaylist = thursday()
     fridaylist = friday()
     saturdaylist = saturday()
-
+    codeform = CodeForm(request.POST)
     courselist = coursecodes()
     # thiscourse = courselist[1]
     testlist = sortClasses()
 
-    helpme = imtesting()
+    #elpme = imtesting()
     #over here peeps
 
     if request.method == 'POST':
     # Checking if the inputs are valid
         if 'indexsubmit' in request.POST:
-            indexcardform = IndexCardForm(request.POST)
+            indexcardform = CourseForm(request.POST)
             if indexcardform.is_valid():
                 indexcardform.save()
                 return redirect("index_card")
         elif 'copypastesubmit' in request.POST:
-            copypasteform = CopyPasteForm(request.POST)
+            copypasteform = ClassCopyPasteForm(request.POST)
             if copypasteform.is_valid():
                 #copypasteform.save()
                 #https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
@@ -58,17 +60,19 @@ def index_card_view(request):
                 #smth smth join every 14 together
                 fieldlist = split(text)
                 #print(fieldlist[4])
-                newClass = IndexCard(code=fieldlist[0], section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
+                newClass = ClassModel(code=fieldlist[0], section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
                 newClass.save()
                 return redirect("index_card")
     else:
-        indexcardform = IndexCardForm()
-        copypasteform = CopyPasteForm()
+        indexcardform = CourseForm()
+        codeform = CodeForm()
+        copypasteform = ClassCopyPasteForm()
 
     return render(request, 'index.html', 
         {
             'indexcardform': indexcardform, 
             'copypasteform': copypasteform,
+            'codeform' : codeform,
             'class_info': classes, 
             'time': thislist,
             'monday': mondaylist,
@@ -120,38 +124,38 @@ def split(text):
 
 def monday():
     mondays = []
-    for mondayclass in IndexCard.objects.filter(sched__contains='M'):
+    for mondayclass in ClassModel.objects.filter(sched__contains='M'):
         mondays.append(mondayclass)
     return mondays
 
 def tuesday():
     tuesdays = []
-    tueslist = IndexCard.objects.filter(sched__contains='T-') |  IndexCard.objects.filter(sched__iexact='T')
+    tueslist = ClassModel.objects.filter(sched__contains='T-') |  ClassModel.objects.filter(sched__iexact='T')
     for tuesdayclass in tueslist:
         tuesdays.append(tuesdayclass)
     return tuesdays
 
 def wednesday():
     wednesdays = []
-    for wednesdayclass in IndexCard.objects.filter(sched__contains='W'):
+    for wednesdayclass in ClassModel.objects.filter(sched__contains='W'):
         wednesdays.append(wednesdayclass)
     return wednesdays
 
 def thursday():
     thursdays = []
-    for thursdayclass in IndexCard.objects.filter(sched__contains='TH'):
+    for thursdayclass in ClassModel.objects.filter(sched__contains='TH'):
         thursdays.append(thursdayclass)
     return thursdays
 
 def friday():
     fridays = []
-    for fridayclass in IndexCard.objects.filter(sched__contains='F'):
+    for fridayclass in ClassModel.objects.filter(sched__contains='F'):
         fridays.append(fridayclass)
     return fridays
 
 def saturday():
     saturdays = []
-    for saturdayclass in IndexCard.objects.filter(sched__contains='SAT'):
+    for saturdayclass in ClassModel.objects.filter(sched__contains='SAT'):
         saturdays.append(saturdayclass)
     return saturdays
 
@@ -166,7 +170,7 @@ def setting_time():
 
 def coursecodes():
     courselist = []
-    for course in IndexCard.objects.all():
+    for course in ClassModel.objects.all():
         if course.code not in courselist:
             courselist.append(course.code)
     return courselist
@@ -207,7 +211,7 @@ def imtesting():
         tempclasses = []
         #print (course)
         tempclasses.append(course)
-        tempclasses.append(IndexCard.objects.filter(code__contains=course))
+        tempclasses.append(ClassModel.objects.filter(code__contains=course))
         #print(tempclasses)
         classesbycourse.append(tempclasses)
     

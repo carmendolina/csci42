@@ -62,7 +62,7 @@
                         {% for class in monday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap">
-                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
                                 <div class="classinfo">{{ class.professor }}</div>
@@ -76,7 +76,7 @@
                         {% for class in tuesday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap">
-                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
                                 <div class="classinfo">{{ class.professor }}</div>
@@ -89,7 +89,7 @@
                         {% for class in wednesday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap">
-                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
                                 <div class="classinfo">{{ class.professor }}</div>
@@ -102,7 +102,7 @@
                         {% for class in thursday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap">
-                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
                                 <div class="classinfo">{{ class.professor }}</div>
@@ -115,7 +115,7 @@
                         {% for class in friday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap">
-                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
                                 <div class="classinfo">{{ class.professor }}</div>
@@ -128,7 +128,7 @@
                         {% for class in saturday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap">
-                                <div class="classinfo">{{ class.code }}</div>
+                                <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
                                 <div class="classinfo">{{ class.professor }}</div>
@@ -153,7 +153,7 @@
                 <input type="submit" value="Submit"> -->
                 <div class="coursecode-div">
                     <h1>Course Code</h1>
-                    {{ indexcardform.code }}
+                    {{ codeform.name }}
                 </div>
                 <div class="form-section">
                     <div class="form-group sectiongroup">
