@@ -1,7 +1,7 @@
 from ast import Index
 from tabnanny import check
 from django.shortcuts import render, redirect
-import re
+import re, itertools
 
 from django.http import HttpResponse
 
@@ -29,23 +29,32 @@ def index_card_view(request):
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
     classes = ClassModel.objects.all()
+    finallist = imtesting()
+    #print (finallist[0])
+
     thislist = setting_time()
-    mondaylist = monday()
-    tuesdaylist = tuesday()
-    wednesdaylist = wednesday()
-    thursdaylist = thursday()
-    fridaylist = friday()
-    saturdaylist = saturday()
+    mondaylist = monday(finallist[0])
+    tuesdaylist = tuesday(finallist[0])
+    wednesdaylist = wednesday(finallist[0])
+    thursdaylist = thursday(finallist[0])
+    fridaylist = friday(finallist[0])
+    saturdaylist = saturday(finallist[0])
     codeform = CodeForm(request.POST)
-    courselist = coursecodes()
     # thiscourse = courselist[1]
     #testlist = sortClasses()
-    listofcourses = []
-    for course in ClassCode.objects.all():
-        listofcourses.append(course.name)
+    listofcourses = listofcoursenames()
 
-    #elpme = imtesting()
     #over here peeps
+
+    #CHECKING COURSES
+    #for course in listofcourses:
+    #    print (course)
+    #print ("---")
+
+    #CHECKING CLASSES
+    #for x in classes:
+    #    print (x)
+    #print ("---")
 
     if request.method == 'POST':
     # Checking if the inputs are valid
@@ -55,7 +64,7 @@ def index_card_view(request):
             if codeform.is_valid():
                 text = request.POST.get('name')
                 newCode = ClassCode(name=text)
-                
+                print (newCode)
                 if (newCode.name not in listofcourses):
                     newCode.save()
                     print ("its not in")
@@ -113,7 +122,6 @@ def index_card_view(request):
             'friday': fridaylist,
             'saturday': saturdaylist,
             #'testlister':testlist,
-            'courses': courselist,
             # 'trycourse': thiscourse,
             #over here peeps
         }
@@ -153,41 +161,46 @@ def split(text):
 
     return finalfields
 
-def monday():
+def monday(classlist):
     mondays = []
-    for mondayclass in ClassModel.objects.filter(sched__contains='M'):
-        mondays.append(mondayclass)
+    for classes in classlist:
+        if "M" in classes.sched:
+            mondays.append(classes)
     return mondays
 
-def tuesday():
+def tuesday(classlist):
     tuesdays = []
-    tueslist = ClassModel.objects.filter(sched__contains='T-') |  ClassModel.objects.filter(sched__iexact='T')
-    for tuesdayclass in tueslist:
-        tuesdays.append(tuesdayclass)
+    for classes in classlist:
+        if "T" in classes.sched:
+            tuesdays.append(classes)
     return tuesdays
 
-def wednesday():
+def wednesday(classlist):
     wednesdays = []
-    for wednesdayclass in ClassModel.objects.filter(sched__contains='W'):
-        wednesdays.append(wednesdayclass)
+    for classes in classlist:
+        if "W" in classes.sched:
+            wednesdays.append(classes)
     return wednesdays
 
-def thursday():
+def thursday(classlist):
     thursdays = []
-    for thursdayclass in ClassModel.objects.filter(sched__contains='TH'):
-        thursdays.append(thursdayclass)
+    for classes in classlist:
+        if "TH" in classes.sched:
+            thursdays.append(classes)
     return thursdays
 
-def friday():
+def friday(classlist):
     fridays = []
-    for fridayclass in ClassModel.objects.filter(sched__contains='F'):
-        fridays.append(fridayclass)
+    for classes in classlist:
+        if "F" in classes.sched:
+            fridays.append(classes)
     return fridays
 
-def saturday():
+def saturday(classlist):
     saturdays = []
-    for saturdayclass in ClassModel.objects.filter(sched__contains='SAT'):
-        saturdays.append(saturdayclass)
+    for classes in classlist:
+        if "SAT" in classes.sched:
+            saturdays.append(classes)
     return saturdays
 
 def setting_time():
@@ -198,13 +211,6 @@ def setting_time():
         timelist.append(starttime.time)
         starttime += datetime.timedelta(0,30*60) # days, seconds, then other fields.
     return timelist
-
-def coursecodes():
-    courselist = []
-    for course in ClassModel.objects.all():
-        if course.code not in courselist:
-            courselist.append(course.code)
-    return courselist
 
 def checkoccupied(list, code):
     for course in list:
@@ -218,29 +224,13 @@ def checkoverlap(classes, list2):
             return False
     return True
 
-def imtesting():
-    baseclasslist = []
-    classesbycourse = []
-    courselist = coursecodes()
-    tempclasses = []
+def listofcoursenames():
+    namelist = []
+    for course in ClassCode.objects.all():
+        namelist.append(course.name)
+    return namelist
 
-    for course in courselist:
-        tempclasses = []
-        #print (course)
-        tempclasses.append(course)
-        tempclasses.append(ClassModel.objects.filter(code__contains=course))
-        #print(tempclasses)
-        classesbycourse.append(tempclasses)
-    
-    #print (len(classesbycourse))
-    for x in range(0,len(classesbycourse)):
-        print (classesbycourse[x][0])
-        for y in range(0,len(classesbycourse[x][1])):
-            print (classesbycourse[x][1][y])
-    #for course in classesbycourse:
-    #    print (course[0])
-    #    for classes in course[1]:
-    #        print (classes)
+
 
 def classtester(occupiedclasses, className):
     for occupied in occupiedclasses:
@@ -263,6 +253,69 @@ def scheduleoverlap(classes,ydays):
         elif ("F" in classes and "F" in ydays.sched):
             return False  
     return True
+
+# <-- Raffys stuff
+def imtesting():
+    classesbycourse = []
+    finallist = []
+    allclasses = ClassModel.objects.all()
+    courselist = ClassCode.objects.all()
+
+    #print (courselist)
+    for course in courselist:
+        templist = []
+        for classes in ClassModel.objects.filter(code=course):
+            templist.append(classes)
+        classesbycourse.append(templist)
+    #print (classesbycourse)
+    #for thingo in classesbycourse:
+        #print (thingo)
+        
+    possiblecombos = (list(itertools.product(*classesbycourse)))
+
+    for thingo in possiblecombos:
+        #print (thingo)
+        #print ("------------")
+        if not (checkconflict(thingo)):
+            finallist.append(thingo)
+            #print ("added")
+        #else:
+            #print ("not added")
+    #print (finallist)
+    return (finallist)
+
+def checkconflict(combo):
+    for a, b in itertools.combinations(combo, 2):
+        #print (a)
+        #print (a.start)
+        #print (a.end)
+        #print (b)
+        #print (b.start)
+        #print (b.end)
+        #print (checksched(a,b))
+        #print (checktime(a,b))
+        #print ("--")
+        if ((checksched(a,b)) and (checktime(a,b))):
+            return True
+    return False
+
+def checksched(class1, class2):
+    if ("M"   in class1.sched and "M"   in class2.sched or
+        "T"   in class1.sched and "T"   in class2.sched or
+        "W"   in class1.sched and "W"   in class2.sched or
+        "TH"  in class1.sched and "TH"  in class2.sched or
+        "F"   in class1.sched and "F"   in class2.sched or
+        "SAT" in class1.sched and "SAT" in class2.sched):
+        return True  
+    else:
+        return False
+
+def checktime(class1, class2):
+    if (class1.start <= class2.start < class1.end) or (class1.start < class2.end <= class1.end):
+        return True
+    return False
+
+#Raffy Testing -->
 
 #def sortClasses():
 #    classlist = []
