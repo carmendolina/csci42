@@ -1,6 +1,7 @@
 from ast import Index
 from tabnanny import check
 from django.shortcuts import render, redirect
+import re
 
 from django.http import HttpResponse
 
@@ -71,16 +72,23 @@ def index_card_view(request):
             if copypasteform.is_valid():
                 #copypasteform.save()
                 #https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
-                text = request.POST.get('copypaste')
+                #text = request.POST.get('copypaste')
+                userClassInput = request.POST.get('copypaste')
                 #print(text)
-                #if len(text.split("\t")) > 14:
-                #smth smth join every 14 together
-                fieldlist = split(text)
-                #print(fieldlist[4])
-                newCode = ClassCode(name=fieldlist[0])
-                newCode.save()
-                newClass = ClassModel(code=newCode, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
-                newClass.save()
+                bigText = re.split('\t', userClassInput)
+                #print(bigText)
+                for i in range(0, len(bigText), 14): #every 14 indexes
+                    oneClass = bigText[i:i + 14]
+                    splitClass = re.split('\r\n', oneClass[13])
+                    oneClass = oneClass[0:13] + splitClass
+                    oneClass = oneClass[0:14] #actual 14
+                    text = ('\t'.join(oneClass)) #put together
+                    fieldlist = split(text)
+                    newCode = ClassCode(name=fieldlist[0])
+                    newCode.save()
+                    newClass = ClassModel(code=newCode, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
+                    newClass.save()
+                    bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the list
                 return redirect("index_card")
     else:
         indexcardform = CourseForm()
