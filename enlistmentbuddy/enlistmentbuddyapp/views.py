@@ -1,3 +1,4 @@
+import random
 from ast import Index
 from tabnanny import check
 from django.shortcuts import render, redirect
@@ -32,7 +33,10 @@ def index_card_view(request):
     finallist = imtesting()
     #print (finallist[0])
     #change this number to get different iterations
-    imtamad = finallist[1]
+    if (len(finallist)==0):
+        imtamad = finallist[0]
+    else:
+        imtamad = finallist[random.randint(0,len(finallist))]
 
     thislist = setting_time()
     mondaylist = monday(imtamad)
