@@ -84,10 +84,19 @@ def index_card_view(request):
                     oneClass = oneClass[0:14] #actual 14
                     text = ('\t'.join(oneClass)) #put together
                     fieldlist = split(text)
+
                     newCode = ClassCode(name=fieldlist[0])
-                    newCode.save()
-                    newClass = ClassModel(code=newCode, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
+
+                    if (newCode.name not in listofcourses):
+                        newCode.save()
+                        newClass = ClassModel(code=newCode, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
+                    else:
+                        for course in ClassCode.objects.all():
+                            if (course.name == newCode.name):
+                                newClass = ClassModel(code=course, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
                     newClass.save()
+                    for course in ClassCode.objects.all():
+                        listofcourses.append(course.name)
                     bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the list
                 return redirect("index_card")
     else:
