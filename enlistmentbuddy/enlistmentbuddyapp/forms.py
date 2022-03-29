@@ -1,4 +1,3 @@
-from msilib.schema import Class
 from django import forms
 from .models import IndexCard
 from django.forms import TextInput
