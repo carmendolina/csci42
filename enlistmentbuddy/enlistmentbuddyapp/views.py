@@ -177,7 +177,7 @@ def monday(classlist):
 def tuesday(classlist):
     tuesdays = []
     for classes in classlist:
-        if "T" in classes.sched:
+        if "T-" in classes.sched or classes.sched == "T":
             tuesdays.append(classes)
     return tuesdays
 
