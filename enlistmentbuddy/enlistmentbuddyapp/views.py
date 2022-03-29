@@ -34,9 +34,9 @@ def index_card_view(request):
     #print (finallist[0])
     #change this number to get different iterations
     if (len(finallist)==0):
-        imtamad = finallist[0]
+        imtamad = []
     else:
-        imtamad = finallist[random.randint(0,len(finallist))]
+        imtamad = finallist[random.randint(0,len(finallist)-1)]
 
     thislist = setting_time()
     mondaylist = monday(imtamad)
