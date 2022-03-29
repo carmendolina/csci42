@@ -70,13 +70,9 @@ def index_card_view(request):
         elif 'copypastesubmit' in request.POST:
             copypasteform = ClassCopyPasteForm(request.POST)
             if copypasteform.is_valid():
-                #copypasteform.save()
                 #https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
-                #text = request.POST.get('copypaste')
                 userClassInput = request.POST.get('copypaste')
-                #print(text)
                 bigText = re.split('\t', userClassInput)
-                #print(bigText)
                 for i in range(0, len(bigText), 14): #every 14 indexes
                     oneClass = bigText[i:i + 14]
                     splitClass = re.split('\r\n', oneClass[13])
@@ -96,7 +92,7 @@ def index_card_view(request):
                             if (course.name == newCode.name):
                                 newClass = ClassModel(code=course, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
                     newClass.save()
-                    bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the list
+                    bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the og list
                 return redirect("index_card")
     else:
         indexcardform = CourseForm()
