@@ -31,14 +31,16 @@ def index_card_view(request):
     classes = ClassModel.objects.all()
     finallist = imtesting()
     #print (finallist[0])
+    #change this number to get different iterations
+    imtamad = finallist[1]
 
     thislist = setting_time()
-    mondaylist = monday(finallist[0])
-    tuesdaylist = tuesday(finallist[0])
-    wednesdaylist = wednesday(finallist[0])
-    thursdaylist = thursday(finallist[0])
-    fridaylist = friday(finallist[0])
-    saturdaylist = saturday(finallist[0])
+    mondaylist = monday(imtamad)
+    tuesdaylist = tuesday(imtamad)
+    wednesdaylist = wednesday(imtamad)
+    thursdaylist = thursday(imtamad)
+    fridaylist = friday(imtamad)
+    saturdaylist = saturday(imtamad)
     codeform = CodeForm(request.POST)
     # thiscourse = courselist[1]
     #testlist = sortClasses()
