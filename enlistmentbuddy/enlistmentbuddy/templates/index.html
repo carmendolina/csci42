@@ -61,7 +61,7 @@
                     <div class="day">
                         {% for class in monday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap">
+                            <div class="infowrap {{ class.color }}">
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
@@ -75,7 +75,7 @@
                     <div class="day">
                         {% for class in tuesday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap">
+                            <div class="infowrap {{ class.color }}">
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
@@ -88,7 +88,7 @@
                     <div class="day">
                         {% for class in wednesday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap">
+                            <div class="infowrap {{ class.color }}">
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
@@ -101,7 +101,7 @@
                     <div class="day">
                         {% for class in thursday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap">
+                            <div class="infowrap {{ class.color }}">
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
@@ -114,7 +114,7 @@
                     <div class="day">
                         {% for class in friday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap">
+                            <div class="infowrap {{ class.color }}">
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
@@ -127,7 +127,7 @@
                     <div class="day">
                         {% for class in saturday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap">
+                            <div class="infowrap {{ class.color }}">
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>

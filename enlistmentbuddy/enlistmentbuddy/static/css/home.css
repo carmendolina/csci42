@@ -4,7 +4,32 @@
     --midyellow: #FFCC49;
     --lightpurple: #AE9FCD;
     --darkpurple: #231149;
+    --classred: #F9B8AA;
+    --classorange: #FFD8B5;
+    --classyellow: #FFF2C6;
+    --classgreen: #DCF9C6;
+    --classteal: #CFFDE9;
+    --classblue: #C2DBFF;
+    --classpurple: #C4C3F9;
+    --classlavender: #E7D3FF;
+    --classpink: #FFDDFE;
+    --classmagenta: #FFC0FC;
+    --classlightgray: #E5E5E5;
+    --classdarkgray: #CBCBCB;
 }
+
+.red {background-color: var(--classred)}
+.orange {background-color: var(--classorange)}
+.yellow {background-color: var(--classyellow)}
+.green {background-color: var(--classgreen)}
+.teal {background-color: var(--classteal)}
+.blue {background-color: var(--classblue)}
+.purple {background-color: var(--classpurple)}
+.lavender {background-color: var(--classlavender)}
+.pink {background-color: var(--classpink)}
+.magenta {background-color: var(--classmagenta)}
+.lightgray {background-color: var(--classlightgray)}
+.darkgray {background-color: var(--classdarkgray)}
 
 html {
     background-color: var(--midpurple1);
@@ -160,9 +185,9 @@ td, th {
     grid-column: span 6;
 }
 
-.classinfo {
+/* .classinfo {
     background-color: white;
-}
+} */
 
 .day {
     border: solid 3px var(--lightpurple);
