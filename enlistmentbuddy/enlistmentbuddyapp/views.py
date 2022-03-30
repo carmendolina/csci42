@@ -236,8 +236,6 @@ def listofcoursenames():
         namelist.append(course.name)
     return namelist
 
-
-
 def classtester(occupiedclasses, className):
     for occupied in occupiedclasses:
         if (occupiedclasses == className.code):
@@ -250,7 +248,7 @@ def scheduleoverlap(classes,ydays):
             return False
         elif ("TH" in classes and "TH" in ydays.sched):
             return False
-        elif ("T" in classes and "T" in ydays.sched):
+        elif ("T-" in classes and "T-" in ydays.sched):
             return False
         elif ("M" in classes and "M" in ydays.sched):
             return False
