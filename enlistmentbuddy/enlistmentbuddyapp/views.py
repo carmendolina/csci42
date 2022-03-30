@@ -1,3 +1,5 @@
+from calendar import c
+# from math import comb
 import random
 from ast import Index
 from tabnanny import check
@@ -21,23 +23,55 @@ from django.views.generic.detail import DetailView
 
 import datetime
 
+colorList = [
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'teal',
+    'blue',
+    'purple',
+    'lavender',
+    'pink',
+    'magenta',
+    'lightgray',
+    'darkgray',
+]
+
 #insert functions here
 def index(request):
     return redirect('index_card')
 
+def assignColor(list):
+    for thing in list:
+        i = 0
+        L(thing)
+        for course in thing:
+            course.color = colorList[i]
+            i = i + 1
+            # L(course).append(course.color)
+    return list
 
 def index_card_view(request):
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
     classes = ClassModel.objects.all()
     finallist = imtesting()
+    listwithcolor = assignColor(finallist)
+
+    
+
     #print (finallist[0])
     #change this number to get different iterations
-    if (len(finallist)==0):
+    if (len(listwithcolor)==0):
         imtamad = []
     else:
-        imtamad = finallist[random.randint(0,len(finallist)-1)]
+        imtamad = listwithcolor[random.randint(0,len(listwithcolor)-1)]
 
+    # print(imtamad)
+    # for each in imtamad:
+    #     print(each.color)
+                
     thislist = setting_time()
     mondaylist = monday(imtamad)
     tuesdaylist = tuesday(imtamad)
@@ -49,6 +83,10 @@ def index_card_view(request):
     # thiscourse = courselist[1]
     #testlist = sortClasses()
     listofcourses = listofcoursenames()
+
+    # print(mondaylist)
+    # for each in mondaylist:
+    #     print(each.color)
 
     #over here peeps
 
@@ -368,3 +406,18 @@ def checktime(class1, class2):
 
 #sources:
 #Time - https://stackoverflow.com/questions/100210/what-is-the-standard-way-to-add-n-seconds-to-datetime-time-in-python
+
+class L(list):
+    def __new__(self, *args, **kwargs):
+        return super(L, self).__new__(self, args, kwargs)
+
+    def __init__(self, *args, **kwargs):
+        if len(args) == 1 and hasattr(args[0], '__iter__'):
+            list.__init__(self, args[0])
+        else:
+            list.__init__(self, args)
+        self.__dict__.update(kwargs)
+
+    def __call__(self, **kwargs):
+        self.__dict__.update(kwargs)
+        return self
