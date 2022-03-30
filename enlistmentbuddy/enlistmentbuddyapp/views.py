@@ -286,7 +286,7 @@ def scheduleoverlap(classes,ydays):
             return False
         elif ("TH" in classes and "TH" in ydays.sched):
             return False
-        elif ("T-" in classes and "T-" in ydays.sched):
+        elif ("T" in classes and "T" in ydays.sched):
             return False
         elif ("M" in classes and "M" in ydays.sched):
             return False
@@ -343,7 +343,7 @@ def checkconflict(combo):
 
 def checksched(class1, class2):
     if ("M"   in class1.sched and "M"   in class2.sched or
-        "T"   in class1.sched and "T"   in class2.sched or
+        "T-"   in class1.sched and "T-"   in class2.sched or
         "W"   in class1.sched and "W"   in class2.sched or
         "TH"  in class1.sched and "TH"  in class2.sched or
         "F"   in class1.sched and "F"   in class2.sched or
