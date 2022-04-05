@@ -60,8 +60,6 @@ def index_card_view(request):
     listwithcolor = assignColor(finallist)
     
     #print (finallist[0])
-    for x in finallist:
-        print(x)
 
     #change this number to get different iterations
     if (len(listwithcolor)==0):
@@ -165,11 +163,19 @@ def index_card_view(request):
                     if (newCode.name not in listofcourses):
                         newCode.save()
                         listofcourses.append(newCode.name)
-                        newClass = ClassModel(code=newCode, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
+                        #newClass = ClassModel(code=newCode, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text, islocked=False)
+                        if ("#" in oneClass[13]):
+                            newClass = ClassModel(code=newCode, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text, islocked=True)
+                        else:
+                            newClass = ClassModel(code=newCode, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text, islocked=False)
                     else:
                         for course in ClassCode.objects.all():
                             if (course.name == newCode.name):
-                                newClass = ClassModel(code=course, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text)
+                                #newClass = ClassModel(code=course, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text, islocked=False)
+                                if ("#" in oneClass[13]):
+                                    newClass = ClassModel(code=course, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text, islocked=True)
+                                else:
+                                    newClass = ClassModel(code=course, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text, islocked=False)
                     newClass.save()
                     bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the og list
                 return redirect("index_card")
@@ -349,7 +355,7 @@ def imtesting():
     #print (classesbycourse)
     #for thingo in classesbycourse:
         #print (thingo)
-        
+            
     possiblecombos = (list(itertools.product(*classesbycourse)))
 
     for thingo in possiblecombos:
@@ -364,14 +370,13 @@ def imtesting():
 
     finalfinallist = []
     lockedlist = lockedlistmaker()
-    print(lockedlist)
+    #print(lockedlist)
 
     if (lockedlist):
         for x in finallist:
             if all(item in x for item in lockedlist):
                 finalfinallist.append(x)
         return finalfinallist
-
     return (finallist)
 
 def checkconflict(combo):
