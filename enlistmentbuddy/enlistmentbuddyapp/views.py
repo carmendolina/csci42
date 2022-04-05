@@ -12,6 +12,7 @@ from django.http import HttpResponse
 from .forms import IndexCardForm
 from .forms import CopyPasteForm
 from .forms import ClassCopyPasteForm
+from .forms import LockedForm
 from .forms import CourseForm, CodeForm
 
 from .models import IndexCard, ClassModel, ClassCode
@@ -55,6 +56,7 @@ def assignColor(list):
 def index_card_view(request):
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
+    lockedform = LockedForm(request.POST)
     classes = ClassModel.objects.all()
     finallist = imtesting()
     listwithcolor = assignColor(finallist)
@@ -183,11 +185,13 @@ def index_card_view(request):
         indexcardform = CourseForm()
         codeform = CodeForm()
         copypasteform = ClassCopyPasteForm()
+        lockedform = LockedForm()
 
     return render(request, 'index.html', 
         {
             'indexcardform': indexcardform, 
             'copypasteform': copypasteform,
+            'lockedform' : lockedform,
             'codeform' : codeform,
             'class_info': classes, 
             'time': thislist,
