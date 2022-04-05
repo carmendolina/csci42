@@ -249,10 +249,10 @@ td, th {
     justify-self: center;
 }
 
-.classinfo:nth-child(1), .classinfo:nth-child(2) {
+.classinfo:nth-child(2), .classinfo:nth-child(3) {
     font-weight: 700;
 }
 
-.classinfo:nth-child(3), .classinfo:nth-child(4) {
+.classinfo:nth-child(4), .classinfo:nth-child(5) {
     font-style: italic;
 }
