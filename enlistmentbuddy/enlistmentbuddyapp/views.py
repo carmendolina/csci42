@@ -60,6 +60,9 @@ def index_card_view(request):
     listwithcolor = assignColor(finallist)
     
     #print (finallist[0])
+    for x in finallist:
+        print(x)
+
     #change this number to get different iterations
     if (len(listwithcolor)==0):
         finalsched = []
@@ -323,6 +326,12 @@ def scheduleoverlap(classes,ydays):
             return False  
     return True
 
+def lockedlistmaker():
+    lockedlist = []
+    for classes in ClassModel.objects.filter(islocked=True):
+        lockedlist.append(classes)
+    return lockedlist
+
 # <-- Raffys stuff
 def imtesting():
     classesbycourse = []
@@ -354,10 +363,12 @@ def imtesting():
     #print (finallist)
 
     finalfinallist = []
+    lockedlist = lockedlistmaker()
+    print(lockedlist)
 
     if (lockedlist):
         for x in finallist:
-            if all(item in lockedlist for item in x):
+            if all(item in x for item in lockedlist):
                 finalfinallist.append(x)
         return finalfinallist
 

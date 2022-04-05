@@ -22,6 +22,7 @@ class ClassModel(models.Model):
     venue = models.CharField(max_length=20, null=True)
     professor = models.CharField(max_length=50, null=True)
     copypaste = models.CharField(max_length=2000, null=True)
+    islocked = models.BooleanField(default=False)
 
     def __str__(self):
         return '{} {} {} '.format(self.code, self.section, self.sched)
