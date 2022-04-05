@@ -58,27 +58,50 @@ def index_card_view(request):
     classes = ClassModel.objects.all()
     finallist = imtesting()
     listwithcolor = assignColor(finallist)
-
     
-
     #print (finallist[0])
     #change this number to get different iterations
     if (len(listwithcolor)==0):
-        imtamad = []
+        finalsched = []
     else:
-        imtamad = listwithcolor[random.randint(0,len(listwithcolor)-1)]
+        finalsched = listwithcolor[random.randint(0,len(listwithcolor)-1)]
 
-    # print(imtamad)
-    # for each in imtamad:
-    #     print(each.color)
-                
+    #finalsched = []
+
+    if (finalsched):
+        starttime = finalsched[0].start # first 3 are dummy last 3 are hour/min/sec
+        endtime = finalsched[0].end
+    else:
+        starttime = datetime.datetime(100,1,1,7,00,00).time() # first 3 are dummy last 3 are hour/min/sec
+        endtime = datetime.datetime(100,1,1,21,00,00).time() # use >> datetime.datetime(100,1,1,21,30,00) to end at 21:00:00
+    #print (finalsched[0].start)
+    #print (finalsched[0].end)
+    #print ("---")
+    for x in finalsched:
+        #print (x)
+        #print ("---")
+        #print (x.start)
+        #print ("---")
+        #print (x.end)
+        if (x.start < starttime):
+            starttime = x.start
+        if (x.end > endtime):
+            endtime = x.end
+    #print ("final")
+    #print (starttime)
+    #print (endtime)
     thislist = setting_time()
-    mondaylist = monday(imtamad)
-    tuesdaylist = tuesday(imtamad)
-    wednesdaylist = wednesday(imtamad)
-    thursdaylist = thursday(imtamad)
-    fridaylist = friday(imtamad)
-    saturdaylist = saturday(imtamad)
+
+    # print(finalsched)
+    # for each in finalsched:
+    #     print(each.color)
+      
+    mondaylist = monday(finalsched)
+    tuesdaylist = tuesday(finalsched)
+    wednesdaylist = wednesday(finalsched)
+    thursdaylist = thursday(finalsched)
+    fridaylist = friday(finalsched)
+    saturdaylist = saturday(finalsched)
     codeform = CodeForm(request.POST)
     # thiscourse = courselist[1]
     #testlist = sortClasses()
@@ -251,6 +274,10 @@ def setting_time():
     starttime = datetime.datetime(100,1,1,7,00,00) # first 3 are dummy last 3 are hour/min/sec
     endtime = datetime.datetime(100,1,1,21,30,00)
     timelist = []
+
+    print (starttime)
+    print (datetime.timedelta(0,30*60))
+
     while (starttime < endtime):
         timelist.append(starttime.time)
         starttime += datetime.timedelta(0,30*60) # days, seconds, then other fields.
@@ -324,6 +351,15 @@ def imtesting():
         #else:
             #print ("not added")
     #print (finallist)
+
+    finalfinallist = []
+
+    if (lockedlist):
+        for x in finallist:
+            if all(item in lockedlist for item in x):
+                finalfinallist.append(x)
+        return finalfinallist
+
     return (finallist)
 
 def checkconflict(combo):
