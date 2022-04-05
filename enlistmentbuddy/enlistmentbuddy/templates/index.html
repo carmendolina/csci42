@@ -25,13 +25,13 @@
             <form class="ta_form" action="/index_card" method="post">
                 {% csrf_token %}
                 <div class="ta_buttons">
-                    <button class="ta_edit" onclick="openModal()">
+                    <button name="ta-button" class="ta_edit" onclick="openModal()" value="edit">
                         <img src="../static/img/button-edit.svg">
                     </button>
-                    <button class="ta_add" onclick="">
+                    <button name="ta-button" class="ta_add" onclick="">
                         <img src="../static/img/button-add.svg">
                     </button>
-                    <button class="ta_trash" onclick="">
+                    <button name="ta-button" class="ta_trash" onclick="">
                         <img src="../static/img/button-trash.svg">
                     </button>
                 </div>
@@ -62,6 +62,11 @@
                         {% for class in monday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap {{ class.color }}">
+                                <div class="lockoverlay">
+                                    <button name="lock" class="class-lock" value="lock">
+                                        <img src="../static/img/button-lock.svg">
+                                    </button>
+                                </div>
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
@@ -76,6 +81,11 @@
                         {% for class in tuesday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap {{ class.color }}">
+                                <div class="lockoverlay">
+                                    <button name="lock" class="class-lock" value="lock">
+                                        <img src="../static/img/button-lock.svg">
+                                    </button>
+                                </div>
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
@@ -89,6 +99,11 @@
                         {% for class in wednesday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap {{ class.color }}">
+                                <div class="lockoverlay">
+                                    <button name="lock" class="class-lock" value="lock">
+                                        <img src="../static/img/button-lock.svg">
+                                    </button>
+                                </div>
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
@@ -102,6 +117,11 @@
                         {% for class in thursday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap {{ class.color }}">
+                                <div class="lockoverlay">
+                                    <button name="lock" class="class-lock" value="lock">
+                                        <img src="../static/img/button-lock.svg">
+                                    </button>
+                                </div>
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
@@ -115,6 +135,11 @@
                         {% for class in friday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap {{ class.color }}">
+                                <div class="lockoverlay">
+                                    <button name="lock" class="class-lock" value="lock">
+                                        <img src="../static/img/button-lock.svg">
+                                    </button>
+                                </div>
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
@@ -128,6 +153,11 @@
                         {% for class in saturday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap {{ class.color }}">
+                                <div class="lockoverlay">
+                                    <button name="lock" class="class-lock" value="lock">
+                                        <img src="../static/img/button-lock.svg">
+                                    </button>
+                                </div>
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
