@@ -13,6 +13,12 @@ class CodeForm(forms.ModelForm):
         fields = [
             "name"
         ]
+class LockedForm(forms.ModelForm):
+    class Meta:
+        model=ClassModel
+        fields = [
+            "islocked"
+        ]
 
 class CourseForm(forms.ModelForm):
     class Meta:
