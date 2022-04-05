@@ -62,11 +62,17 @@
                         {% for class in monday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div class="infowrap {{ class.color }}">
-                                <div class="lockoverlay">
-                                    <button name="lock" class="class-lock" value="lock">
+                                <form action="/index_card" method="post" class="lockoverlay">
+                                    <!-- <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
+                                    </button> -->
+                                    {% csrf_token %}
+                                    <!-- {{ lockedform.islocked }} -->
+                                    <button class="class-lock">
+                                        <input class="class-lock" type="submit" name="lock" style="visibility: hidden;">
+                                        <img style="z-index: 10; position: absolute;" src="../static/img/button-lock.svg">
                                     </button>
-                                </div>
+                                </form>
                                 <!--{% csrf_token %}
                                 {{ lockedform.islocked }}-->
                                 <div class="classinfo">{{ class.code.name }}</div>
