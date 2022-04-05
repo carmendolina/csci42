@@ -329,6 +329,7 @@ def imtesting():
     finallist = []
     allclasses = ClassModel.objects.all()
     courselist = ClassCode.objects.all()
+    lockedlist = []
 
     #print (courselist)
     for course in courselist:
