@@ -41,7 +41,7 @@
             <!-- <textarea placeholder="Paste from AISIS Class Schedule here..."></textarea> -->
         </section>
         <section id="timetable">
-            <div class="row timerow">
+            <!-- <div class="row timerow"> -->
                 <div class="time"> </div>
                 <div class="dayh">M</div>
                 <div class="dayh">T</div> 
@@ -49,10 +49,10 @@
                 <div class="dayh">Th</div>
                 <div class="dayh">F</div>
                 <div class="dayh">S</div>
-            </div>
+            <!-- </div> -->
             <!-- creates all times -->
             {% for x in time %}
-            <div class="row"> 
+            <!-- <div class="row">  -->
                 <!-- creates first column of times-->
                 <div class="time">{{ x|time:"H:i" }}</div>
                 <!-- if there are classes in monday, make it, otherwise blank column-->
@@ -76,7 +76,6 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <!-- copy till here -->
                     <div class="day">
                         {% for class in tuesday %}         
                             {% if class.start  <= x and class.end > x %}  
@@ -168,7 +167,7 @@
                         {% endfor %}
                     </div>
                 </section>
-            </div>
+            <!-- </div> -->
             {% endfor %}
         </section>
     </section>
