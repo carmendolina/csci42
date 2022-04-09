@@ -145,7 +145,7 @@ def index_card_view(request):
     
     #num = request.session.get('num', 1) #if num is NONE then make it 1
     #request.session['num'] = num
-
+    userClassInput = "ye"
     if request.method == 'POST':
     # Checking if the inputs are valid
         #request.session['num'] = num + 1
@@ -175,6 +175,7 @@ def index_card_view(request):
             if copypasteform.is_valid():
                 #https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
                 userClassInput = request.POST.get('copypaste')
+                print (userClassInput)
                 bigText = re.split('\t', userClassInput)
                 for i in range(0, len(bigText), 14): #every 14 indexes
                     oneClass = bigText[i:i + 14]
@@ -226,6 +227,7 @@ def index_card_view(request):
             'friday': fridaylist,
             'saturday': saturdaylist,
             'num': num,
+            'tatext': userClassInput,
             #'testlister':testlist,
             # 'trycourse': thiscourse,
             #over here peeps
