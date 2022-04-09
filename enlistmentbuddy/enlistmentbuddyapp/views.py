@@ -62,7 +62,6 @@ def index_card_view(request):
 
     global num
     increment()
-    print (num)
 
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
@@ -112,9 +111,9 @@ def index_card_view(request):
     thislist = setting_time()
 
     # print(finalsched)
-    for each in finalsched:
-        print(each)
-        print(each.duration)
+    # for each in finalsched:
+    #     print(each)
+    #     print(each.duration)
       
     mondaylist = monday(finalsched)
     tuesdaylist = tuesday(finalsched)
@@ -145,7 +144,7 @@ def index_card_view(request):
     
     #num = request.session.get('num', 1) #if num is NONE then make it 1
     #request.session['num'] = num
-    userClassInput = "ye"
+    userClassInput = ""
     if request.method == 'POST':
     # Checking if the inputs are valid
         #request.session['num'] = num + 1
@@ -175,7 +174,7 @@ def index_card_view(request):
             if copypasteform.is_valid():
                 #https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
                 userClassInput = request.POST.get('copypaste')
-                print (userClassInput)
+                # print (userClassInput)
                 bigText = re.split('\t', userClassInput)
                 for i in range(0, len(bigText), 14): #every 14 indexes
                     oneClass = bigText[i:i + 14]

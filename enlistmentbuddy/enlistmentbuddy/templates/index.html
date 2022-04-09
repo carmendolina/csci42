@@ -239,4 +239,8 @@
 
 {% block scripts %}
 <script src="../static/js/modal.js"></script>
+<script>
+    // change string to tatext once able to handle multiple text areas
+    document.getElementsByClassName("textarea")[0].value = "";
+</script>
 {% endblock %}
