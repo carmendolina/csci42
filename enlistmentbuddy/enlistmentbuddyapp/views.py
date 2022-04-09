@@ -39,6 +39,8 @@ colorList = [
     'darkgray',
 ]
 
+num = 1
+
 #insert functions here
 def index(request):
     return redirect('index_card')
@@ -57,6 +59,11 @@ def assignColor(list):
     return list
 
 def index_card_view(request):
+
+    global num
+    increment()
+    print (num)
+
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
     lockedform = LockedForm(request.POST)
@@ -64,6 +71,9 @@ def index_card_view(request):
     finallist = imtesting()
     listwithcolor = assignColor(finallist)
     
+    #for code in ClassCode.objects.all():
+        # (code.pk)
+
     #print (finallist[0])
 
     #change this number to get different iterations
@@ -93,6 +103,9 @@ def index_card_view(request):
             starttime = x.start
         if (x.end > endtime):
             endtime = x.end
+        #print (x)
+        #print (x.start)
+        # (x.end)
     #print ("final")
     #print (starttime)
     #print (endtime)
@@ -129,9 +142,14 @@ def index_card_view(request):
     #for x in classes:
     #    print (x)
     #print ("---")
+    
+    #num = request.session.get('num', 1) #if num is NONE then make it 1
+    #request.session['num'] = num
 
     if request.method == 'POST':
     # Checking if the inputs are valid
+        #request.session['num'] = num + 1
+        #print (request.session['num'])
         if 'indexsubmit' in request.POST:
             indexcardform = CourseForm(request.POST)
             codeform = CodeForm(request.POST)
@@ -139,15 +157,17 @@ def index_card_view(request):
                 text = request.POST.get('name')
                 newCode = ClassCode(name=text)
                 print (newCode)
+                # Check if the code being input is already in the system
                 if (newCode.name not in listofcourses):
                     newCode.save()
                     print ("its not in")
                     newClass = ClassModel(code=newCode, section=request.POST.get('section'), sched=request.POST.get('sched'), start=request.POST.get('start'), end=request.POST.get('end'), venue=request.POST.get('venue'), professor=request.POST.get('professor'))
+                # If not set the course code to the pre-existing code
                 else:
                     for course in ClassCode.objects.all():
                         if (course.name == newCode.name):
                             newClass = ClassModel(code=course, section=request.POST.get('section'), sched=request.POST.get('sched'), start=request.POST.get('start'), end=request.POST.get('end'), venue=request.POST.get('venue'), professor=request.POST.get('professor'))
-                        
+                # Set class information
                 newClass.save()
                 return redirect("index_card")
         elif 'copypastesubmit' in request.POST:
@@ -205,6 +225,7 @@ def index_card_view(request):
             'thursday': thursdaylist,
             'friday': fridaylist,
             'saturday': saturdaylist,
+            'num': num,
             #'testlister':testlist,
             # 'trycourse': thiscourse,
             #over here peeps
@@ -214,6 +235,15 @@ def index_card_view(request):
 #sources:
 #https://docs.djangoproject.com/en/4.0/topics/db/queries/
 # copy and paste function, rename day of week to corresponding day, then put in def index_card_view, and add it into return
+
+def anotherfoo(request):
+   num = request.session.get('num') + 1
+   return num
+   # and so on, and so on
+
+def increment():
+    global num
+    num = num + 1
 
 def timeConvert(text):
     return text[:2] + ':' + text[2:4]
@@ -292,8 +322,8 @@ def setting_time():
     endtime = datetime.datetime(100,1,1,21,30,00)
     timelist = []
 
-    print (starttime)
-    print (datetime.timedelta(0,30*60))
+    #print (starttime)
+    #print (datetime.timedelta(0,30*60))
 
     while (starttime < endtime):
         timelist.append(starttime.time)

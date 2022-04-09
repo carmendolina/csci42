@@ -10,6 +10,14 @@
 
 {% block content %}
 <main>
+    <!--shows information per class in table form
+    <table>
+        <td>{{ trycourse }}</td>
+        {% for course in courses %}
+            <td>{{ course }}</td>
+        {% endfor %}
+    </table> -->
+    <p>{{ num }}</p>
     <section id="content">
         <section class="textareas">
             <form class="ta_form" action="/index_card" method="post">
@@ -32,7 +40,8 @@
                 <!-- generate schedule button -->
                 <input class="btn ta_gen" type="submit" name="copypastesubmit" value="Generate a Schedule">
             </form>
-        </section>
+            <!-- <textarea placeholder="Paste from AISIS Class Schedule here..."></textarea> -->
+        </section value = "helpme">
         <section id="timetable">
             <!-- <div class="row timerow"> -->
                 <div class="time"> </div>
