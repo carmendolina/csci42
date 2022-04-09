@@ -49,6 +49,9 @@ def assignColor(list):
         L(thing)
         for course in thing:
             course.color = colorList[i]
+            start_sec= (course.start.hour*60+course.start.minute)*60+course.start.second
+            end_sec= (course.end.hour*60+course.end.minute)*60+course.end.second
+            course.duration = int((end_sec-start_sec)/60.0)
             i = i + 1
             # L(course).append(course.color)
     return list
@@ -96,8 +99,9 @@ def index_card_view(request):
     thislist = setting_time()
 
     # print(finalsched)
-    # for each in finalsched:
-    #     print(each.color)
+    for each in finalsched:
+        print(each)
+        print(each.duration)
       
     mondaylist = monday(finalsched)
     tuesdaylist = tuesday(finalsched)

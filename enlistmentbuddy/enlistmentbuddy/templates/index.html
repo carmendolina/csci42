@@ -10,35 +10,28 @@
 
 {% block content %}
 <main>
-    <!--shows information per class in table form
-    <table>
-        <td>{{ trycourse }}</td>
-        {% for course in courses %}
-            <td>{{ course }}</td>
-        {% endfor %}
-    </table> -->
     <section id="content">
-        <!--{% for course in testlister %}
-        <td>{{ course }}</td>
-        {% endfor %}-->
         <section class="textareas">
             <form class="ta_form" action="/index_card" method="post">
                 {% csrf_token %}
                 <div class="ta_buttons">
+                    <!-- edit button - triggers pop up view -->
                     <button name="ta-button" class="ta_edit" onclick="openModal()" value="edit">
                         <img src="../static/img/button-edit.svg">
                     </button>
+                    <!-- add button - adds a new instance of the buttons + textarea -->
                     <button name="ta-button" class="ta_add" onclick="">
                         <img src="../static/img/button-add.svg">
                     </button>
+                    <!-- delete button - deletes instance of buttons + textarea -->
                     <button name="ta-button" class="ta_trash" onclick="">
                         <img src="../static/img/button-trash.svg">
                     </button>
                 </div>
                 {{ copypasteform.copypaste }}
+                <!-- generate schedule button -->
                 <input class="btn ta_gen" type="submit" name="copypastesubmit" value="Generate a Schedule">
             </form>
-            <!-- <textarea placeholder="Paste from AISIS Class Schedule here..."></textarea> -->
         </section>
         <section id="timetable">
             <!-- <div class="row timerow"> -->
@@ -49,19 +42,13 @@
                 <div class="dayh">Th</div>
                 <div class="dayh">F</div>
                 <div class="dayh">S</div>
-            <!-- </div> -->
-            <!-- creates all times -->
             {% for x in time %}
-            <!-- <div class="row">  -->
-                <!-- creates first column of times-->
                 <div class="time">{{ x|time:"H:i" }}</div>
-                <!-- if there are classes in monday, make it, otherwise blank column-->
-                <!-- copy from here, rename monday-->
                 <section class="daytable">
                     <div class="day">
-                        {% for class in monday %}         
+                        {% for class in monday %}
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap {{ class.color }}">
+                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
                                 <form action="/index_card" method="post" class="lockoverlay">
                                     <!-- <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
@@ -87,7 +74,7 @@
                     <div class="day">
                         {% for class in tuesday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap {{ class.color }}">
+                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
@@ -107,7 +94,7 @@
                     <div class="day">
                         {% for class in wednesday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap {{ class.color }}">
+                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
@@ -127,7 +114,7 @@
                     <div class="day">
                         {% for class in thursday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap {{ class.color }}">
+                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
@@ -147,7 +134,7 @@
                     <div class="day">
                         {% for class in friday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap {{ class.color }}">
+                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
@@ -167,7 +154,7 @@
                     <div class="day">
                         {% for class in saturday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="infowrap {{ class.color }}">
+                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
