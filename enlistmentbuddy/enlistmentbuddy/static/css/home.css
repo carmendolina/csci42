@@ -172,37 +172,6 @@ td, th {
     border-collapse: collapse !important;
     text-align: center;
     grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr 2fr;
-    /* grid-template-areas:
-        "time am7 am7 am7 am7 am7 am7"
-        "time am730 am730 am730 am730 am730 am730"
-        "time am8 am8 am8 am8 am8 am8"
-        "time am830 am830 am830 am830 am830 am830"
-        "time am9 am9 am9 am9 am9 am9"
-        "time am930 am930 am930 am930 am930 am930"
-        "time am10 am10 am10 am10 am10 am10"
-        "time am1030 am1030 am1030 am1030 am1030 am1030"
-        "time am11 am11 am11 am11 am11 am11"
-        "time am1130 am1130 am1130 am1130 am1130 am1130"
-        "time pm12 pm12 pm12 pm12 pm12 pm12"
-        "time pm1230 pm1230 pm1230 pm1230 pm1230 pm1230"
-        "time pm1 pm1 pm1 pm1 pm1 pm1"
-        "time pm130 pm130 pm130 pm130 pm130 pm130"
-        "time pm2 pm2 pm2 pm2 pm2 pm2"
-        "time pm230 pm230 pm230 pm230 pm230 pm230"
-        "time pm3 pm3 pm3 pm3 pm3 pm3"
-        "time pm330 pm330 pm330 pm330 pm330 pm330"
-        "time pm4 pm4 pm4 pm4 pm4 pm4"
-        "time pm430 pm430 pm430 pm430 pm430 pm430"
-        "time pm5 pm5 pm5 pm5 pm5 pm5"
-        "time pm530 pm530 pm530 pm530 pm530 pm530"
-        "time pm6 pm6 pm6 pm6 pm6 pm6"
-        "time pm630 pm630 pm630 pm630 pm630 pm630"
-        "time pm7 pm7 pm7 pm7 pm7 pm7"
-        "time pm730 pm730 pm730 pm730 pm730 pm730"
-        "time pm8 pm8 pm8 pm8 pm8 pm8"
-        "time pm830 pm830 pm830 pm830 pm830 pm830"
-        "time pm9 pm9 pm9 pm9 pm9 pm9"
-    ; */
 }
 
 /* .row {
@@ -221,35 +190,13 @@ td, th {
     align-self: center;
 }
 
-.s0700 { grid-area: 1 / am7; }
-.s0730 { grid-area: 1 / am730; }
-.s0800 { grid-area: 1 / am8; }
-.s0830 { grid-area: 1 / am830; }
-.s0900 { grid-area: 1 / am9; }
-.s0930 { grid-area: 1 / am930; }
-.s1000 { grid-area: 1 / am10; }
-.s1030 { grid-area: 1 / am1030; }
-.s1100 { grid-area: 1 / am11; }
-.s1130 { grid-area: 1 / am1130; }
-.s1200 { grid-area: 1 / pm12; }
-.s1230 { grid-area: 1 / pm1230; }
-.s1300 { grid-area: 1 / pm1; }
-.s1330 { grid-area: 1 / pm130; }
-.s1400 { grid-area: 1 / pm2; }
-.s1430 { grid-area: 1 / pm230; }
-.s1500 { grid-area: 1 / pm3; }
-.s1530 { grid-area: 1 / pm330; }
-.s1600 { grid-area: 1 / pm4; }
-.s1630 { grid-area: 1 / pm430; }
-.s1700 { grid-area: 1 / pm5; }
-.s1730 { grid-area: 1 / pm530; }
-.s1800 { grid-area: 1 / pm6; }
-.s1830 { grid-area: 1 / pm630; }
-.s1900 { grid-area: 1 / pm7; }
-.s1930 { grid-area: 1 / pm730; }
-.s2000 { grid-area: 1 / pm8; }
-.s2030 { grid-area: 1 / pm830; }
-.s2100 { grid-area: 1 / pm9; }
+.min1 { grid-row: span 1; }
+.min2 { grid-row: span 2; }
+.min3 { grid-row: span 3; }
+.min4 { grid-row: span 4; }
+.min5 { grid-row: span 5; }
+.min6 { grid-row: span 6; }
+
 
 /* .classinfo {
     background-color: white;

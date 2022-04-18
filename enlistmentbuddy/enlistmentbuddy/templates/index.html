@@ -57,7 +57,7 @@
                     <div class="day">
                         {% for class in monday %}
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
+                            <div class="min{{ class.duration }} infowrap {{ class.color }}">
                                 <form action="/index_card" method="post" class="lockoverlay">
                                     <!-- <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
@@ -83,7 +83,7 @@
                     <div class="day">
                         {% for class in tuesday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
+                            <div class="min{{ class.duration }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
@@ -103,7 +103,7 @@
                     <div class="day">
                         {% for class in wednesday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
+                            <div class="min{{ class.duration }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
@@ -123,7 +123,7 @@
                     <div class="day">
                         {% for class in thursday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
+                            <div class="min{{ class.duration }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
@@ -143,7 +143,7 @@
                     <div class="day">
                         {% for class in friday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
+                            <div class="min{{ class.duration }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
@@ -163,7 +163,7 @@
                     <div class="day">
                         {% for class in saturday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="s{{ class.start|time:'Hi' }} infowrap {{ class.color }}">
+                            <div class="min{{ class.duration }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-lock.svg">
