@@ -121,15 +121,11 @@ def index_card_view(request):
     fridaylist = friday(finalsched)
     saturdaylist = saturday(finalsched)
     codeform = CodeForm(request.POST)
-    # thiscourse = courselist[1]
-    #testlist = sortClasses()
     listofcourses = listofcoursenames()
 
     # print(mondaylist)
     # for each in mondaylist:
     #     print(each.color)
-
-    #over here peeps
 
     #CHECKING COURSES
     #for course in listofcourses:
@@ -140,14 +136,9 @@ def index_card_view(request):
     #for x in classes:
     #    print (x)
     #print ("---")
-    
-    #num = request.session.get('num', 1) #if num is NONE then make it 1
-    #request.session['num'] = num
     userClassInput = ""
     if request.method == 'POST':
     # Checking if the inputs are valid
-        #request.session['num'] = num + 1
-        #print (request.session['num'])
         if 'indexsubmit' in request.POST:
             indexcardform = CourseForm(request.POST)
             codeform = CodeForm(request.POST)
@@ -173,7 +164,7 @@ def index_card_view(request):
             if copypasteform.is_valid():
                 #https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
                 userClassInput = request.POST.get('copypaste')
-                # print (userClassInput)
+                print (userClassInput)
                 bigText = re.split('\t', userClassInput)
                 for i in range(0, len(bigText), 14): #every 14 indexes
                     oneClass = bigText[i:i + 14]
@@ -449,49 +440,6 @@ def checktime(class1, class2):
     return False
 
 #Raffy Testing -->
-
-#def sortClasses():
-#    classlist = []
-#    classoccupy = []
-#
-#    while(len(classoccupy) != ClassCode.objects.all().count()):
-#        for classes in ClassModel.objects.all():
-#            if (classtester(classoccupy,classes)):
-#                print("pakyu")
-#                if (scheduleoverlap(classes.sched,classoccupy) and checkoverlap(classes,classlist)):
-#                    print("pakshet")
-#                    classlist.append(classes)
-#                    classoccupy.append(classes.code)
-#                    print(len(classoccupy))
-#                    print(ClassCode.objects.all().count())
-#                        break
-#                    sortClasses()
-#                    
-#                    classlist.pop()
-#                    classoccupy.pop()
-#                
-#        return classlist
-#    return classlist
-
-                    
-    
-    #classlist = []
-    #classoccupy = []
-#
-    #for course in ClassModel.objects.all():
-    #    for x in classlist:
-    #        if (checkoccupied(classoccupy,course.code) or (checkoverlap(x.start,x.end,course.start,course.end) and scheduleoverlap(x.sched,course.sched))):
-    #            break
-    #        elif (classlist.index(x)==len(classlist)-1):
-    #            classoccupy.append(course.code)
-    #            classlist.append(course)
-    #    if len(classoccupy) == 0:
-    #        classoccupy.append(course.code)
-    #        classlist.append(course)
-    #return classlist
-        
-
-
 
 #sources:
 #Time - https://stackoverflow.com/questions/100210/what-is-the-standard-way-to-add-n-seconds-to-datetime-time-in-python
