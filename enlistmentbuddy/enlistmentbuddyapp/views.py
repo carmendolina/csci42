@@ -61,7 +61,6 @@ def assignColor(list):
 def index_card_view(request):
 
     global num
-    increment()
 
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
