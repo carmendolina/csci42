@@ -63,7 +63,8 @@ main {
     grid-template-columns: 1fr;
     gap: 20px;
     margin: 0 28px 0 0;
-    align-items: flex-end;
+    /* align-items: flex-end; */
+    height: 100vh;
 }
 
 button, .btn {
@@ -91,7 +92,7 @@ button:hover, .btn:hover {
 .ta_form {
     display: grid;
     grid-template-columns: 1fr 6fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto;
     column-gap: 20px;
     row-gap: 28px;
 }
@@ -114,7 +115,7 @@ button:hover, .btn:hover {
 }
 
 textarea, .textarea {
-    height: 30vh !important;
+    /* height: 63vh !important; */
     border-radius: 25px;
     border: none;
     font-family: 'Inter', sans-serif;
