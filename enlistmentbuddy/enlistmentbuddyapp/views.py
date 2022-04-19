@@ -60,6 +60,7 @@ def assignColor(list):
 
 def index_card_view(request):
 
+    global num
     global copypaste 
 
     indexcardform = CourseForm(request.POST)
@@ -141,6 +142,11 @@ def index_card_view(request):
     #for x in classes:
     #    print (x)
     #print ("---")
+
+    if (num == 1):
+        copypaste = None
+    increment()
+
     if request.method == 'POST':
     # Checking if the inputs are valid
         if 'indexsubmit' in request.POST:
@@ -243,7 +249,7 @@ def anotherfoo(request):
 
 def increment():
     global num
-    num = num + 1
+    num = 2
 
 def timeConvert(text):
     return text[:2] + ':' + text[2:4]
