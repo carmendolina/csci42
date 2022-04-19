@@ -17,7 +17,6 @@
             <td>{{ course }}</td>
         {% endfor %}
     </table> -->
-    <p>{{ tatext }}</p>
     <p>help</p>
     <section id="content">
         <section class="textareas">
@@ -60,17 +59,11 @@
                         {% for class in monday %}
                             {% if class.start  <= x and class.end > x %}  
                             <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
-                                <form action="/index_card" method="post" class="lockoverlay">
-                                    <!-- <button name="lock" class="class-lock" value="lock">
-                                        <img src="../static/img/button-lock.svg">
-                                    </button> -->
-                                    {% csrf_token %}
-                                    <!-- {{ lockedform.islocked }} -->
-                                    <button class="class-lock">
-                                        <input class="class-lock" type="submit" name="lock" style="visibility: hidden;">
-                                        <img style="z-index: 10; position: absolute;" src="../static/img/button-lock.svg">
+                                <div class="lockoverlay">
+                                    <button name="lock" class="class-lock" value="lock">
+                                        <img src="../static/img/button-unlock.svg">
                                     </button>
-                                </form>
+                                </div>
                                 <!--{% csrf_token %}
                                 {{ lockedform.islocked }}-->
                                 <div class="classinfo">{{ class.code.name }}</div>
@@ -88,7 +81,7 @@
                             <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
-                                        <img src="../static/img/button-lock.svg">
+                                        <img src="../static/img/button-unlock.svg">
                                     </button>
                                 </div>
                                 <!--{% csrf_token %}
@@ -108,7 +101,7 @@
                             <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
-                                        <img src="../static/img/button-lock.svg">
+                                        <img src="../static/img/button-unlock.svg">
                                     </button>
                                 </div>
                                 <!--{% csrf_token %}
@@ -128,7 +121,7 @@
                             <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
-                                        <img src="../static/img/button-lock.svg">
+                                        <img src="../static/img/button-unlock.svg">
                                     </button>
                                 </div>
                                 <!--{% csrf_token %}
@@ -148,7 +141,7 @@
                             <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
-                                        <img src="../static/img/button-lock.svg">
+                                        <img src="../static/img/button-unlock.svg">
                                     </button>
                                 </div>
                                 <!--{% csrf_token %}
@@ -168,7 +161,7 @@
                             <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
-                                        <img src="../static/img/button-lock.svg">
+                                        <img src="../static/img/button-unlock.svg">
                                     </button>
                                 </div>
                                 <!--{% csrf_token %}
@@ -252,9 +245,4 @@
 <script src="../static/js/modal.js"></script>
 <script src="../static/js/generate.js"></script>
 <script src="../static/js/lock_vis.js"></script>
-{{ tatext|json_script:"tatext" }}
-<script>
-    var text = JSON.stringify(JSON.parse(document.getElementById('tatext').textContent));
-    document.getElementsByClassName("textarea")[0].value = text;
-</script>
 {% endblock %}
