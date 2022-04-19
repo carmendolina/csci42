@@ -60,7 +60,7 @@ def assignColor(list):
 
 def index_card_view(request):
 
-    global num
+    global helpme
 
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
@@ -123,6 +123,9 @@ def index_card_view(request):
     codeform = CodeForm(request.POST)
     listofcourses = listofcoursenames()
 
+    tatext = "tatext"
+    userClassInput = "userClassInput"
+    copypaste = "copypaste"
     # print(mondaylist)
     # for each in mondaylist:
     #     print(each.color)
@@ -136,7 +139,6 @@ def index_card_view(request):
     #for x in classes:
     #    print (x)
     #print ("---")
-    userClassInput = ""
     if request.method == 'POST':
     # Checking if the inputs are valid
         if 'indexsubmit' in request.POST:
@@ -160,11 +162,15 @@ def index_card_view(request):
                 newClass.save()
                 return redirect("index_card")
         elif 'copypastesubmit' in request.POST:
-            copypasteform = ClassCopyPasteForm(request.POST)
+            copypaste = request.POST.get('copypaste')
+            copypasteform = ClassCopyPasteForm(request.POST or None)
             if copypasteform.is_valid():
                 #https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
-                userClassInput = request.POST.get('copypaste')
+                userClassInput = copypasteform.cleaned_data.get('copypaste')
                 print (userClassInput)
+                tatext = userClassInput
+                print ("---")
+                print (tatext)
                 bigText = re.split('\t', userClassInput)
                 for i in range(0, len(bigText), 14): #every 14 indexes
                     oneClass = bigText[i:i + 14]
@@ -217,6 +223,7 @@ def index_card_view(request):
             'saturday': saturdaylist,
             'num': num,
             'tatext': userClassInput,
+            'copypaste': copypaste,
             #'testlister':testlist,
             # 'trycourse': thiscourse,
             #over here peeps

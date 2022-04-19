@@ -254,7 +254,7 @@
 <script src="../static/js/lock_vis.js"></script>
 {{ tatext|json_script:"tatext" }}
 <script>
-    var text = JSON.stringify(JSON.parse(document.getElementById('tatext').textContent));
+    var text = JSON.parse(document.getElementById('tatext').textContent);
     document.getElementsByClassName("textarea")[0].value = text;
 </script>
 {% endblock %}
