@@ -60,7 +60,7 @@ def assignColor(list):
 
 def index_card_view(request):
 
-    global helpme
+    global copypaste 
 
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
@@ -123,14 +123,11 @@ def index_card_view(request):
     codeform = CodeForm(request.POST)
     listofcourses = listofcoursenames()
 
-    tatext = "tatext"
-
     try:
         userClassInput = copypasteform.cleaned_data.get('copypaste')
     except:
         userClassInput = "userClassInput"
-    
-    copypaste = "copypaste"
+
     # print(mondaylist)
     # for each in mondaylist:
     #     print(each.color)
@@ -169,15 +166,12 @@ def index_card_view(request):
         elif 'copypastesubmit' in request.POST:
             copypaste = request.POST.get('copypaste')
             copypasteform = ClassCopyPasteForm(request.POST or None)
+            print (copypaste)
             if copypasteform.is_valid():
                 ClassCode.objects.all().delete()
                 listofcourses.clear()
                 #https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
                 userClassInput = copypasteform.cleaned_data.get('copypaste')
-                print (userClassInput)
-                tatext = userClassInput
-                print ("---")
-                print (tatext)
                 bigText = re.split('\t', userClassInput)
                 for i in range(0, len(bigText), 14): #every 14 indexes
                     oneClass = bigText[i:i + 14]
@@ -231,7 +225,6 @@ def index_card_view(request):
             'friday': fridaylist,
             'saturday': saturdaylist,
             'num': num,
-            'tatext': userClassInput,
             'copypaste': copypaste,
             #'testlister':testlist,
             # 'trycourse': thiscourse,

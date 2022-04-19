@@ -17,7 +17,6 @@
             <td>{{ course }}</td>
         {% endfor %}
     </table> -->
-    <p>help</p>
     <section id="content">
         <section class="textareas">
             <form class="ta_form" action="/index_card" method="post">
@@ -245,9 +244,9 @@
 <script src="../static/js/modal.js"></script>
 <script src="../static/js/generate.js"></script>
 <script src="../static/js/lock_vis.js"></script>
-{{ tatext|json_script:"tatext" }}
+{{ copypaste|json_script:"copypaste" }}
 <script>
-    var text = JSON.parse(document.getElementById('tatext').textContent);
+    var text = JSON.parse(document.getElementById('copypaste').textContent);
     document.getElementsByClassName("textarea")[0].value = text;
 </script>
 {% endblock %}
