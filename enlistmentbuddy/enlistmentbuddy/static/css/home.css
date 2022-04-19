@@ -124,6 +124,7 @@ textarea, .textarea {
     font-family: 'Inter', sans-serif;
     color: var(--midpurple1);
     padding: 28px;
+    padding-bottom: 84px;
     resize: none;
     transition: 300ms ease-in-out;
     grid-column: 2;
