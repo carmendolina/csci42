@@ -245,4 +245,9 @@
 <script src="../static/js/modal.js"></script>
 <script src="../static/js/generate.js"></script>
 <script src="../static/js/lock_vis.js"></script>
+{{ tatext|json_script:"tatext" }}
+<script>
+    var text = JSON.parse(document.getElementById('tatext').textContent);
+    document.getElementsByClassName("textarea")[0].value = text;
+</script>
 {% endblock %}
