@@ -124,7 +124,12 @@ def index_card_view(request):
     listofcourses = listofcoursenames()
 
     tatext = "tatext"
-    userClassInput = "userClassInput"
+
+    try:
+        userClassInput = copypasteform.cleaned_data.get('copypaste')
+    except:
+        userClassInput = "userClassInput"
+    
     copypaste = "copypaste"
     # print(mondaylist)
     # for each in mondaylist:
@@ -165,6 +170,8 @@ def index_card_view(request):
             copypaste = request.POST.get('copypaste')
             copypasteform = ClassCopyPasteForm(request.POST or None)
             if copypasteform.is_valid():
+                ClassCode.objects.all().delete()
+                listofcourses.clear()
                 #https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
                 userClassInput = copypasteform.cleaned_data.get('copypaste')
                 print (userClassInput)
@@ -190,6 +197,7 @@ def index_card_view(request):
                             newClass = ClassModel(code=newCode, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text, islocked=True)
                         else:
                             newClass = ClassModel(code=newCode, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text, islocked=False)
+                        newClass.save()
                     else:
                         for course in ClassCode.objects.all():
                             if (course.name == newCode.name):
@@ -198,7 +206,8 @@ def index_card_view(request):
                                     newClass = ClassModel(code=course, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text, islocked=True)
                                 else:
                                     newClass = ClassModel(code=course, section=fieldlist[1], sched=fieldlist[2], start=fieldlist[3], end=fieldlist[4], venue=fieldlist[5], professor=fieldlist[6], copypaste=text, islocked=False)
-                    newClass.save()
+
+                        newClass.save() 
                     bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the og list
                 return redirect("index_card")
     else:
