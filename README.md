@@ -1,1 +1,1 @@
-hello
+Enlistment Buddy is a website that will aid Ateneo students in planning for enlistment. It will create a number of possible schedules based on classes given by the user with subjects that do not conflict with each other. 
