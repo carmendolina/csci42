@@ -54,10 +54,10 @@
             {% for x in time %}
                 <div class="time">{{ x|time:"H:i" }}</div>
                 <section class="daytable">
-                    <div onclick="lock(this)" class="day unlocked">
-                        {% for class in monday %}
+                    <div class="day unlocked">
+                        {% for class in monday %}               
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
+                            <div onclick="lock(this)" class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-unlock.svg">
