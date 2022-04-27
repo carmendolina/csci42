@@ -2,7 +2,7 @@ const ulcourses = document.getElementsByClassName('day unlocked');
 const lcourses = document.getElementsByClassName('day locked');
 
 function getButton(div) {
-    var buttonimg = div.firstElementChild.firstElementChild.firstElementChild.firstElementChild;
+    var buttonimg = div.firstElementChild.firstElementChild.firstElementChild;
     return buttonimg;
 }
 
