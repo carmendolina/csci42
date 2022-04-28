@@ -1,17 +1,17 @@
-const ulcourses = document.getElementsByClassName('day unlocked');
-const lcourses = document.getElementsByClassName('day locked');
-
 function getButton(div) {
     var buttonimg = div.firstElementChild.firstElementChild.firstElementChild;
     return buttonimg;
 }
 
 function lock(course) {
-    if (course.className == 'day unlocked') {
-        course.className = "day locked";
+    if (course.classList.contains("unlocked")) {
+        course.classList.remove("unlocked");
+        course.classList.add("locked");
         getButton(course).src = "../static/img/button-lock.svg";
-    } else if (course.className == 'day locked') {
-        course.className = "day unlocked";
+    } else if (course.classList.contains("locked")) {
+        
+        course.classList.remove("locked");
+        course.classList.add("unlocked");
         getButton(course).src = "../static/img/button-unlock.svg";
     }
 }
