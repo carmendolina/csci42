@@ -14,4 +14,5 @@ function lock(course) {
         course.classList.add("unlocked");
         getButton(course).src = "../static/img/button-unlock.svg";
     }
+    console.log(course.classList)
 }

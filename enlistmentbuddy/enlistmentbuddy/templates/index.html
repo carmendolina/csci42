@@ -39,7 +39,7 @@
                 <!-- generate schedule button -->
                 <input class="btn ta_gen" type="submit" name="copypastesubmit" value="Save Copy-Pasted Text" style="align-self: self-end;">
             </form>
-            <button class="btn ta_gen" style="grid-column: 1 !important; grid-row: 2 !important;" onClick="window.location.reload();" value="Generate a Schedule">Generate a Schedule</button>
+            <button class="btn ta_gen" style="grid-column: 1 !important; grid-row: 2 !important;" onClick="window.location.reload(); passlock();" value="Generate a Schedule">Generate a Schedule</button>
             <!-- <textarea placeholder="Paste from AISIS Class Schedule here..."></textarea> -->
         </section>
         <section id="timetable">
@@ -57,7 +57,7 @@
                     <div class="day unlocked">
                         {% for class in monday %}               
                             {% if class.start  <= x and class.end > x %}  
-                            <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }}">
+                            <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-unlock.svg">
