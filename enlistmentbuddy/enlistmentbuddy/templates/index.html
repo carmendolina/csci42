@@ -22,10 +22,6 @@
             <form class="ta_form" action="/index_card" method="post">
                 {% csrf_token %}
                 <div class="ta_buttons">
-                    <!-- edit button - triggers pop up view -->
-                    <button name="ta-button" class="ta_edit" onclick="openModal()" value="edit">
-                        <img src="../static/img/button-edit.svg">
-                    </button>
                     <!-- add button - adds a new instance of the buttons + textarea -->
                     <!-- <button name="ta-button" class="ta_add" onclick="">
                         <img src="../static/img/button-add.svg">
@@ -39,7 +35,12 @@
                 <!-- generate schedule button -->
                 <input class="btn ta_gen" type="submit" name="copypastesubmit" value="Save Copy-Pasted Text" style="align-self: self-end;">
             </form>
+            <!-- edit button - triggers pop up view -->
+            <button name="ta-button" class="ta_edit" onclick="openModal()" value="edit">
+                <img src="../static/img/button-edit.svg">
+            </button>
             <button class="btn ta_gen" style="grid-column: 1 !important; grid-row: 2 !important;" onClick="window.location.reload();" value="Generate a Schedule">Generate a Schedule</button>
+           
             <!-- <textarea placeholder="Paste from AISIS Class Schedule here..."></textarea> -->
         </section>
         <section id="timetable">
@@ -186,8 +187,44 @@
         <div class="forminput-wrap">
             <form action="/index_card" method="post">
                 {% csrf_token %}
-                <!-- {{ form }}
-                <input type="submit" value="Submit"> -->
+                {% if class %}
+                    {% for class in finalsched %}
+                        <div class="coursecode-div">
+                            <h1>Course Code</h1>
+                            {{ codeform.name }}
+                        </div>
+                        <div class="form-section">
+                            <div class="form-group sectiongroup">
+                                <h2>Section</h2>
+                                {{ indexcardform.section }}
+                            </div>
+                            <div class="section-inner">
+                                <div class="form-group">
+                                    <h4>Schedule</h4>
+                                    {{ indexcardform.sched }}
+                                </div>
+                                <div class="startend">
+                                    <div class="form-group">
+                                        <h4>Start <span>(military time)</span></h4>
+                                        {{ indexcardform.start }}
+                                    </div>
+                                    <div class="form-group">
+                                        <h4>End <span>(military time)</span></h4>
+                                        {{ indexcardform.end }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4>Venue</h4>
+                                    {{ indexcardform.venue }}
+                                </div>
+                                <div class="form-group">
+                                    <h4>Professor</h4>
+                                    {{ indexcardform.professor }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
                 <div class="coursecode-div">
                     <h1>Course Code</h1>
                     {{ codeform.name }}
@@ -222,6 +259,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 <div class="form-submit">
                     <input class="btn" type="submit" name="indexsubmit" value="save">
                 </div>

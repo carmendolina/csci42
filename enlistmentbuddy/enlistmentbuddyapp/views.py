@@ -232,6 +232,8 @@ def index_card_view(request):
             'saturday': saturdaylist,
             'num': num,
             'copypaste': copypaste,
+            'finalsched': finalsched,
+
             #'testlister':testlist,
             # 'trycourse': thiscourse,
             #over here peeps
