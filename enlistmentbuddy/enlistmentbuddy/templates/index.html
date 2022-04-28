@@ -57,7 +57,7 @@
                     <div class="day unlocked">
                         {% for class in monday %}               
                             {% if class.start  <= x and class.end > x %}  
-                            <div onclick="lock(this)" class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
+                            <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-unlock.svg">
@@ -74,10 +74,10 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <div onclick="lock(this)" class="day unlocked">
+                    <div class="day unlocked">
                         {% for class in tuesday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
+                            <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-unlock.svg">
@@ -94,10 +94,10 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <div onclick="lock(this)" class="day unlocked">
+                    <div class="day unlocked">
                         {% for class in wednesday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
+                            <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-unlock.svg">
@@ -114,10 +114,10 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <div onclick="lock(this)" class="day unlocked">
+                    <div class="day unlocked">
                         {% for class in thursday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
+                            <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-unlock.svg">
@@ -134,10 +134,10 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <div onclick="lock(this)" class="day unlocked">
+                    <div class="day unlocked">
                         {% for class in friday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
+                            <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-unlock.svg">
@@ -154,10 +154,10 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <div onclick="lock(this)" class="day unlocked">
+                    <div class="day unlocked">
                         {% for class in saturday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div class="min{{ class.duration }} infowrap {{ class.color }} unlocked">
+                            <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock" value="lock">
                                         <img src="../static/img/button-unlock.svg">
