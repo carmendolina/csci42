@@ -35,13 +35,31 @@
                 <!-- generate schedule button -->
                 <input class="btn ta_gen" type="submit" name="copypastesubmit" value="Save Copy-Pasted Text" style="align-self: self-end;">
             </form>
-            <!-- edit button - triggers pop up view -->
-            <button name="ta-button" class="ta_edit" onclick="openModal()" value="edit">
+            <!-- edit button - triggers pop up view 
+                <button name="ta-button" class="ta_edit" onclick="openModal()" value="edit">
                 <img src="../static/img/button-edit.svg">
-            </button>
+            </button> -->
             <button class="btn ta_gen" style="grid-column: 1 !important; grid-row: 2 !important;" onClick="window.location.reload(); passLock();" value="Generate a Schedule">Generate a Schedule</button>
            
             <!-- <textarea placeholder="Paste from AISIS Class Schedule here..."></textarea> -->
+            <div class="classtable">
+                <div class="columnheader">Class Code</div>
+                <div class="columnheader">Section</div>
+                <div class="columnheader">Sched</div> 
+                <div class="columnheader">Start</div> 
+                <div class="columnheader">End</div>
+                <div class="columnheader">Venue</div>
+                <div class="columnheader">Professor</div>
+                {% for class in class_info %}
+                <div class="classinfo">{{class.code}}</div>
+                <div class="classinfo">{{class.section}}</div>
+                <div class="classinfo">{{class.sched}}</div> 
+                <div class="classinfo">{{class.start}}</div>
+                <div class="classinfo">{{class.end}}</div>
+                <div class="classinfo">{{class.venue}}</div>
+                <div class="classinfo">{{class.professor}}</div>
+                {% endfor %}
+            </div>
         </section>
         <section id="timetable">
             <!-- <div class="row timerow"> -->
