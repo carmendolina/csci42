@@ -8,6 +8,12 @@ import re, itertools
 
 from django.http import HttpResponse
 
+# for passing js list to views
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
+
+
 #forms
 from .forms import IndexCardForm
 from .forms import CopyPasteForm
@@ -62,10 +68,18 @@ def assignColor(list):
             # L(course).append(course.color)
     return list
 
+
+# def return_lock(request):
+#     currentlock = request.data['field']
+#     print(currentlock)
+#     print("hello!")
+#     return JsonResponse({'success':True})
+        
 def index_card_view(request):
 
     global num
-    global copypaste 
+    global copypaste
+    global currentlock
 
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
@@ -73,7 +87,7 @@ def index_card_view(request):
     classes = ClassModel.objects.all()
     finallist = imtesting()
     listwithcolor = assignColor(finallist)
-    
+        
     #for code in ClassCode.objects.all():
         # (code.pk)
 
@@ -149,6 +163,8 @@ def index_card_view(request):
 
     if (num == 1):
         copypaste = None
+        currentlock = []
+
     increment()
 
     if request.method == 'POST':
@@ -214,6 +230,27 @@ def index_card_view(request):
                         newClass.save() 
                     bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the og list
                 return redirect("index_card")
+        elif 'generate' in request.POST:
+            print("HELLO!")
+            currentlock = (request.POST.get('returnlock'))
+            if (currentlock):
+                currentlock = re.split(',', currentlock)
+                for x in currentlock:
+                    thislock = re.split(' ', x)
+                    thiscode = thislock[2:4]
+                    thiscode = (' '.join(thiscode))
+                    thissection = thislock[4]
+                    for x in ClassModel.objects.all():
+                        if (x.code.name == thiscode):
+                            if (x.section == thissection):
+                                x.islocked = True
+                                x.save()
+                                print(x)
+                                print("islocked!")
+                    # print(thiscode)
+                    # thissection = thislock[4]
+                    # print(thissection)
+                
     else:
         indexcardform = CourseForm()
         codeform = CodeForm()

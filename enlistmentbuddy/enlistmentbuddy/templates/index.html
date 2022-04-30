@@ -39,7 +39,13 @@
                 <button name="ta-button" class="ta_edit" onclick="openModal()" value="edit">
                 <img src="../static/img/button-edit.svg">
             </button> -->
-            <button class="btn ta_gen" style="grid-column: 1 !important; grid-row: 2 !important;" onClick="window.location.reload(); returnLockedList();" value="Generate a Schedule">Generate a Schedule</button>
+            <form action="/index_card" method="post">
+                {% csrf_token %}
+                <input type="hidden" id="returnlock" name="returnlock" value="">
+                <button class="btn ta_gen" style="grid-column: 1 !important; grid-row: 2 !important;" type="submit" onClick="returnLockedList();" name="generate" value="Generate a Schedule">Generate a Schedule</button>
+            </form>
+            <!--<button class="btn ta_gen" style="grid-column: 1 !important; grid-row: 2 !important;" onClick="returnLockedList()  window.location.reload();" value="Generate a Schedule">Generate a Schedule</button>-->
+
            
             <!-- <textarea placeholder="Paste from AISIS Class Schedule here..."></textarea> -->
             <div class="classtable">
@@ -297,9 +303,13 @@
 
 
 {% block scripts %}
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<!-- <script src="{% static 'js/app.js' %}"></script> -->
 <script src="../static/js/modal.js"></script>
-<script src="../static/js/generate.js"></script>
 <script src="../static/js/lock_vis.js"></script>
+<script src="../static/js/generate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
 {{ copypaste|json_script:"copypaste" }}
 <script>
     var text = JSON.parse(document.getElementById('copypaste').textContent);

@@ -24,7 +24,36 @@ function lock(course) {
     console.log(lockedClasses);
 }
 
+// function returnLockedList() {
+//     console.log(lockedClasses);
+//     return lockedClasses;
+// }
+
 function returnLockedList() {
-    console.log(lockedClasses);
-    return lockedClasses;
+
+    const currentList = [];
+    lockedClasses.forEach(
+        function(token){
+            currentList.push(String(token));
+        }
+    );
+    var field = (document.getElementById("returnlock").value = currentList);
+    console.log(field);
+    // $.ajax({
+    //     headers: { "X-CSRFToken": $.cookie("csrftoken") },
+    //     type: 'POST',
+    //     url: '/index_card',
+    //     contentType:"application/json",
+    //     data: {
+    //         'field':field,
+    //         'csrfmiddlewaretoken': '{{ csrf_token }}',
+    //     },
+    //     dataType: 'json',
+    //     success: function() {
+    //         alert("it worked!");
+    //     },
+    //     error: function(){
+    //         alert("it didnt work");
+    //     }
+    // });
 }
