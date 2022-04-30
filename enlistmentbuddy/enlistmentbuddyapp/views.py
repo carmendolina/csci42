@@ -8,12 +8,6 @@ import re, itertools
 
 from django.http import HttpResponse
 
-# for passing js list to views
-from django.http import JsonResponse
-from rest_framework.decorators import api_view
-from django.views.decorators.csrf import csrf_exempt
-
-
 #forms
 from .forms import IndexCardForm
 from .forms import CopyPasteForm
