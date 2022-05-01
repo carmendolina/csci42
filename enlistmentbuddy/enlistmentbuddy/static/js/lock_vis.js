@@ -1,5 +1,7 @@
 var lockedClasses = Array.from(document.querySelectorAll(".locked"));
 var unlockedClasses = Array.from(document.querySelectorAll(".unlocked"));
+var finalLockedList = [];
+var finalUnlockedList = [];
 
 function getButton(div) {
     var buttonimg = div.firstElementChild.firstElementChild.firstElementChild;
@@ -20,24 +22,34 @@ function lock(course) {
         lockedClasses = Array.from(document.querySelectorAll(".locked"));
         unlockedClasses = Array.from(document.querySelectorAll(".unlocked"));
     }
-    console.log(lockedClasses);
-    console.log(unlockedClasses);
-    returnLists(lockedClasses);
-    returnLists(unlockedClasses);
+    console.log(finalLockedList);
+    console.log(finalUnlockedList);
 }
 
-function returnLists(list) {
+function returnFinalLocked(list) {
     list.forEach(
         function getClassList(course) {
-            console.log(course.classList);
+            finalLockedList.push(course.classList);
+        }
+    );
+}
+
+function returnFinalUnlocked(list) {
+    list.forEach(
+        function getClassList(course) {
+            finalUnlockedList.push(course.classList);
         }
     );
 }
 
 function returnLockedList() {
+    returnFinalLocked(lockedClasses);
+    returnFinalUnlocked(unlockedClasses);
+    console.log(finalLockedList);
+    console.log(finalUnlockedList);
 
     const currentList = [];
-    lockedClasses.forEach(
+    finalLockedList.forEach(
         function(token){
             currentList.push(String(token));
         }
