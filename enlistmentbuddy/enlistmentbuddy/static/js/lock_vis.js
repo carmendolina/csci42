@@ -1,4 +1,5 @@
-var lockedClasses = [];
+var lockedClasses = Array.from(document.querySelectorAll(".locked"));
+var unlockedClasses = Array.from(document.querySelectorAll(".unlocked"));
 
 function getButton(div) {
     var buttonimg = div.firstElementChild.firstElementChild.firstElementChild;
@@ -10,24 +11,28 @@ function lock(course) {
         course.classList.remove("unlocked");
         course.classList.add("locked");
         getButton(course).src = "../static/img/button-lock.svg";
-        if (!lockedClasses.includes(course.classList)) {
-            lockedClasses.push(course.classList);
-        }
+        lockedClasses = Array.from(document.querySelectorAll(".locked"));
+        unlockedClasses = Array.from(document.querySelectorAll(".unlocked"));
     } else if (course.classList.contains("locked")) {
         course.classList.remove("locked");
         course.classList.add("unlocked");
         getButton(course).src = "../static/img/button-unlock.svg";
-        if (lockedClasses.includes(course.classList)) {
-            lockedClasses.pop(course.classList);
-        }
+        lockedClasses = Array.from(document.querySelectorAll(".locked"));
+        unlockedClasses = Array.from(document.querySelectorAll(".unlocked"));
     }
     console.log(lockedClasses);
+    console.log(unlockedClasses);
+    returnLists(lockedClasses);
+    returnLists(unlockedClasses);
 }
 
-// function returnLockedList() {
-//     console.log(lockedClasses);
-//     return lockedClasses;
-// }
+function returnLists(list) {
+    list.forEach(
+        function getClassList(course) {
+            console.log(course.classList);
+        }
+    );
+}
 
 function returnLockedList() {
 

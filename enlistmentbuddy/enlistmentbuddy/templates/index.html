@@ -83,7 +83,7 @@
             {% for x in time %}
                 <div class="time">{{ x|time:"H:i" }}</div>
                 <section class="daytable">
-                    <div class="day unlocked">
+                    <div class="day">
                         {% for class in monday %}               
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
@@ -103,7 +103,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <div class="day unlocked">
+                    <div class="day">
                         {% for class in tuesday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
@@ -123,7 +123,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <div class="day unlocked">
+                    <div class="day">
                         {% for class in wednesday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
@@ -143,7 +143,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <div class="day unlocked">
+                    <div class="day">
                         {% for class in thursday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
@@ -163,7 +163,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <div class="day unlocked">
+                    <div class="day">
                         {% for class in friday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
@@ -183,7 +183,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <div class="day unlocked">
+                    <div class="day">
                         {% for class in saturday %}         
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.locked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
