@@ -238,8 +238,6 @@ def index_card_view(request):
                             if (x.section == thissection):
                                 x.islocked = True
                                 x.save()
-                                print(x)
-                                print("islocked!")
             currentunlock = (request.POST.get('returnunlock'))
             if (currentunlock):
                 currentunlock = re.split(',', currentunlock)
@@ -253,6 +251,8 @@ def index_card_view(request):
                             if (x.section == thissection):
                                 x.islocked = False
                                 x.save()
+            finallist = imtesting()
+            listwithcolor = assignColor(finallist)
         elif 'pin' in request.POST:
             print(request.POST.get('returnsched'))
                 
@@ -462,7 +462,7 @@ def imtesting():
 
     finalfinallist = []
     lockedlist = lockedlistmaker()
-    #print(lockedlist)
+    print(lockedlist)
 
     if (lockedlist):
         for x in finallist:
