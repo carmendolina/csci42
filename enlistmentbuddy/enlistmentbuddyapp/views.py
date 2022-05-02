@@ -83,6 +83,7 @@ def index_card_view(request):
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
     lockedform = LockedForm(request.POST)
+    filter_form = FilterForm(request.POST)
     
     classes = ClassModel.objects.all()
 
@@ -308,6 +309,7 @@ def index_card_view(request):
         codeform = CodeForm()
         copypasteform = ClassCopyPasteForm()
         lockedform = LockedForm()
+        filter_form = FilterForm()
 
     return render(request, 'index.html', 
         {
