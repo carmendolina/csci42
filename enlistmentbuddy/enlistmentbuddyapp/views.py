@@ -2,6 +2,7 @@ from calendar import c
 # from math import comb
 import random
 from ast import Index
+import sched
 from tabnanny import check
 from django.shortcuts import render, redirect
 import re, itertools
@@ -260,8 +261,30 @@ def index_card_view(request):
         elif 'pin' in request.POST:
             print("----")
             schedulelist.append(re.split(",",request.POST.get('returnsched')))
-            for schedule in schedulelist:
-                print(schedule)
+            schedstring = schedulelist[0][0][13:-2]
+            schedvar = []
+            schedvar = list(schedstring.split(" "))
+            print(schedvar)
+            for course in ClassCode.objects.all():
+                comparing = ""
+                comparing = schedvar[0] + " " + schedvar[1]
+                if (comparing == str(course.name)):
+                    newCode = course
+                    comparing = ""
+                    comparing = schedvar[2]
+                    for x in ClassModel.objects.all():
+                        if (str(newCode.name) == str(x.code)):
+                            if (str(x.section) == comparing):
+                                newModel = newClass = ClassModel(code=newCode, section=x.section, sched=x.sched, start=x.start, end=x.end, venue=x.venue, professor=x.professor, copypaste=x.copypaste, islocked=False)
+                                schedulelist[0][0] = newModel
+                                print(schedulelist[0][0])
+                                
+
+
+
+            #for schedule in schedulelist:
+            #    for classsched in schedule:
+            #        print("WAWA")
             print("----")
                 
     else:
