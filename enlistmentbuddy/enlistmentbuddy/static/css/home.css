@@ -3,6 +3,7 @@
 :root {
     --cream: #FFF8E4;
     --midpurple1: #5D4988;
+    --midpurple2: #6C5896;
     --lightpurple1: #CBBEE7;
     --midyellow: #FFCC49;
     --lightpurple: #AE9FCD;
@@ -335,7 +336,6 @@ td, th {
     /* padding: 2%; */
     align-content: center;
     justify-content: center;
-    font-family: 'Inter', sans-serif;
 }
 
 .timetableHead * {
@@ -361,17 +361,16 @@ td, th {
 }
 
 .tablinks:hover {
-    background-color: var(--lightpurple1);
+    background-color: var(--midpurple2);
     transition: ease-out 300ms;
 }
 
 .timetableHead button {
-    border-left: 1.5px solid var(--midpurple1);
-    /* border-right: 1px solid var(--midpurple1); */
-    border-top: none;
-    border-bottom: none;
-    border-right: none;
+    border: none;
     background: none;
+    font-family: 'Inter', sans-serif;
+    color: var(--darkpurple);
+    font-weight: 600;
 }
 
 .timetableHead form button img {
