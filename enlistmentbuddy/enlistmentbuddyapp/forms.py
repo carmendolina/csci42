@@ -135,5 +135,5 @@ class CopyPasteForm(forms.ModelForm):
         }
 
 class FilterForm(forms.Form):
-    filter_start = forms.TimeField()
-    filter_end = forms.TimeField()
+    filter_start = forms.TimeField(widget=forms.TimeInput(attrs={'placeholder': 'ex. 10:00:00'}))
+    filter_end = forms.TimeField(widget=forms.TimeInput(attrs={'placeholder': 'ex. 17:00:00'}))

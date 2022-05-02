@@ -148,7 +148,7 @@ main {
 
 .filterrow {
     display: grid;
-    grid-template-columns: 1fr 5rem;
+    grid-template-columns: 1fr 6rem;
     margin: 8px 0;
 }
 
@@ -170,7 +170,7 @@ textarea, .textarea {
     grid-row: 1;
 }
 
-textarea::placeholder, .textarea::placeholder {
+textarea::placeholder, .textarea::placeholder, input::placeholder {
     font-style: italic;
     color: var(--lightpurple);
     vertical-align: text-top;
