@@ -54,10 +54,10 @@ def assignColor(list):
             start_sec= (course.start.hour*60+course.start.minute)*60+course.start.second
             end_sec= (course.end.hour*60+course.end.minute)*60+course.end.second
             course.duration = int(((end_sec-start_sec)/60.0)/30)
-            if course.islocked == False:
-                course.locked = "unlocked"
-            else:
-                course.locked = "locked"
+            # if course.islocked == False:
+            #     course.locked = "unlocked"
+            # else:
+            #     course.locked = "locked"
             i = i + 1
             # L(course).append(course.color)
     return list

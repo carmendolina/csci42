@@ -191,7 +191,7 @@ td, th {
     display: grid;
     grid-template-columns: repeat(6,1fr);
     grid-column: span 6;
-    height: 12vh !important;
+    height: 15vh !important;
     align-self: center;
 }
 
@@ -215,9 +215,7 @@ td, th {
     opacity: 0;
     display: flex;
     position: absolute;
-    align-content: center;
-    justify-content: center;
-    background-color: inherit;
+    background: none;
     width: 100%;
     height: 100%;
     transition: 300ms ease-in-out;
@@ -230,14 +228,21 @@ td, th {
 }
 
 .class-lock {
-    align-self: center;
-    justify-self: center;
-    background-color: inherit;
+    align-self: flex-start;
+    justify-self: left;
+    background: none !important;
     box-shadow: none;
+    width: 21%;
+    height: 21%;
 }
 
 .class-lock:hover {
-    background-color: inherit;
+    background: none !important;
+}
+
+.class-lock img {
+    width: 100%;
+    height: 100%;
 }
 
 .timerow {

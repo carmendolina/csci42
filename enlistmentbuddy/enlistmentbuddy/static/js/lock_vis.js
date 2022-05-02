@@ -2,18 +2,18 @@ var finalLockedList = [];
 var finalUnlockedList = [];
 
 function lock(course) {
-    if (course.classList.contains("unlocked")) {
-        course.classList.remove("unlocked");
-        course.classList.add("locked");
+    if (course.classList.contains("False")) {
+        course.classList.remove("False");
+        course.classList.add("True");
         getButton(course).src = "../static/img/button-lock.svg";
-        lockedClasses = Array.from(document.querySelectorAll(".locked"));
-        unlockedClasses = Array.from(document.querySelectorAll(".unlocked"));
-    } else if (course.classList.contains("locked")) {
-        course.classList.remove("locked");
-        course.classList.add("unlocked");
+        lockedClasses = Array.from(document.querySelectorAll(".True"));
+        unlockedClasses = Array.from(document.querySelectorAll(".False"));
+    } else if (course.classList.contains("True")) {
+        course.classList.remove("True");
+        course.classList.add("False");
         getButton(course).src = "../static/img/button-unlock.svg";
-        lockedClasses = Array.from(document.querySelectorAll(".locked"));
-        unlockedClasses = Array.from(document.querySelectorAll(".unlocked"));
+        lockedClasses = Array.from(document.querySelectorAll(".True"));
+        unlockedClasses = Array.from(document.querySelectorAll(".False"));
     }
 }
 
@@ -34,8 +34,11 @@ function returnFinalUnlocked(list) {
 }
 
 function returnLockedList() {
+    lockedClasses = Array.from(document.querySelectorAll(".True"));
+    unlockedClasses = Array.from(document.querySelectorAll(".False"));
+    
     returnFinalLocked(lockedClasses);
-
+    
     const currentList = [];
     finalLockedList.forEach(
         function(token){
@@ -43,9 +46,12 @@ function returnLockedList() {
         }
     );
     var field = (document.getElementById("returnlock").value = currentList);
+    console.log(currentList);
 }
 
 function returnUnlockedList() {
+    lockedClasses = Array.from(document.querySelectorAll(".True"));
+    unlockedClasses = Array.from(document.querySelectorAll(".False"));
     returnFinalUnlocked(unlockedClasses);
 
     const currentList = [];
@@ -54,5 +60,6 @@ function returnUnlockedList() {
             currentList.push(String(token));
         }
     );
+    console.log(currentList);
     var field = (document.getElementById("returnunlock").value = currentList);
 }
