@@ -1,10 +1,11 @@
-var schedulelist = []
-var templist = []
 
-function pain(sched){
-    templist = (Array.from(sched)).join('');
-    templist = templist.slice(1);
-    templist = templist.slice(0, templist.length - 1);
-    templist = templist.split(", ")
-    console.log(templist);
+function returnSched(sched){
+    var schedulelist = []
+
+    schedulelist = (Array.from(sched)).join('');
+    schedulelist = schedulelist.slice(1);
+    schedulelist = schedulelist.slice(0, schedulelist.length - 1);
+    schedulelist = schedulelist.split(", ")
+    var field = (document.getElementById("returnsched").value = schedulelist);
+    console.log(field)
 }

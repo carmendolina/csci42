@@ -253,6 +253,8 @@ def index_card_view(request):
                             if (x.section == thissection):
                                 x.islocked = False
                                 x.save()
+        elif 'pin' in request.POST:
+            print(request.POST.get('returnsched'))
                 
     else:
         indexcardform = CourseForm()
