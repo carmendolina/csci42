@@ -40,6 +40,7 @@ colorList = [
 ]
 
 num = 1
+schedulelist = []
 
 #insert functions here
 def index(request):
@@ -74,6 +75,8 @@ def index_card_view(request):
     global num
     global copypaste
     global currentlock
+
+    global schedulelist
 
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
@@ -225,6 +228,7 @@ def index_card_view(request):
                     bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the og list
                 return redirect("index_card")
         elif 'generate' in request.POST:
+            schedulelist = [] #for testing purposes dont mind me
             currentlock = (request.POST.get('returnlock'))
             if (currentlock):
                 currentlock = re.split(',', currentlock)
@@ -254,7 +258,11 @@ def index_card_view(request):
             finallist = imtesting()
             listwithcolor = assignColor(finallist)
         elif 'pin' in request.POST:
-            print(request.POST.get('returnsched'))
+            print("----")
+            schedulelist.append(re.split(",",request.POST.get('returnsched')))
+            for schedule in schedulelist:
+                print(schedule)
+            print("----")
                 
     else:
         indexcardform = CourseForm()
