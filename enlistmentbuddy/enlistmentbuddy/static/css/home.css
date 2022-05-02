@@ -3,6 +3,7 @@
 :root {
     --cream: #FFF8E4;
     --midpurple1: #5D4988;
+    --lightpurple1: #CBBEE7;
     --midyellow: #FFCC49;
     --lightpurple: #AE9FCD;
     --darkpurple: #231149;
@@ -125,8 +126,23 @@ main {
 .filterbytime {
     color: var(--darkpurple);
     background-color: var(--cream);
-    padding: 2em;
+    padding: 2em 2em 1.3em;
     border-radius: 16px;
+    box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.25);
+}
+
+.filterhead {
+    width: calc(100% + 2.67em) !important;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--darkpurple);
+    background-color: var(--midyellow);
+    margin: -1.34em -1.34em 24px;
+    border-radius: 16px 16px 0 0 !important;
+}
+
+.filterhead:hover {
+    cursor: default;
 }
 
 .filterrow {
@@ -312,13 +328,18 @@ td, th {
 .timetableHead {
     grid-column: span 7;
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr 2fr;
+    grid-template-columns: auto 1fr 1fr 1fr 1fr 1fr 1fr;
     background-color: var(--lightpurple);
     border-radius: 25px 25px 0 0;
     margin: -3em -2rem 24px -2rem;
-    padding: 2%;
+    /* padding: 2%; */
     align-content: center;
     justify-content: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.timetableHead * {
+    padding: 0.4em;
 }
 
 .timetableHead form button {
@@ -328,15 +349,35 @@ td, th {
     display: flex;
     align-items: center;
     align-content: center;
+    margin: 0 auto;
 }
 
-.timetableHead form button:hover {
+.timetableHead form button:hover, .timetableHead button:hover {
     cursor: pointer;
 }
 
-.timetableHead button img {
+.tablinks {
+    transition: ease-out 300ms;    
+}
+
+.tablinks:hover {
+    background-color: var(--lightpurple1);
+    transition: ease-out 300ms;
+}
+
+.timetableHead button {
+    border-left: 1.5px solid var(--midpurple1);
+    /* border-right: 1px solid var(--midpurple1); */
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    background: none;
+}
+
+.timetableHead form button img {
     width: 70%;
     height: 70%;
+    justify-self: right;
 }
 
 .day {
