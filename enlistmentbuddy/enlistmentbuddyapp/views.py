@@ -225,7 +225,6 @@ def index_card_view(request):
                     bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the og list
                 return redirect("index_card")
         elif 'generate' in request.POST:
-            print("HELLO!")
             currentlock = (request.POST.get('returnlock'))
             if (currentlock):
                 currentlock = re.split(',', currentlock)
@@ -241,9 +240,19 @@ def index_card_view(request):
                                 x.save()
                                 print(x)
                                 print("islocked!")
-                    # print(thiscode)
-                    # thissection = thislock[4]
-                    # print(thissection)
+            currentunlock = (request.POST.get('returnunlock'))
+            if (currentunlock):
+                currentunlock = re.split(',', currentunlock)
+                for x in currentunlock:
+                    thisunlock = re.split(' ', x)
+                    thiscode = thisunlock[2:4]
+                    thiscode = (' '.join(thiscode))
+                    thissection = thisunlock[4]
+                    for x in ClassModel.objects.all():
+                        if (x.code.name == thiscode):
+                            if (x.section == thissection):
+                                x.islocked = False
+                                x.save()
                 
     else:
         indexcardform = CourseForm()
