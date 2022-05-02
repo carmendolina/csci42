@@ -70,7 +70,7 @@ main {
     height: 100vh;
 }
 
-button, .btn {
+.btn {
     background: var(--cream);
     display: flex;
     align-items: center;
@@ -86,7 +86,7 @@ button, .btn {
     font-family: 'Inter', sans-serif;
 }
 
-button:hover, .btn:hover {
+.btn:hover {
     background: var(--midyellow);
     transition: 300ms ease-in-out;
     cursor: pointer;
@@ -167,7 +167,7 @@ td, th {
 #timetable
 {
     display: grid;
-    padding: 3%;
+    padding: 2rem;
     width: 50vw;
     background: white;
     border-radius: 25px;
@@ -206,6 +206,36 @@ td, th {
 /* .classinfo {
     background-color: white;
 } */
+
+.timetableHead {
+    grid-column: span 7;
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr 2fr;
+    background-color: var(--lightpurple);
+    border-radius: 25px 25px 0 0;
+    margin: -3em -2rem 24px -2rem;
+    padding: 2%;
+    align-content: center;
+    justify-content: center;
+}
+
+.timetableHead form button {
+    grid-column: span 1;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.timetableHead form button:hover {
+    cursor: pointer;
+}
+
+.timetableHead button img {
+    width: 70%;
+    height: 70%;
+}
 
 .day {
     position: relative;
