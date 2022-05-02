@@ -46,17 +46,6 @@
                 <button class="btn ta_gen" style="grid-column: 1 !important; grid-row: 2 !important;" type="submit" onClick="returnLockedList(); returnUnlockedList();" name="generate" value="Generate a Schedule">Generate a Schedule</button>
             </form>
             <!--<button class="btn ta_gen" style="grid-column: 1 !important; grid-row: 2 !important;" onClick="returnLockedList()  window.location.reload();" value="Generate a Schedule">Generate a Schedule</button>-->
-            
-            <!-- TEST BUTTON -->
-            <form action="/index_card" method="post">
-                {% csrf_token %}
-                <input type="hidden" id="returnsched" name="returnsched" value="">
-                <!-- <button name="ta-button" class="ta_newtab" type="submit" onClick= "returnSched('{{ finalsched }}')" name="pin" class="newtab">
-                    <img src="../static/img/button-edit.svg">
-                </button> -->
-                <button class="btn ta_gen" style="grid-column: 1 !important; grid-row: 2 !important;" type="submit" onClick="returnSched('{{ finalsched }}');" name="pin" value="Pin a Schedule">Pin</button>
-            </form>
-
            
             <!-- <textarea placeholder="Paste from AISIS Class Schedule here..."></textarea> -->
             <div class="classtable">
@@ -79,6 +68,19 @@
             </div>
         </section>
         <section id="timetable">
+            <div class="timetableHead">
+                <!-- TEST BUTTON -->
+                <form action="/index_card" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" id="returnsched" name="returnsched" value="">
+                    <!-- <button name="ta-button" class="ta_newtab" type="submit" onClick= "returnSched('{{ finalsched }}')" name="pin" class="newtab">
+                        <img src="../static/img/button-edit.svg">
+                    </button> -->
+                    <button type="submit" onClick="returnSched('{{ finalsched }}');" name="pin" value="Pin a Schedule">
+                        <img src="../static/img/button-pin.svg">
+                    </button>
+                </form>
+            </div>
             <!-- <div class="row timerow"> -->
                 <div class="time"> </div>
                 <div class="dayh">M</div>
@@ -95,7 +97,7 @@
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
-                                    <button name="lock" class="class-lock" value="lock">
+                                    <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
                                     </button>
                                 </div>
@@ -115,7 +117,7 @@
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
-                                    <button name="lock" class="class-lock" value="lock">
+                                    <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
                                     </button>
                                 </div>
@@ -135,7 +137,7 @@
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
-                                    <button name="lock" class="class-lock" value="lock">
+                                    <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
                                     </button>
                                 </div>
@@ -155,7 +157,7 @@
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
-                                    <button name="lock" class="class-lock" value="lock">
+                                    <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
                                     </button>
                                 </div>
@@ -175,7 +177,7 @@
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
-                                    <button name="lock" class="class-lock" value="lock">
+                                    <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
                                     </button>
                                 </div>
@@ -195,7 +197,7 @@
                             {% if class.start  <= x and class.end > x %}  
                             <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
-                                    <button name="lock" class="class-lock" value="lock">
+                                    <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
                                     </button>
                                 </div>
