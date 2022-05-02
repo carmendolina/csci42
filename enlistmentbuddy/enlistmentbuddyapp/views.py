@@ -260,32 +260,40 @@ def index_card_view(request):
             listwithcolor = assignColor(finallist)
         elif 'pin' in request.POST:
             print("----")
-            schedulelist.append(re.split(",",request.POST.get('returnsched')))
-            schedstring = schedulelist[0][0][13:-2]
-            schedvar = []
-            schedvar = list(schedstring.split(" "))
-            print(schedvar)
-            for course in ClassCode.objects.all():
-                comparing = ""
-                comparing = schedvar[0] + " " + schedvar[1]
-                if (comparing == str(course.name)):
-                    newCode = course
-                    comparing = ""
-                    comparing = schedvar[2]
-                    for x in ClassModel.objects.all():
-                        if (str(newCode.name) == str(x.code)):
-                            if (str(x.section) == comparing):
-                                newModel = newClass = ClassModel(code=newCode, section=x.section, sched=x.sched, start=x.start, end=x.end, venue=x.venue, professor=x.professor, copypaste=x.copypaste, islocked=False)
-                                schedulelist[0][0] = newModel
-                                print(schedulelist[0][0])
-                                
-
-
+            #schedulelist.append(re.split(",",request.POST.get('returnsched')))
+            #schedstring = schedulelist[0][0][13:-2]
+            #schedvar = []
+            #schedvar = list(schedstring.split(" "))
+            #print(schedvar)
+            #for course in ClassCode.objects.all():
+            #    comparing = ""
+            #    comparing = schedvar[0] + " " + schedvar[1]
+            #    if (comparing == str(course.name)):
+            #        newCode = course
+            #        comparing = ""
+            #        comparing = schedvar[2]
+            #        for x in ClassModel.objects.all():
+            #            if (str(newCode.name) == str(x.code)):
+            #                if (str(x.section) == comparing):
+            #                    newModel = newClass = ClassModel(code=newCode, section=x.section, sched=x.sched, start=x.start, end=x.end, venue=x.venue, professor=x.professor, copypaste=x.copypaste, islocked=False)
+            #                    schedulelist[0][0] = newModel
+            #                    print(schedulelist[0][0])
+            templist = []
+            for x in re.split(",",request.POST.get('returnsched')):
+                for y in classes:
+                    if (str(x[13:-1]) == str(y)):
+                        print(str(y))
+                        print("pogchamp")
+                        templist.append(y)
+            print("----")
+            schedulelist.append(templist)
+            for schedules in schedulelist:
+                print(schedules)
+            print(len(schedulelist))
 
             #for schedule in schedulelist:
             #    for classsched in schedule:
             #        print("WAWA")
-            print("----")
                 
     else:
         indexcardform = CourseForm()
@@ -310,6 +318,7 @@ def index_card_view(request):
             'num': num,
             'copypaste': copypaste,
             'finalsched': finalsched,
+            'schedulelist': schedulelist,
 
             #'testlister':testlist,
             # 'trycourse': thiscourse,

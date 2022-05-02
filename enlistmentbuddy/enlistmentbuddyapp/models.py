@@ -27,9 +27,6 @@ class ClassModel(models.Model):
     def __str__(self):
         return '{} {} {} '.format(self.code, self.section, self.sched)
 
-
-
-
 class IndexCard(models.Model):
     code = models.CharField(max_length=20, null=True)
     section = models.CharField(max_length=20, null=True)
