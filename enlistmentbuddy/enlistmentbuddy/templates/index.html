@@ -37,11 +37,21 @@
                 <button name="ta-button" class="ta_edit" onclick="openModal()" value="edit">
                 <img src="../static/img/button-edit.svg">
             </button> -->
-            <form action="/index_card" method="post">
+            <form action="/index_card" method="post" class="generateArea">
                 {% csrf_token %}
                 <input type="hidden" id="returnlock" name="returnlock" value="">
                 <input type="hidden" id="returnunlock" name="returnunlock" value="">
                 <button class="btn ta_gen" type="submit" onClick="returnLockedList(); returnUnlockedList();" name="generate" value="Generate a Schedule">Generate a Schedule</button>
+                <div class="filterbytime">
+                    <div class="filterrow">
+                        <h3>Set earliest possible class to start at:</h3>
+                        <input type="text" class="timefilter" value=" ">
+                    </div>
+                    <div class="filterrow">
+                        <h3>Set latest possible class to end at:</h3>
+                        <input type="text" class="timefilter" value=" ">
+                    </div>
+                </div>
             </form>
             <div class="classtable">
                 <div class="cthead">
@@ -53,17 +63,15 @@
                 <h4 class="columnheader">End</h4>
                 <h4 class="columnheader">Venue</h4>
                 <h4 class="columnheader">Professor</h4>
-
-                    {% for class in class_info %}
-                    <div class="ctinfo">{{class.code}}</div>
-                    <div class="ctinfo">{{class.section}}</div>
-                    <div class="ctinfo">{{class.sched}}</div> 
-                    <div class="ctinfo">{{class.start}}</div>
-                    <div class="ctinfo">{{class.end}}</div>
-                    <div class="ctinfo">{{class.venue}}</div>
-                    <div class="ctinfo">{{class.professor}}</div>
-                    {% endfor %}
-
+                {% for class in class_info %}
+                <div class="ctinfo">{{class.code}}</div>
+                <div class="ctinfo">{{class.section}}</div>
+                <div class="ctinfo">{{class.sched}}</div> 
+                <div class="ctinfo">{{class.start}}</div>
+                <div class="ctinfo">{{class.end}}</div>
+                <div class="ctinfo">{{class.venue}}</div>
+                <div class="ctinfo">{{class.professor}}</div>
+                {% endfor %}
             </div>
         </section>
         <section id="timetable">
@@ -79,8 +87,11 @@
                         <img src="../static/img/button-pin.svg">
                     </button>
                 </form>
+                <button name="showDynamicTab" onclick="displayGenerator()">HOME</button>
+                <button name="showTab" onclick="displayTab1()">1</button>
             </div>
             <!-- <div class="row timerow"> -->
+            <div class="scheduleGrid">
                 <div class="time"> </div>
                 <div class="dayh">M</div>
                 <div class="dayh">T</div> 
@@ -214,6 +225,44 @@
                 </section>
             <!-- </div> -->
             {% endfor %}
+            </div>
+            <div class="scheduleGrid">
+                <div class="time"> </div>
+                <div class="dayh">M</div>
+                <div class="dayh">T</div> 
+                <div class="dayh">W</div> 
+                <div class="dayh">Th</div>
+                <div class="dayh">F</div>
+                <div class="dayh">S</div>
+            {% for x in time %}
+                <div class="time">{{ x|time:"H:i" }}</div>
+                <section class="daytable">
+
+                    {% for list in schedulelist %}
+                        {% for class in list %}
+                            {% if class.start  <= x and class.end > x %}  
+                            <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }} {{ class.sched }}">
+                                <div class="lockoverlay">
+                                    <button name="lock" class="class-lock btn" value="lock">
+                                        <img src="../static/img/button-unlock.svg">
+                                    </button>
+                                </div>
+                                <!--{% csrf_token %}
+                                {{ lockedform.islocked }}-->
+                                <div class="classinfo">{{ class.code.name }}</div>
+                                <div class="classinfo">{{ class.section }}</div>
+                                <div class="classinfo">{{ class.venue }}</div>
+                                <div class="classinfo">{{ class.professor }}</div>
+                            </div>
+                                <!--<div>{{ class.start }}-{{ class.end }}</div>-->
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+                </section>
+            <!-- </div> -->
+            {% endfor %}
+            </div>
         </section>
     </section>
 </main>

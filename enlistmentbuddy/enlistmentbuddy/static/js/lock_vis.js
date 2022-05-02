@@ -6,6 +6,7 @@ function lock(course) {
         course.classList.remove("False");
         course.classList.add("True");
         getButton(course).src = "../static/img/button-lock.svg";
+        course.firstElementChild.style.opacity = "1";
         lockedClasses = Array.from(document.querySelectorAll(".True"));
         unlockedClasses = Array.from(document.querySelectorAll(".False"));
     } else if (course.classList.contains("True")) {

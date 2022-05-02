@@ -56,6 +56,7 @@ def assignColor(list):
             start_sec= (course.start.hour*60+course.start.minute)*60+course.start.second
             end_sec= (course.end.hour*60+course.end.minute)*60+course.end.second
             course.duration = int(((end_sec-start_sec)/60.0)/30)
+            course.days = course.sched
             # if course.islocked == False:
             #     course.locked = "unlocked"
             # else:
@@ -290,6 +291,7 @@ def index_card_view(request):
             for schedules in schedulelist:
                 print(schedules)
             print(len(schedulelist))
+            schedulelist = assignColor(schedulelist)
 
             #for schedule in schedulelist:
             #    for classsched in schedule:
