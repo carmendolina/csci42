@@ -13,6 +13,7 @@ function lock(course) {
         course.classList.remove("True");
         course.classList.add("False");
         getButton(course).src = "../static/img/button-unlock.svg";
+        course.firstElementChild.style.opacity = "0";
         lockedClasses = Array.from(document.querySelectorAll(".True"));
         unlockedClasses = Array.from(document.querySelectorAll(".False"));
     }
