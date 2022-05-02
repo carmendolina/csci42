@@ -13,7 +13,7 @@ from django.http import HttpResponse
 from .forms import IndexCardForm
 from .forms import CopyPasteForm
 from .forms import ClassCopyPasteForm
-from .forms import LockedForm
+from .forms import LockedForm, FilterForm
 from .forms import CourseForm, CodeForm
 
 from .models import IndexCard, ClassModel, ClassCode
@@ -83,6 +83,7 @@ def index_card_view(request):
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
     lockedform = LockedForm(request.POST)
+    
     classes = ClassModel.objects.all()
 
     if request.method == 'POST':
@@ -197,6 +198,11 @@ def index_card_view(request):
     increment()
 
     if request.method == 'POST':
+        filter_form = FilterForm(request.POST)
+        if (filter_form.is_valid()):
+            print(str(filter_form.cleaned_data['filter_start']))
+        else:
+            print("IT DINT WORK ")
     # Checking if the inputs are valid
         if 'indexsubmit' in request.POST:
             indexcardform = CourseForm(request.POST)
@@ -318,6 +324,7 @@ def index_card_view(request):
             'friday': fridaylist,
             'saturday': saturdaylist,
             'num': num,
+            'filter_form':filter_form,
             'copypaste': copypaste,
             'finalsched': finalsched,
             'schedulelist': schedulelist,

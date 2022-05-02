@@ -46,11 +46,20 @@
                     <div class="btn filterhead">Filter Schedule By Time</div>
                     <div class="filterrow">
                         <h3>Set earliest possible class to start at:</h3>
-                        <input type="text" class="timefilter" value=" ">
+                        <form action="/index_card" method="post">
+                            {% csrf_token %}
+                            {{ filter_form.filter_start }}
+                           
+                        </form>
                     </div>
                     <div class="filterrow">
                         <h3>Set latest possible class to end at:</h3>
-                        <input type="text" class="timefilter" value=" ">
+                        <form action="/index_card" method="post">
+                            {% csrf_token %}
+                            {{ filter_form.filter_end }}
+                           
+                        </form>
+                        
                     </div>
                 </div>
             </form>

@@ -133,3 +133,7 @@ class CopyPasteForm(forms.ModelForm):
                 'placeholder': 'Paste from AISIS Class Schedule here...'
             }),
         }
+
+class FilterForm(forms.Form):
+    filter_start = forms.TimeField()
+    filter_end = forms.TimeField()
