@@ -1,12 +1,5 @@
-var lockedClasses = Array.from(document.querySelectorAll(".locked"));
-var unlockedClasses = Array.from(document.querySelectorAll(".unlocked"));
 var finalLockedList = [];
 var finalUnlockedList = [];
-
-function getButton(div) {
-    var buttonimg = div.firstElementChild.firstElementChild.firstElementChild;
-    return buttonimg;
-}
 
 function lock(course) {
     if (course.classList.contains("unlocked")) {

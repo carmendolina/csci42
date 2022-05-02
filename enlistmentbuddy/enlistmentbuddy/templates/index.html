@@ -180,7 +180,7 @@
                                     </button>
                                 </div>
                                 <!--{% csrf_token %}
-                                {{ lockedform.islocked }}-->
+                                {{ lockedform.locked }}-->
                                 <div class="classinfo">{{ class.code.name }}</div>
                                 <div class="classinfo">{{ class.section }}</div>
                                 <div class="classinfo">{{ class.venue }}</div>
@@ -326,5 +326,25 @@
 <script>
     var text = JSON.parse(document.getElementById('copypaste').textContent);
     document.getElementsByClassName("textarea")[0].value = text;
+
+    var lockedClasses = Array.from(document.querySelectorAll(".locked"));
+    var unlockedClasses = Array.from(document.querySelectorAll(".unlocked"));
+
+    function getButton(div) {
+        var buttonimg = div.firstElementChild.firstElementChild.firstElementChild;
+        return buttonimg;
+    }
+
+    lockedClasses.forEach(
+        function changeToLock(course) {
+            getButton(course).src = "../static/img/button-lock.svg";
+        }
+    )
+    
+    unlockedClasses.forEach(
+        function changeToUnlock(course) {
+            getButton(course).src = "../static/img/button-unlock.svg";
+        }
+    )
 </script>
 {% endblock %}
