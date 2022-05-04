@@ -338,8 +338,17 @@ td, th {
     justify-content: center;
 }
 
-.timetableHead * {
-    padding: 0.4em;
+.download, .download:hover, .timetableHead form img, .timetableHead form img:hover {
+    transition: ease-out 300ms;  
+}
+
+.download:hover, .timetableHead form img:hover {
+    cursor: pointer;
+    transform: translateY(2px);
+}
+
+.timetableHead .tablinks, .timetableHead form img {
+    padding: 1em;
 }
 
 .timetableHead form button {
@@ -358,6 +367,8 @@ td, th {
 
 .tablinks {
     transition: ease-out 300ms;    
+    display: flex;
+    align-items: center;
 }
 
 .tablinks:hover {

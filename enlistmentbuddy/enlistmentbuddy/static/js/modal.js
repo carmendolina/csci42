@@ -1,3 +1,12 @@
+var modal = document.getElementById("myModal");
+
+var close = document.getElementsByClassName("close")[0];
+var form = document.getElementById("form");
+
+function openModal() {
+    modal.style.display = "flex";
+}
+
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";

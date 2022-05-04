@@ -97,8 +97,10 @@
                     </button>
                 </form>
                 <div class="tablinks">
+                    <a class="" name="saveSched" onclick="popUpImage()">
+                        <img class="download" src="../static/img/button-download.svg">
+                    </a>
                     <button class="" name="showDynamicTab" onclick="displayGenerator()">HOME</button>
-                    <button class="" name="saveSched" onclick="popUpImage()">SAVE</button>
                 </div>
                 <button class="tablinks" name="showTab" onclick="displayTab1()">SCHED 1</button>
             </div>
@@ -388,15 +390,17 @@
 
 {{ copypaste|json_script:"copypaste" }}
 <script>
-    var modal = document.getElementById("myModal");
-
-    var close = document.getElementsByClassName("close")[0];
-    var form = document.getElementById("form");
+    function downloadURI(uri, name) {
+        var link = document.createElement("a");
+        link.download = name;
+        link.href = uri;
+        link.click();
+    }
 
     function popUpImage() {
-        modal.style.display = "flex";
         html2canvas(document.querySelector(".scheduleGrid")).then(canvas => {
-            modal.firstElementChild.appendChild(canvas);
+            var scheduleimg = canvas.toDataURL("image/png");
+            downloadURI("data:" + scheduleimg, "schedule.png");
         });
         html2canvas(document.querySelector(".scheduleGrid"));
     }
