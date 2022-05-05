@@ -77,19 +77,27 @@ def index_card_view(request):
     global num
     global copypaste
     global currentlock
-
     global schedulelist
 
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
     lockedform = LockedForm(request.POST)
-    filter_form = FilterForm(request.POST)
-    
+    filterform = FilterForm(request.POST)
+    codeform = CodeForm(request.POST)
+
+    listofcourses = listofcoursenames()
     classes = ClassModel.objects.all()
 
+    filterstarttime = datetime.datetime(100,1,1,7,00,00).time() # first 3 are dummy last 3 are hour/min/sec
+    filterendtime = datetime.datetime(100,1,1,21,00,00).time() # use >> datetime.datetime(100,1,1,21,30,00) to end at 21:00:00
+
     if request.method == 'POST':
+        filterform = FilterForm(request.POST)
+        if (filterform.is_valid()):
+            filteredClasses = classes.filter(start__gte=filterform.cleaned_data['filter_start']) & classes.filter(end__lte=filterform.cleaned_data['filter_end'])
+            filterstarttime = filterform.cleaned_data['filter_start']
+            filterendtime = filterform.cleaned_data['filter_end']
         if 'generate' in request.POST:
-            schedulelist = [] #for testing purposes dont mind me
             currentlock = (request.POST.get('returnlock'))
             if (currentlock):
                 currentlock = re.split(',', currentlock)
@@ -116,13 +124,8 @@ def index_card_view(request):
                             if (x.section == thissection):
                                 x.islocked = False
                                 x.save()
-    finallist = imtesting()
+    finallist = schedulelistmaker(filterstarttime, filterendtime)
     listwithcolor = assignColor(finallist)
-        
-    #for code in ClassCode.objects.all():
-        # (code.pk)
-
-    #print (finallist[0])
 
     #change this number to get different iterations
     if (len(listwithcolor)==0):
@@ -130,80 +133,26 @@ def index_card_view(request):
     else:
         finalsched = listwithcolor[random.randint(0,len(listwithcolor)-1)]
 
-    #finalsched = []
-
-    if (finalsched):
-        starttime = finalsched[0].start # first 3 are dummy last 3 are hour/min/sec
-        endtime = finalsched[0].end
-    else:
-        starttime = datetime.datetime(100,1,1,7,00,00).time() # first 3 are dummy last 3 are hour/min/sec
-        endtime = datetime.datetime(100,1,1,21,00,00).time() # use >> datetime.datetime(100,1,1,21,30,00) to end at 21:00:00
-    #print (finalsched[0].start)
-    #print (finalsched[0].end)
-    #print ("---")
-    for x in finalsched:
-        #print (x)
-        #print ("---")
-        #print (x.start)
-        #print ("---")
-        #print (x.end)
-        if (x.start < starttime):
-            starttime = x.start
-        if (x.end > endtime):
-            endtime = x.end
-        #print (x)
-        #print (x.start)
-        # (x.end)
-    #print ("final")
-    #print (starttime)
-    #print (endtime)
-    thislist = setting_time()
-
-    # print(finalsched)
-    # for each in finalsched:
-    #     print(each)
-    #     print(each.duration)
-      
+    timelist = settingtime(filterstarttime, filterendtime)
     mondaylist = monday(finalsched)
     tuesdaylist = tuesday(finalsched)
     wednesdaylist = wednesday(finalsched)
     thursdaylist = thursday(finalsched)
     fridaylist = friday(finalsched)
     saturdaylist = saturday(finalsched)
-    codeform = CodeForm(request.POST)
-    listofcourses = listofcoursenames()
 
     try:
         userClassInput = copypasteform.cleaned_data.get('copypaste')
     except:
         userClassInput = "userClassInput"
 
-    # print(mondaylist)
-    # for each in mondaylist:
-    #     print(each.color)
-
-    #CHECKING COURSES
-    #for course in listofcourses:
-    #    print (course)
-    #print ("---")
-
-    #CHECKING CLASSES
-    #for x in classes:
-    #    print (x)
-    #print ("---")
-
     if (num == 1):
         copypaste = None
         currentlock = []
 
-    increment()
+    num = num + 1
 
     if request.method == 'POST':
-        filter_form = FilterForm(request.POST)
-        if (filter_form.is_valid()):
-            print(str(filter_form.cleaned_data['filter_start']))
-        else:
-            print("IT DINT WORK ")
     # Checking if the inputs are valid
         if 'indexsubmit' in request.POST:
             indexcardform = CourseForm(request.POST)
@@ -267,49 +216,20 @@ def index_card_view(request):
                     bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the og list
                 return redirect("index_card")
         elif 'pin' in request.POST:
-            print("----")
-            #schedulelist.append(re.split(",",request.POST.get('returnsched')))
-            #schedstring = schedulelist[0][0][13:-2]
-            #schedvar = []
-            #schedvar = list(schedstring.split(" "))
-            #print(schedvar)
-            #for course in ClassCode.objects.all():
-            #    comparing = ""
-            #    comparing = schedvar[0] + " " + schedvar[1]
-            #    if (comparing == str(course.name)):
-            #        newCode = course
-            #        comparing = ""
-            #        comparing = schedvar[2]
-            #        for x in ClassModel.objects.all():
-            #            if (str(newCode.name) == str(x.code)):
-            #                if (str(x.section) == comparing):
-            #                    newModel = newClass = ClassModel(code=newCode, section=x.section, sched=x.sched, start=x.start, end=x.end, venue=x.venue, professor=x.professor, copypaste=x.copypaste, islocked=False)
-            #                    schedulelist[0][0] = newModel
-            #                    print(schedulelist[0][0])
             templist = []
             for x in re.split(",",request.POST.get('returnsched')):
                 for y in classes:
                     if (str(x[13:-1]) == str(y)):
-                        print(str(y))
-                        print("pogchamp")
                         templist.append(y)
-            print("----")
             schedulelist.append(templist)
-            for schedules in schedulelist:
-                print(schedules)
-            print(len(schedulelist))
             schedulelist = assignColor(schedulelist)
-
-            #for schedule in schedulelist:
-            #    for classsched in schedule:
-            #        print("WAWA")
                 
     else:
         indexcardform = CourseForm()
         codeform = CodeForm()
         copypasteform = ClassCopyPasteForm()
         lockedform = LockedForm()
-        filter_form = FilterForm()
+        filterform = FilterForm()
 
     return render(request, 'index.html', 
         {
@@ -317,8 +237,8 @@ def index_card_view(request):
             'copypasteform': copypasteform,
             'lockedform' : lockedform,
             'codeform' : codeform,
-            'class_info': classes, 
-            'time': thislist,
+            'classinfo': classes, 
+            'time': timelist,
             'monday': mondaylist,
             'tuesday': tuesdaylist,
             'wednesday': wednesdaylist,
@@ -326,29 +246,16 @@ def index_card_view(request):
             'friday': fridaylist,
             'saturday': saturdaylist,
             'num': num,
-            'filter_form':filter_form,
+            'filterform':filterform,
             'copypaste': copypaste,
             'finalsched': finalsched,
             'schedulelist': schedulelist,
-
-            #'testlister':testlist,
-            # 'trycourse': thiscourse,
-            #over here peeps
         }
     )
 
 #sources:
 #https://docs.djangoproject.com/en/4.0/topics/db/queries/
 # copy and paste function, rename day of week to corresponding day, then put in def index_card_view, and add it into return
-
-def anotherfoo(request):
-   num = request.session.get('num') + 1
-   return num
-   # and so on, and so on
-
-def increment():
-    global num
-    num = 2
 
 def timeConvert(text):
     return text[:2] + ':' + text[2:4]
@@ -422,58 +329,23 @@ def saturday(classlist):
             saturdays.append(classes)
     return saturdays
 
-def setting_time():
-    starttime = datetime.datetime(100,1,1,7,00,00) # first 3 are dummy last 3 are hour/min/sec
-    endtime = datetime.datetime(100,1,1,21,30,00)
-    timelist = []
-
-    #print (starttime)
-    #print (datetime.timedelta(0,30*60))
-
-    while (starttime < endtime):
-        timelist.append(starttime.time)
-        starttime += datetime.timedelta(0,30*60) # days, seconds, then other fields.
-    return timelist
-
-def checkoccupied(list, code):
-    for course in list:
-        if (course == code):
-            return True
-    return False
-
-def checkoverlap(classes, list2):
-    for x in list2:
-        if (x.start<classes.start<x.end) or (x.start<classes.end<x.end) or (x.start==classes.start):
-            return False
-    return True
-
 def listofcoursenames():
     namelist = []
     for course in ClassCode.objects.all():
         namelist.append(course.name)
     return namelist
 
-def classtester(occupiedclasses, className):
-    for occupied in occupiedclasses:
-        if (occupiedclasses == className.code):
-            return False
-    return True
+def settingtime(st, et):
+    starttime = datetime.datetime(100,1,1,7,00,00) # first 3 are dummy last 3 are hour/min/sec
+    starttime = starttime.replace(hour = st.hour, minute = st.minute)
+    endtime = datetime.datetime(100,1,1,21,30,00)
+    endtime = endtime.replace(hour = et.hour, minute = et.minute)
+    timelist = []
 
-def scheduleoverlap(classes,ydays):
-    for x in ydays:
-        if ("SAT" in classes and "SAT" in x.sched):
-            return False
-        elif ("TH" in classes and "TH" in ydays.sched):
-            return False
-        elif ("T" in classes and "T" in ydays.sched):
-            return False
-        elif ("M" in classes and "M" in ydays.sched):
-            return False
-        elif ("W" in classes and "W" in ydays.sched):
-            return False
-        elif ("F" in classes and "F" in ydays.sched):
-            return False  
-    return True
+    while (starttime < endtime):
+        timelist.append(starttime.time)
+        starttime += datetime.timedelta(0,30*60) # days, seconds, then other fields.
+    return timelist
 
 def lockedlistmaker():
     lockedlist = []
@@ -481,62 +353,54 @@ def lockedlistmaker():
         lockedlist.append(classes)
     return lockedlist
 
-# <-- Raffys stuff
-def imtesting():
+# takes st - starting time and et - end time input by the user
+# makes finallist of schedules that fit within filters
+def schedulelistmaker(st, et):
     classesbycourse = []
     finallist = []
     allclasses = ClassModel.objects.all()
     courselist = ClassCode.objects.all()
-    lockedlist = []
+    lockedlist = lockedlistmaker()
 
-    #print (courselist)
+    # makes an array with each element being a list containing classes for each class code 
+    # i.e classesbycourse[0] is all CSCI 40, classesbycourse[1] is all SocSci 12
     for course in courselist:
         templist = []
         for classes in ClassModel.objects.filter(code=course):
             templist.append(classes)
         classesbycourse.append(templist)
-    #print (classesbycourse)
-    #for thingo in classesbycourse:
-        #print (thingo)
             
-    possiblecombos = (list(itertools.product(*classesbycourse)))
+    # uses itertools to multiply each element of classesbycourse to each other
+    # this makes an array with each element have no overlapping class codes
+    possibleschedules = (list(itertools.product(*classesbycourse)))
 
-    for thingo in possiblecombos:
-        #print (thingo)
-        #print ("------------")
-        if not (checkconflict(thingo)):
-            finallist.append(thingo)
-            #print ("added")
-        #else:
-            #print ("not added")
-    #print (finallist)
+    # each layer is a parameter to filter specific schedules into finallist
+    if (possibleschedules):
+        for schedule in possibleschedules:
+            tempst = st
+            tempet = et
+            for classes in schedule:
+                if (classes.start < tempst):
+                    tempst = classes.start
+                if (classes.end > tempet):
+                    tempet = classes.end
+            if (lockedlist):
+                if not (checkconflict(schedule)) and tempst >= st and tempet <= et:
+                    if all(item in schedule for item in lockedlist):
+                        finallist.append(schedule)
+            else:
+                if not (checkconflict(schedule)) and tempst >= st and tempet <= et:
+                    finallist.append(schedule)
+    return finallist
 
-    finalfinallist = []
-    lockedlist = lockedlistmaker()
-    print(lockedlist)
-
-    if (lockedlist):
-        for x in finallist:
-            if all(item in x for item in lockedlist):
-                finalfinallist.append(x)
-        return finalfinallist
-    return (finallist)
-
-def checkconflict(combo):
-    for a, b in itertools.combinations(combo, 2):
-        #print (a)
-        #print (a.start)
-        #print (a.end)
-        #print (b)
-        #print (b.start)
-        #print (b.end)
-        #print (checksched(a,b))
-        #print (checktime(a,b))
-        #print ("--")
-        if ((checksched(a,b)) and (checktime(a,b))):
+# checks two different classes to see if there are schedule conflicts i.e same time and same day
+def checkconflict(pair):
+    for class1, class2 in itertools.combinations(pair, 2):
+        if ((checksched(class1,class2)) and (checktime(class1,class2))):
             return True
     return False
 
+# checks two different classes to see if there are conflicts regarding day
 def checksched(class1, class2):
     if ("M"   in class1.sched and "M"   in class2.sched or
         "T-"   in class1.sched and "T-"   in class2.sched or
@@ -548,12 +412,11 @@ def checksched(class1, class2):
     else:
         return False
 
+# checks two different classes to see if there are conflicts regarding time
 def checktime(class1, class2):
     if (class1.start <= class2.start < class1.end) or (class1.start < class2.end <= class1.end):
         return True
     return False
-
-#Raffy Testing -->
 
 #sources:
 #Time - https://stackoverflow.com/questions/100210/what-is-the-standard-way-to-add-n-seconds-to-datetime-time-in-python

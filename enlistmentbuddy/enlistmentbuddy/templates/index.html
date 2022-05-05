@@ -48,14 +48,14 @@
                         <h3>Set earliest possible class to start at:</h3>
                         <form action="/index_card" method="post">
                             {% csrf_token %}
-                            {{ filter_form.filter_start }}
+                            {{ filterform.filter_start }}
                            
                         </form>
                     </div>
                     <div class="filterrow">
                         <h3>Set latest possible class to end at:</h3>
 
-                            {{ filter_form.filter_end }}
+                            {{ filterform.filter_end }}
                            
                         </form>
                         
@@ -72,7 +72,7 @@
                 <h4 class="columnheader">End</h4>
                 <h4 class="columnheader">Venue</h4>
                 <h4 class="columnheader">Professor</h4>
-                {% for class in class_info %}
+                {% for class in classinfo %}
                 <div class="ctinfo">{{class.code}}</div>
                 <div class="ctinfo">{{class.section}}</div>
                 <div class="ctinfo">{{class.sched}}</div> 
