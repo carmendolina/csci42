@@ -48,17 +48,13 @@
                         <h3>Set earliest possible class to start at:</h3>
                         <form action="/index_card" method="post">
                             {% csrf_token %}
-                            {{ filterform.filter_start }}
-                           
+                            {{ filterform.filter_start }}  
                         </form>
                     </div>
                     <div class="filterrow">
                         <h3>Set latest possible class to end at:</h3>
-
                             {{ filterform.filter_end }}
-                           
                         </form>
-                        
                     </div>
                 </div>
             </form>
@@ -95,6 +91,11 @@
                     <button type="submit" onClick="returnSched('{{ finalsched }}');" name="pin" value="Pin a Schedule">
                         <img src="../static/img/button-pin.svg">
                     </button>
+                    <!-- HI this is the unpin button hehe sry XD
+                         this deletes all scheds in schedlist if u wanna test stuff <3 -->
+                    <button type="submit" onClick="" name="unpin" value="Pin a Schedule">
+                        <img src="../static/img/button-pin.svg">
+                    </button>
                 </form>
                 <div class="tablinks">
                     <a class="" name="saveSched" onclick="popUpImage()">
@@ -102,10 +103,19 @@
                     </a>
                     <button class="" name="showDynamicTab" onclick="displayGenerator()">HOME</button>
                 </div>
-                <button class="tablinks" name="showTab" onclick="displayTab1()">SCHED 1</button>
+                <!-- HI this is where the tab headers come from
+                     forloop.counter is where the tabnum is coming from <3 -->
+                {% for tab in schedulelist %}
+                    <div class="tabhead {{ forloop.counter }}">
+                        <button name="ta-button" class="ta_trash" onclick="deleteTab('{{ forloop.counter }}')">
+                            <img src="../static/img/button-trash.svg">
+                        </button>
+                        <button class="tablinks" name="showTab" onclick="displayTab1('{{ forloop.counter }}')">SCHED {{ forloop.counter }}</button>
+                    </div>
+                {% endfor %}
             </div>
             <!-- <div class="row timerow"> -->
-            <div class="scheduleGrid" id="schedule">
+            <div class="scheduleGrid 0" id="schedule">
                 <div class="time"> </div>
                 <div class="dayh">M</div>
                 <div class="dayh">T</div> 
@@ -119,7 +129,7 @@
                     <div class="day">
                         {% for class in monday %}               
                             {% if class.start  <= x and class.end > x %}  
-                            <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
+                            <div onclick="lock(this, '{{ class.color }}')" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
@@ -139,7 +149,7 @@
                     <div class="day">
                         {% for class in tuesday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
+                            <div onclick="lock(this, '{{ class.color }}')" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
@@ -159,7 +169,7 @@
                     <div class="day">
                         {% for class in wednesday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
+                            <div onclick="lock(this, '{{ class.color }}')" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
@@ -179,7 +189,7 @@
                     <div class="day">
                         {% for class in thursday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
+                            <div onclick="lock(this, '{{ class.color }}')" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
@@ -199,7 +209,7 @@
                     <div class="day">
                         {% for class in friday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
+                            <div onclick="lock(this, '{{ class.color }}')" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
@@ -219,7 +229,7 @@
                     <div class="day">
                         {% for class in saturday %}         
                             {% if class.start  <= x and class.end > x %}  
-                            <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
+                            <div onclick="lock(this, '{{ class.color }}')" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }}">
                                 <div class="lockoverlay">
                                     <button name="lock" class="class-lock btn" value="lock">
                                         <img src="../static/img/button-unlock.svg">
@@ -240,7 +250,10 @@
             <!-- </div> -->
             {% endfor %}
             </div>
-            <div class="scheduleGrid">
+            <!-- hi this is where the different schedules are made
+                 i move the for list in schedulelist Carmen if u needed that somewhere specific sry -->
+            {% for list in schedulelist %}
+            <div class="scheduleGrid {{ forloop.counter }}">
                 <div class="time"> </div>
                 <div class="dayh">M</div>
                 <div class="dayh">T</div> 
@@ -251,32 +264,29 @@
             {% for x in time %}
                 <div class="time">{{ x|time:"H:i" }}</div>
                 <section class="daytable">
-
-                    {% for list in schedulelist %}
-                        {% for class in list %}
-                            {% if class.start  <= x and class.end > x %}  
-                            <div onclick="lock(this)" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }} {{ class.sched }}">
-                                <div class="lockoverlay">
-                                    <button name="lock" class="class-lock btn" value="lock">
-                                        <img src="../static/img/button-unlock.svg">
-                                    </button>
-                                </div>
-                                <!--{% csrf_token %}
-                                {{ lockedform.islocked }}-->
-                                <div class="classinfo">{{ class.code.name }}</div>
-                                <div class="classinfo">{{ class.section }}</div>
-                                <div class="classinfo">{{ class.venue }}</div>
-                                <div class="classinfo">{{ class.professor }}</div>
+                    {% for class in list %}
+                        {% if class.start  <= x and class.end > x %}  
+                        <div onclick="lock(this, '{{ class.color }}')" class="{{ class.islocked }} infowrap {{ class.color }} {{ class.code.name }} {{ class.section }} {{ class.sched }}">
+                            <div class="lockoverlay">
+                                <button name="lock" class="class-lock btn" value="lock">
+                                    <img src="../static/img/button-unlock.svg">
+                                </button>
                             </div>
-                                <!--<div>{{ class.start }}-{{ class.end }}</div>-->
-                            {% endif %}
-                        {% endfor %}
+                            <!--{% csrf_token %}
+                            {{ lockedform.islocked }}-->
+                            <div class="classinfo">{{ class.code.name }}</div>
+                            <div class="classinfo">{{ class.section }}</div>
+                            <div class="classinfo">{{ class.venue }}</div>
+                            <div class="classinfo">{{ class.professor }}</div>
+                        </div>
+                            <!--<div>{{ class.start }}-{{ class.end }}</div>-->
+                        {% endif %}
                     {% endfor %}
-
                 </section>
             <!-- </div> -->
             {% endfor %}
             </div>
+            {% endfor %}
         </section>
     </section>
 </main>
@@ -376,7 +386,6 @@
     </div>
 </div>
 {% endblock %}
-
 
 {% block scripts %}
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>

@@ -376,6 +376,13 @@ td, th {
     transition: ease-out 300ms;
 }
 
+/* CARMEN I TOUCHED THIS */
+.tabhead {
+    transition: ease-out 300ms;    
+    display: flex;
+    align-items: center;
+}
+/* CARMEN UNTIL HERE :D:D:D */
 .timetableHead button {
     border: none;
     background: none;

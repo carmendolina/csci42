@@ -79,6 +79,13 @@ def index_card_view(request):
     global currentlock
     global schedulelist
 
+    # for i in deletedtabs:
+    #     schedulelist[i] = None
+
+    # for i in schedulelist:
+    #     if i is None:
+    #         schedulelist[i].pop
+
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
     lockedform = LockedForm(request.POST)
@@ -223,6 +230,8 @@ def index_card_view(request):
                         templist.append(y)
             schedulelist.append(templist)
             schedulelist = assignColor(schedulelist)
+        elif 'unpin' in request.POST:
+            schedulelist = [];
                 
     else:
         indexcardform = CourseForm()
