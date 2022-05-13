@@ -82,15 +82,15 @@
         <section id="timetable">
             <div class="timetableHead">
                 <!-- TEST BUTTON -->
+                <button type="" onclick="returnStaticHome()" name="pin" value="Pin a Schedule">
+                    <img src="../static/img/button-pin.svg">
+                </button>
                 <form action="/index_card" method="post">
                     {% csrf_token %}
                     <input type="hidden" id="returnsched" name="returnsched" value="">
                     <!-- <button name="ta-button" class="ta_newtab" type="submit" onClick= "returnSched('{{ finalsched }}')" name="pin" class="newtab">
                         <img src="../static/img/button-edit.svg">
                     </button> -->
-                    <button type="submit" onClick="returnSched('{{ finalsched }}');" name="pin" value="Pin a Schedule">
-                        <img src="../static/img/button-pin.svg">
-                    </button>
                     <!-- HI this is the unpin button hehe sry XD
                          this deletes all scheds in schedlist if u wanna test stuff <3 -->
                     <button type="submit" onClick="" name="unpin" value="Pin a Schedule">
@@ -102,6 +102,9 @@
                         <img class="download" src="../static/img/button-download.svg">
                     </a>
                     <button class="" name="showDynamicTab" onclick="displayGenerator()">HOME</button>
+                </div>
+                <div class="tablinks">
+                    <button class="" name="showTab" onclick="">SCHED</button>
                 </div>
                 <!-- HI this is where the tab headers come from
                      forloop.counter is where the tabnum is coming from <3 -->

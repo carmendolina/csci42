@@ -10,6 +10,11 @@ for (let i = 1; i < tabs.length; i++) {
 }
 var deletedtabs = [];
 
+function returnStaticHome() {
+    document.getElementById("timetable").appendChild(tabs[0].cloneNode(true));
+    console.log("hi");
+}
+
 function returnSched(sched) {
     var schedulelist = []
     schedulelist = (Array.from(sched)).join('');
