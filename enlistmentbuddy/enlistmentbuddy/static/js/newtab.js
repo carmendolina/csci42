@@ -2,6 +2,7 @@
 const tabs = document.querySelectorAll(".scheduleGrid");
 const tablinks = document.querySelectorAll(".tablinks");
 const tabheaders = document.querySelectorAll(".tabhead");
+const timetableHead = document.querySelectorAll(".timetableHead");
 tablinks[0].style.backgroundColor = "var(--midpurple2)";
 for (let i = 1; i < tabs.length; i++) {
     tabs[i].style.display = "none";
@@ -12,7 +13,8 @@ var deletedtabs = [];
 
 function returnStaticHome() {
     document.getElementById("timetable").appendChild(tabs[0].cloneNode(true));
-    console.log("hi");
+    var newtab = document.createElement("div").className = "tablinks";
+    timetableHead.appendChild(newtab);
 }
 
 function returnSched(sched) {
