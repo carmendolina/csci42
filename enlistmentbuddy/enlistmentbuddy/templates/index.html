@@ -102,21 +102,18 @@
                     <a class="" name="saveSched" onclick="popUpImage()">
                         <img class="download" src="../static/img/button-download.svg">
                     </a>
-                    <button class="" name="showDynamicTab" onclick="displayGenerator()">HOME</button>
-                </div>
-                <div class="tablinks">
-                    <button class="" name="showTab" onclick="">SCHED</button>
+                    <button class="tabHome" name="showDynamicTab" onclick="displayGenerator()">HOME</button>
                 </div>
                 <!-- HI this is where the tab headers come from
                      forloop.counter is where the tabnum is coming from <3 -->
-                {% for tab in schedulelist %}
+                <!-- {% for tab in schedulelist %}
                     <div class="tabhead {{ forloop.counter }}">
                         <button name="ta-button" class="ta_trash" onclick="deleteTab('{{ forloop.counter }}')">
                             <img src="../static/img/button-trash.svg">
                         </button>
                         <button class="tablinks" name="showTab" onclick="displayTab1('{{ forloop.counter }}')">SCHED {{ forloop.counter }}</button>
                     </div>
-                {% endfor %}
+                {% endfor %} -->
             </div>
             <!-- <div class="row timerow"> -->
             <div class="scheduleGrid 0" id="schedule">
@@ -257,7 +254,7 @@
             <!-- hi this is where the different schedules are made
                  i move the for list in schedulelist Carmen if u needed that somewhere specific sry -->
             {% for list in schedulelist %}
-            <div class="scheduleGrid {{ forloop.counter }}">
+            <!-- <div class="scheduleGrid {{ forloop.counter }}">
                 <div class="time"> </div>
                 <div class="dayh">M</div>
                 <div class="dayh">T</div> 
@@ -276,20 +273,19 @@
                                     <img src="../static/img/button-unlock.svg">
                                 </button>
                             </div>
-                            <!--{% csrf_token %}
-                            {{ lockedform.islocked }}-->
+
                             <div class="classinfo">{{ class.code.name }}</div>
                             <div class="classinfo">{{ class.section }}</div>
                             <div class="classinfo">{{ class.venue }}</div>
                             <div class="classinfo">{{ class.professor }}</div>
                         </div>
-                            <!--<div>{{ class.start }}-{{ class.end }}</div>-->
+
                         {% endif %}
                     {% endfor %}
                 </section>
-            <!-- </div> -->
+
             {% endfor %}
-            </div>
+            </div> -->
             {% endfor %}
         </section>
     </section>
