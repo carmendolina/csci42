@@ -79,12 +79,17 @@ def index_card_view(request):
     global currentlock
     global schedulelist
 
-    # for i in deletedtabs:
-    #     schedulelist[i] = None
+    if request.method == 'POST':
+        deletedtabs = request.POST.get('returndeltab')
+        #print(deletedtabs)
+        if (deletedtabs):
+            for i in re.split(",",request.POST.get('returndeltab')):
+                i = int(i)
+                #print(schedulelist[i])
+                schedulelist[i] = None
+                #print(schedulelist)
+            schedulelist = list(filter(None, schedulelist))
 
-    # for i in schedulelist:
-    #     if i is None:
-    #         schedulelist[i].pop
 
     indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)

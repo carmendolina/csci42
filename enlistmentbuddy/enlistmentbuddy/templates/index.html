@@ -41,7 +41,8 @@
                 {% csrf_token %}
                 <input type="hidden" id="returnlock" name="returnlock" value="">
                 <input type="hidden" id="returnunlock" name="returnunlock" value="">
-                <button class="btn ta_gen" type="submit" onClick="returnLockedList(); returnUnlockedList();" name="generate" value="Generate a Schedule">Generate a Schedule</button>
+                <input type="hidden" id="returndeltab" name="returndeltab" value="">
+                <button class="btn ta_gen" type="submit" onClick="returnLockedList(); returnUnlockedList(); returnDeletedTabs();" name="generate" value="Generate a Schedule">Generate a Schedule</button>
                 <div class="filterbytime">
                     <div class="btn filterhead">Filter Schedule By Time</div>
                     <div class="filterrow">
