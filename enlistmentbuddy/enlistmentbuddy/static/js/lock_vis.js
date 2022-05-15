@@ -6,10 +6,10 @@ var finalUnlockedList = [];
 // so i can use that to lock everything with that color
 // delete this nalang if u didnt need this explanation HAHAHA
 function lock(course, color) {
-    console.log(course);
-    console.log(color);
+    //console.log(course);
+    //console.log(color);
     var tempclass = document.querySelectorAll("." + CSS.escape(color));
-    console.log(tempclass);
+    //console.log(tempclass);
     if (course.classList.contains("False")) {
         /*
         course.classList.remove("False");

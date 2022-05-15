@@ -41,7 +41,8 @@
                 {% csrf_token %}
                 <input type="hidden" id="returnlock" name="returnlock" value="">
                 <input type="hidden" id="returnunlock" name="returnunlock" value="">
-                <button class="btn ta_gen" type="submit" onClick="returnLockedList(); returnUnlockedList(); returnDeletedTabs();" name="generate" value="Generate a Schedule">Generate a Schedule</button>
+                <input type="hidden" id="returndeltab" name="returndeltab" value="">
+                <button class="btn ta_gen" type="submit" onClick="returnLockedList(); returnUnlockedList(); returnDeletedTabs()" name="generate" value="Generate a Schedule">Generate a Schedule</button>
                 <div class="filterbytime">
                     <div class="btn filterhead">Filter Schedule By Time</div>
                     <div class="filterrow">
@@ -85,7 +86,7 @@
                 <form action="/" method="post">
                     {% csrf_token %}
                     <input type="hidden" id="returnsched" name="returnsched" value="">
-                    <input type="hidden" id="returndeltab" name="returndeltab" value="">
+                    <input type="hidden" id="returnpindeltab" name="returnpindeltab" value="">
                     <!-- <button name="ta-button" class="ta_newtab" type="submit" onClick= "returnSched('{{ finalsched }}')" name="pin" class="newtab">
                         <img src="../static/img/button-edit.svg">
                     </button> -->
@@ -94,7 +95,7 @@
                     <button class="reload" type="submit" onClick="" name="unpin" value="Pin a Schedule">
                         <img class="reloadbutton" src="../static/img/button-reload.svg">
                     </button>
-                    <button class="pin" type="submit" onClick= "returnSched('{{ finalsched }}'); returnDeletedTabs() " name="pin" value="Pin a Schedule">
+                    <button class="pin" type="submit" onClick= "returnSched('{{ finalsched }}'); returnPinDeletedTabs()" name="pin" value="Pin a Schedule">
                         <img class="pinbutton" src="../static/img/button-pin.svg">        
                     </button>
                 </form>

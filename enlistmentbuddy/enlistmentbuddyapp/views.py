@@ -43,6 +43,8 @@ num = 1
 schedulelist = []
 for objects in ClassModel.objects.all():
     objects.islocked = False;
+st = datetime.datetime(100,1,1,7,00,00).time() # first 3 are dummy last 3 are hour/min/sec
+et = datetime.datetime(100,1,1,21,00,00).time() # use >> datetime.datetime(100,1,1,21,30,00) to end at 21:00:00
 
 def assignColor(list):
     for thing in list:
@@ -75,17 +77,23 @@ def enlistmentbuddy_view(request):
     global copypaste
     global currentlock
     global schedulelist
+    global st
+    global et
 
     if request.method == 'POST':
         deletedtabs = request.POST.get('returndeltab')
         print("HERE")
         print(deletedtabs)
         print("HERE")
+        if (deletedtabs == None):
+            deletedtabs = request.POST.get('returnpindeltab')
+            print("HERE")
+            print(deletedtabs)
+            print("HERE")
         if (deletedtabs and deletedtabs != "undefined"):
-            for i in re.split(",",request.POST.get('returndeltab')):
-                i = int(i)
+            for i in re.split(",",deletedtabs):
                 #print(schedulelist[i])
-                schedulelist[i] = None
+                schedulelist[int(i)] = None
                 #print(schedulelist)
             schedulelist = list(filter(None, schedulelist))
 
@@ -105,7 +113,9 @@ def enlistmentbuddy_view(request):
         if (filterform.is_valid()):
             filteredClasses = classes.filter(start__gte=filterform.cleaned_data['filter_start']) & classes.filter(end__lte=filterform.cleaned_data['filter_end'])
             filterstarttime = filterform.cleaned_data['filter_start']
+            st = filterform.cleaned_data['filter_start']
             filterendtime = filterform.cleaned_data['filter_end']
+            et = filterform.cleaned_data['filter_end']
         if 'generate' in request.POST:
             currentlock = (request.POST.get('returnlock'))
             if (currentlock):
@@ -144,28 +154,6 @@ def enlistmentbuddy_view(request):
 
     #timelist = settingtime(filterstarttime, filterendtime)
     timelist = settingtime()
-    mondaylist = monday(finalsched)
-    tuesdaylist = tuesday(finalsched)
-    wednesdaylist = wednesday(finalsched)
-    thursdaylist = thursday(finalsched)
-    fridaylist = friday(finalsched)
-    saturdaylist = saturday(finalsched)
-
-    completeml = []
-    completetl = []
-    completewl = []
-    completethl = []
-    completefl = []
-    completesatl = []
-    for sched in listwithcolor:
-        completeml.append(monday(sched))
-        completetl.append(tuesday(sched))
-        completewl.append(wednesday(sched))
-        completethl.append(thursday(sched))
-        completefl.append(friday(sched))
-        completesatl.append(saturday(sched))
-
-    zipped = zip(completeml, completetl, completewl, completethl, completefl, completesatl)
 
     try:
         userClassInput = copypasteform.cleaned_data.get('copypaste')
@@ -241,6 +229,8 @@ def enlistmentbuddy_view(request):
                     bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the og list
                 return redirect("home_page")
         elif 'pin' in request.POST:
+            filterstarttime = st
+            filterendtime = et
             templist = []
             for x in re.split(",",request.POST.get('returnsched')):
                 for y in classes:
@@ -264,12 +254,6 @@ def enlistmentbuddy_view(request):
             'codeform' : codeform,
             'classinfo': classes, 
             'time': timelist,
-            'monday': mondaylist,
-            'tuesday': tuesdaylist,
-            'wednesday': wednesdaylist,
-            'thursday': thursdaylist,
-            'friday': fridaylist,
-            'saturday': saturdaylist,
             'num': num,
             'filterform':filterform,
             'copypaste': copypaste,

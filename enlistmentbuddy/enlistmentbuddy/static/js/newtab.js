@@ -13,7 +13,7 @@ tabs[1].style.display = "none";
 for (let i = 1; i < tabs.length; i++) {
     tabs[i].style.display = "none";
     tablinks[i].style.backgroundColor = "var(--lightpurple)";
-    console.log(tabs[i]);
+    //console.log(tabs[i]);
 }
 var deletedtabs = [];
 
@@ -43,7 +43,7 @@ function returnStaticHome() {
     newtab.appendChild(newbutton);
     timetableHead[0].appendChild(newtab);
 
-    console.log(pins);
+    //console.log(pins);
 
     tabs = document.querySelectorAll(".scheduleGrid");
     tablinks = document.querySelectorAll(".tablinks");
@@ -56,7 +56,6 @@ function returnSched(sched) {
     schedulelist = schedulelist.slice(0, schedulelist.length - 1);
     schedulelist = schedulelist.split(", ")
     var field = (document.getElementById("returnsched").value = schedulelist);
-    console.log(field)
 }
 
 // I made it functional for any number of tabs <3 
@@ -113,14 +112,18 @@ function deleteTab(div) {
 }
 
 function delTab(tabnum){
-    console.log(tabnum);
     tabheaders[tabnum-1].style.display = "none";
     deletedtabs.push(tabnum-1);
-    console.log(deletedtabs);
 }
 
 // hi ana this is what i need passed into views <3
 // its var deletedtabs tysm
 function returnDeletedTabs() {
     document.getElementById("returndeltab").value = deletedtabs;
+    console.log(deletedtabs)
+}
+
+function returnPinDeletedTabs() {
+    document.getElementById("returnpindeltab").value = deletedtabs;
+    console.log(deletedtabs)
 }
