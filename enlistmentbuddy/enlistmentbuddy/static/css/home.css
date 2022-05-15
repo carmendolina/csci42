@@ -402,6 +402,7 @@ td, th {
 .timetableHead form {
     align-self: center;
     justify-self: right;
+    display: flex;
 }
 
 .timetableHead form button:hover, .timetableHead button:hover {
