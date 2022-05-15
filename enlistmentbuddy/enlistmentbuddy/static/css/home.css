@@ -329,7 +329,7 @@ td, th {
 .timetableHead {
     grid-column: span 7;
     display: grid;
-    grid-template-columns: auto 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: auto auto 1fr 1fr 1fr 1fr 1fr 1fr;
     background-color: var(--lightpurple);
     border-radius: 25px 25px 0 0;
     margin: -3em -2rem 24px -2rem;
@@ -338,17 +338,55 @@ td, th {
     justify-content: center;
 }
 
-.download, .download:hover, .timetableHead form img, .timetableHead form img:hover {
+.download, .pinbutton, .closetab {
+    height: 20px;
+    width: 20px;
+    margin-top: 0.3em;
+}
+
+.tablinks a {
+    padding-right: 0.3em;
+}
+
+.reloadbutton {
+    height: 16px;
+    width: 16px;
+}
+
+.closetab, .closetab:hover, .download, .download:hover, .pinbutton, .pinbutton:hover,
+.reloadbutton, .reloadbutton:hover {
     transition: ease-out 300ms;  
 }
 
-.download:hover, .timetableHead form img:hover {
+.download:hover, .pinbutton:hover, .reloadbutton:hover {
     cursor: pointer;
     transform: translateY(2px);
 }
 
-.timetableHead .tablinks, .timetableHead form img {
-    padding: 1em;
+.closetab {
+    transform: rotate(45deg);
+    margin: 0 !important;
+    height: 12px;
+}
+
+.closetab:hover {
+    cursor: pointer;
+}
+
+.tablinks button {
+    padding-right: 2em;
+}
+
+.timetableHead .tablinks, .pinbutton, .reloadbutton {
+    padding: 0.7em;
+}
+
+.reload {
+    padding: 0 0 0 1em;
+}
+
+.pin {
+    padding: 0 1em 0 0 ;
 }
 
 .timetableHead form button {
@@ -359,6 +397,11 @@ td, th {
     align-items: center;
     align-content: center;
     margin: 0 auto;
+}
+
+.timetableHead form {
+    align-self: center;
+    justify-self: right;
 }
 
 .timetableHead form button:hover, .timetableHead button:hover {
@@ -391,11 +434,11 @@ td, th {
     font-weight: 600;
 }
 
-.timetableHead form button img {
+/* .timetableHead form button img {
     width: 70%;
     height: 70%;
     justify-self: right;
-}
+} */
 
 .day {
     position: relative;

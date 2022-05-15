@@ -83,9 +83,6 @@
         <section id="timetable">
             <div class="timetableHead">
                 <!-- TEST BUTTON -->
-                <button type="" onclick="returnStaticHome()" name="pin" value="Pin a Schedule">
-                    <img src="../static/img/button-pin.svg">
-                </button>
                 <form action="/index_card" method="post">
                     {% csrf_token %}
                     <input type="hidden" id="returnsched" name="returnsched" value="">
@@ -94,15 +91,18 @@
                     </button> -->
                     <!-- HI this is the unpin button hehe sry XD
                          this deletes all scheds in schedlist if u wanna test stuff <3 -->
-                    <button type="submit" onClick="" name="unpin" value="Pin a Schedule">
-                        <img src="../static/img/button-pin.svg">
+                    <button class="reload" type="submit" onClick="" name="unpin" value="Pin a Schedule">
+                        <img class="reloadbutton" src="../static/img/button-reload.svg">
                     </button>
                 </form>
+                <button class="pin" type="" onclick="returnStaticHome()" name="pin" value="Pin a Schedule">
+                    <img class="pinbutton" src="../static/img/button-pin.svg">
+                </button>
                 <div class="tablinks">
+                    <button class="tabHome" name="showDynamicTab" onclick="displayGenerator()">HOME</button>
                     <a class="" name="saveSched" onclick="popUpImage()">
                         <img class="download" src="../static/img/button-download.svg">
                     </a>
-                    <button class="tabHome" name="showDynamicTab" onclick="displayGenerator()">HOME</button>
                 </div>
                 <!-- HI this is where the tab headers come from
                      forloop.counter is where the tabnum is coming from <3 -->
@@ -390,10 +390,10 @@
 {% block scripts %}
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <!-- <script src="{% static 'js/app.js' %}"></script> -->
+<script src="../static/js/newtab.js"></script>
 <script src="../static/js/modal.js"></script>
 <script src="../static/js/lock_vis.js"></script>
 <script src="../static/js/generate.js"></script>
-<script src="../static/js/newtab.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="../static/js/html2canvas.js"></script>
 
