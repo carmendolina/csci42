@@ -524,6 +524,8 @@
 <script src="../static/js/html2canvas.js"></script>
 
 {{ copypaste|json_script:"copypaste" }}
+{{ starttime|json_script:"starttime" }}
+{{ endtime|json_script:"endtime" }}
 <script>
     function downloadURI(uri, name) {
         var link = document.createElement("a");
@@ -542,6 +544,11 @@
 
     var text = JSON.parse(document.getElementById('copypaste').textContent);
     document.getElementsByClassName("textarea")[0].value = text;
+
+    var st = JSON.parse(document.getElementById('starttime').textContent);
+    document.getElementById("id_filter_start").value = st;
+    var et = JSON.parse(document.getElementById('endtime').textContent);
+    document.getElementById("id_filter_end").value = et;
 
     var lockedClasses = Array.from(document.querySelectorAll(".True"));
     var unlockedClasses = Array.from(document.querySelectorAll(".False"));
