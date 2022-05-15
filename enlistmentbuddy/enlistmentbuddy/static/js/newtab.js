@@ -6,7 +6,7 @@ var timetable = document.getElementById("timetable");
 const timetableHead = document.querySelectorAll(".timetableHead");
 var pinCounter = 0;
 var pins = [];
-var pinscheds = [];
+var pinscheds = Array.from(tabs);
 tablinks[0].style.backgroundColor = "var(--midpurple2)";
 
 // tabs[1].style.display = "none";
@@ -103,15 +103,17 @@ function deleteTab(div) {
     displayGenerator()
     pins.splice(pins.indexOf(div),1);
     pinCounter = pinCounter - 1;
-    console.log(pins);
     for (let i = 0; i < pins.length; i++) {
         pins[i].children[1].innerHTML = i+1;
     }
-    // timetable.removeChild(tabs[indexOf(div)+1]);
     timetableHead[0].removeChild(div);
 
-    // tabs = document.querySelectorAll(".scheduleGrid");
-    // tablinks = document.querySelectorAll(".tablinks");
+    timetable.removeChild(tabs[
+        (Array.from(tabs).indexOf(div))+1
+    ]);
+
+    tabs = document.querySelectorAll(".scheduleGrid");
+    tablinks = document.querySelectorAll(".tablinks");
 }
 
 // hi ana this is what i need passed into views <3
