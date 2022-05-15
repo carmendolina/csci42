@@ -153,6 +153,22 @@ def index_card_view(request):
     fridaylist = friday(finalsched)
     saturdaylist = saturday(finalsched)
 
+    completeml = []
+    completetl = []
+    completewl = []
+    completethl = []
+    completefl = []
+    completesatl = []
+    for sched in listwithcolor:
+        completeml.append(monday(sched))
+        completetl.append(tuesday(sched))
+        completewl.append(wednesday(sched))
+        completethl.append(thursday(sched))
+        completefl.append(friday(sched))
+        completesatl.append(saturday(sched))
+
+    zipped = zip(completeml, completetl, completewl, completethl, completefl, completesatl)
+
     try:
         userClassInput = copypasteform.cleaned_data.get('copypaste')
     except:
@@ -264,6 +280,13 @@ def index_card_view(request):
             'copypaste': copypaste,
             'finalsched': finalsched,
             'schedulelist': schedulelist,
+            'compschedlist': listwithcolor,
+            'compmon': completeml,
+            'comptues': completetl,
+            'compwed': completewl,
+            'compthurs': completethl,
+            'compfri': completefl,
+            'compsat': completesatl,
         }
     )
 
