@@ -10,13 +10,12 @@ import re, itertools
 from django.http import HttpResponse
 
 #forms
-from .forms import IndexCardForm
 from .forms import CopyPasteForm
 from .forms import ClassCopyPasteForm
 from .forms import LockedForm, FilterForm
 from .forms import CourseForm, CodeForm
 
-from .models import IndexCard, ClassModel, ClassCode
+from .models import ClassModel, ClassCode
 
 from django.views import View
 from django.views.generic.list import ListView
@@ -44,8 +43,8 @@ num = 1
 schedulelist = []
 
 #insert functions here
-def index(request):
-    return redirect('index_card')
+##def index(request):
+#    return redirect('index')
 
 def assignColor(list):
     for thing in list:
@@ -72,7 +71,7 @@ def assignColor(list):
 #     print("hello!")
 #     return JsonResponse({'success':True})
         
-def index_card_view(request):
+def enlistmentbuddy_view(request):
 
     global num
     global copypaste
@@ -91,7 +90,6 @@ def index_card_view(request):
             schedulelist = list(filter(None, schedulelist))
 
 
-    indexcardform = CourseForm(request.POST)
     copypasteform = ClassCopyPasteForm(request.POST)
     lockedform = LockedForm(request.POST)
     filterform = FilterForm(request.POST)
@@ -183,7 +181,6 @@ def index_card_view(request):
     if request.method == 'POST':
     # Checking if the inputs are valid
         if 'indexsubmit' in request.POST:
-            indexcardform = CourseForm(request.POST)
             codeform = CodeForm(request.POST)
             if codeform.is_valid():
                 text = request.POST.get('name')
@@ -201,7 +198,7 @@ def index_card_view(request):
                             newClass = ClassModel(code=course, section=request.POST.get('section'), sched=request.POST.get('sched'), start=request.POST.get('start'), end=request.POST.get('end'), venue=request.POST.get('venue'), professor=request.POST.get('professor'))
                 # Set class information
                 newClass.save()
-                return redirect("index_card")
+                return redirect("home_page")
         elif 'copypastesubmit' in request.POST:
             copypaste = request.POST.get('copypaste')
             copypasteform = ClassCopyPasteForm(request.POST or None)
@@ -242,7 +239,7 @@ def index_card_view(request):
 
                         newClass.save() 
                     bigText = bigText[0:i+13] + splitClass + bigText[i+14:] #fixes the og list
-                return redirect("index_card")
+                return redirect("home_page")
         elif 'pin' in request.POST:
             templist = []
             for x in re.split(",",request.POST.get('returnsched')):
@@ -252,10 +249,9 @@ def index_card_view(request):
             schedulelist.append(templist)
             schedulelist = assignColor(schedulelist)
         elif 'unpin' in request.POST:
-            schedulelist = [];
+            schedulelist = []
                 
     else:
-        indexcardform = CourseForm()
         codeform = CodeForm()
         copypasteform = ClassCopyPasteForm()
         lockedform = LockedForm()
@@ -263,7 +259,6 @@ def index_card_view(request):
 
     return render(request, 'index.html', 
         {
-            'indexcardform': indexcardform, 
             'copypasteform': copypasteform,
             'lockedform' : lockedform,
             'codeform' : codeform,
