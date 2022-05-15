@@ -107,11 +107,11 @@
                 <!-- HI this is where the tab headers come from
                      forloop.counter is where the tabnum is coming from <3 -->
                 {% for tab in schedulelist %}
-                    <div class="tabhead {{ forloop.counter }}">
+                    <div class="tablinks tabhead {{ forloop.counter }}">
                         <button name="ta-button" class="ta_trash" onclick="delTab('{{ forloop.counter }}')">
-                            <img src="../static/img/button-trash.svg">
+                            <img class="closetab" src="../static/img/button-add.svg">
                         </button>
-                        <button class="tablinks" name="showTab" onclick="displayTab1('{{ forloop.counter }}')">{{ forloop.counter }}</button>
+                        <button class="" name="showTab" onclick="displayTab1('{{ forloop.counter }}')">{{ forloop.counter }}</button>
                     </div>
                 {% endfor %}
             </div>
