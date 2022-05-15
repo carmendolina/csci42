@@ -41,10 +41,8 @@ colorList = [
 
 num = 1
 schedulelist = []
-
-#insert functions here
-##def index(request):
-#    return redirect('index')
+for objects in ClassModel.objects.all():
+    objects.islocked = False;
 
 def assignColor(list):
     for thing in list:
@@ -80,15 +78,16 @@ def enlistmentbuddy_view(request):
 
     if request.method == 'POST':
         deletedtabs = request.POST.get('returndeltab')
-        #print(deletedtabs)
-        if (deletedtabs):
+        print("HERE")
+        print(deletedtabs)
+        print("HERE")
+        if (deletedtabs and deletedtabs != "undefined"):
             for i in re.split(",",request.POST.get('returndeltab')):
                 i = int(i)
                 #print(schedulelist[i])
                 schedulelist[i] = None
                 #print(schedulelist)
             schedulelist = list(filter(None, schedulelist))
-
 
     copypasteform = ClassCopyPasteForm(request.POST)
     lockedform = LockedForm(request.POST)
@@ -143,7 +142,8 @@ def enlistmentbuddy_view(request):
     else:
         finalsched = listwithcolor[random.randint(0,len(listwithcolor)-1)]
 
-    timelist = settingtime(filterstarttime, filterendtime)
+    #timelist = settingtime(filterstarttime, filterendtime)
+    timelist = settingtime()
     mondaylist = monday(finalsched)
     tuesdaylist = tuesday(finalsched)
     wednesdaylist = wednesday(finalsched)
@@ -275,13 +275,8 @@ def enlistmentbuddy_view(request):
             'copypaste': copypaste,
             'finalsched': finalsched,
             'schedulelist': schedulelist,
-            'compschedlist': listwithcolor,
-            'compmon': completeml,
-            'comptues': completetl,
-            'compwed': completewl,
-            'compthurs': completethl,
-            'compfri': completefl,
-            'compsat': completesatl,
+            'starttime': filterstarttime,
+            'endtime': filterendtime,
         }
     )
 
@@ -367,11 +362,11 @@ def listofcoursenames():
         namelist.append(course.name)
     return namelist
 
-def settingtime(st, et):
+def settingtime():
     starttime = datetime.datetime(100,1,1,7,00,00) # first 3 are dummy last 3 are hour/min/sec
-    starttime = starttime.replace(hour = st.hour, minute = st.minute)
+    #starttime = starttime.replace(hour = st.hour, minute = st.minute)
     endtime = datetime.datetime(100,1,1,21,30,00)
-    endtime = endtime.replace(hour = et.hour, minute = et.minute)
+    #endtime = endtime.replace(hour = et.hour, minute = et.minute)
     timelist = []
 
     while (starttime < endtime):

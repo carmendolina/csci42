@@ -9,13 +9,13 @@ var pins = [];
 var pinscheds = Array.from(tabs);
 tablinks[0].style.backgroundColor = "var(--midpurple2)";
 
-// tabs[1].style.display = "none";
-// for (let i = 1; i < tabs.length; i++) {
-//     tabs[i].style.display = "none";
-//     tablinks[i].style.backgroundColor = "var(--lightpurple)";
-//     console.log(tabs[i]);
-// }
-// var deletedtabs = [];
+tabs[1].style.display = "none";
+for (let i = 1; i < tabs.length; i++) {
+    tabs[i].style.display = "none";
+    tablinks[i].style.backgroundColor = "var(--lightpurple)";
+    console.log(tabs[i]);
+}
+var deletedtabs = [];
 
 function returnStaticHome() {
     pinCounter = pinCounter + 1;
@@ -96,10 +96,6 @@ function displayTab1(tabnum) {
 }
 
 function deleteTab(div) {
-    // console.log(tabnum);
-    // tabheaders[tabnum-1].style.display = "none";
-    // deletedtabs.push(tabnum-1);
-    // console.log(deletedtabs);
     displayGenerator()
     pins.splice(pins.indexOf(div),1);
     pinCounter = pinCounter - 1;
@@ -116,8 +112,15 @@ function deleteTab(div) {
     tablinks = document.querySelectorAll(".tablinks");
 }
 
+function delTab(tabnum){
+    console.log(tabnum);
+    tabheaders[tabnum-1].style.display = "none";
+    deletedtabs.push(tabnum-1);
+    console.log(deletedtabs);
+}
+
 // hi ana this is what i need passed into views <3
 // its var deletedtabs tysm
-// function returnDeletedTabs() {
-//     document.getElementById("returndeltab").value = deletedtabs;
-// }
+function returnDeletedTabs() {
+    document.getElementById("returndeltab").value = deletedtabs;
+}
