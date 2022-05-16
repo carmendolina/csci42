@@ -193,6 +193,10 @@ textarea:focus, .textarea:focus {
     padding-right: 0 !important;
 }
 
+.emptydiv {height: 100%;}
+.white {background-color: var(--cream);}
+.dpurple {background-color: var(--lightpurple1);}
+
 .classtable {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -247,7 +251,7 @@ textarea:focus, .textarea:focus {
 
 .dayh {
     font-weight: bold;
-    padding: 1% 0 0;
+    padding: 1% 0 10%;
 }
 
 td, th {
