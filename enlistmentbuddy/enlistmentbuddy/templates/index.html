@@ -101,7 +101,7 @@
                 </form>
                 <div class="tablinks">
                     <button class="tabHome" name="showDynamicTab" onclick="displayGenerator()">HOME</button>
-                    <a class="" name="saveSched" onclick="popUpImage()">
+                    <a class="" name="saveSched" onclick="popUpImage(0)">
                         <img class="download" src="../static/img/button-download.svg">
                     </a>
                 </div>
@@ -112,7 +112,10 @@
                         <button name="ta-button" class="ta_trash" onclick="delTab('{{ forloop.counter }}')">
                             <img class="closetab" src="../static/img/button-add.svg">
                         </button>
-                        <button class="" name="showTab" onclick="displayTab1('{{ forloop.counter }}')">{{ forloop.counter }}</button>
+                        <button style="justify-self: left;" name="showTab" onclick="displayTab1('{{ forloop.counter }}')">{{ forloop.counter }}</button>
+                        <a class="" name="saveSched" onclick="popUpImage('{{ forloop.counter }}')">
+                            <img class="download" src="../static/img/button-download.svg">
+                        </a>
                     </div>
                 {% endfor %}
             </div>
@@ -535,12 +538,12 @@
         link.click();
     }
 
-    function popUpImage() {
-        html2canvas(document.querySelector(".scheduleGrid")).then(canvas => {
+    function popUpImage(num) {
+        html2canvas(document.querySelectorAll(".scheduleGrid")[num]).then(canvas => {
             var scheduleimg = canvas.toDataURL("image/png");
             downloadURI("data:" + scheduleimg, "schedule.png");
         });
-        html2canvas(document.querySelector(".scheduleGrid"));
+        html2canvas(document.querySelectorAll(".scheduleGrid")[num]);
     }
 
     var text = JSON.parse(document.getElementById('copypaste').textContent);

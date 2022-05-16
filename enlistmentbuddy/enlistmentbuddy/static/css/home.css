@@ -189,6 +189,10 @@ textarea:focus, .textarea:focus {
     border-radius: 4px;
 }
 
+.ta_trash {
+    padding-right: 0 !important;
+}
+
 .classtable {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
