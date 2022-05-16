@@ -11,7 +11,7 @@
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 99; /* Sit on top */
     /* padding-top: 200px; */
     left: 0;
     top: 0;
@@ -20,29 +20,73 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    text-align: center;
+    text-align: left;
     align-items: center;
     margin: 0 auto;
     align-content: center;
     justify-content: center;
     justify-items: center;
+    color: var(--cream);
 }
 /* Modal Content */
 .modal-content {
-    background-color: var(--darkpurple);
+    background-color: var(--midpurple1);
     margin: 0 auto;
-    padding: 28px;
-    border-radius: 25px;
-    width: 85vw;
-    height: 85vh;
-    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    text-align: left;
+    display: flex;
 }
+
+.landing {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.landing h1 {
+    margin: 0;
+    font-size: 128px;
+    font-weight: 900;
+}
+
+.landing h2 {
+    font-size: 40px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.landing p {
+    font-size: 28px;
+    font-weight: 500;
+    margin: 2em 0;
+    width: 90%;
+}
+
+.tutorial {
+    display: flex;
+    width: 90vw;
+    align-self: center;
+    align-content: center;
+    margin: 0 auto;
+}
+
+.landingTitle {
+    display: flex;
+}
+
+.landing img {
+    width: 40%;
+}
+
 .close {
-    color: var(--lightpurple);
-    float: left;
+    color: var(--lightpurple) !important;
     font-size: 28px;
     transition: 100ms ease-in-out;
+    margin: 2%;
 }
+
+.step {display: none;}
 .close:hover,
 .close:focus {
     color: var(--midyellow);

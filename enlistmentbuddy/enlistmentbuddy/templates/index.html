@@ -17,6 +17,9 @@
             <td>{{ course }}</td>
         {% endfor %}
     </table> -->
+    <div class="tutorialButton" onclick="openModal()" >
+        <h2>?</h2>
+    </div>
     <section id="content">
         <section class="textareas">
             <form class="ta_form" action="/" method="post">
@@ -433,98 +436,16 @@
     </section>
 </main>
 <div id="myModal" class="modal">
-    <!-- <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="forminput-wrap">
-            <form action="/index_card" method="post">
-                {% csrf_token %}
-                {% if class %}
-                    {% for class in finalsched %}
-                        <div class="coursecode-div">
-                            <h1>Course Code</h1>
-                            {{ codeform.name }}
-                        </div>
-                        <div class="form-section">
-                            <div class="form-group sectiongroup">
-                                <h2>Section</h2>
-                                {{ indexcardform.section }}
-                            </div>
-                            <div class="section-inner">
-                                <div class="form-group">
-                                    <h4>Schedule</h4>
-                                    {{ indexcardform.sched }}
-                                </div>
-                                <div class="startend">
-                                    <div class="form-group">
-                                        <h4>Start <span>(military time)</span></h4>
-                                        {{ indexcardform.start }}
-                                    </div>
-                                    <div class="form-group">
-                                        <h4>End <span>(military time)</span></h4>
-                                        {{ indexcardform.end }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <h4>Venue</h4>
-                                    {{ indexcardform.venue }}
-                                </div>
-                                <div class="form-group">
-                                    <h4>Professor</h4>
-                                    {{ indexcardform.professor }}
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                <div class="coursecode-div">
-                    <h1>Course Code</h1>
-                    {{ codeform.name }}
-                </div>
-                <div class="form-section">
-                    <div class="form-group sectiongroup">
-                        <h2>Section</h2>
-                        {{ indexcardform.section }}
-                    </div>
-                    <div class="section-inner">
-                        <div class="form-group">
-                            <h4>Schedule</h4>
-                            {{ indexcardform.sched }}
-                        </div>
-                        <div class="startend">
-                            <div class="form-group">
-                                <h4>Start <span>(military time)</span></h4>
-                                {{ indexcardform.start }}
-                            </div>
-                            <div class="form-group">
-                                <h4>End <span>(military time)</span></h4>
-                                {{ indexcardform.end }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <h4>Venue</h4>
-                            {{ indexcardform.venue }}
-                        </div>
-                        <div class="form-group">
-                            <h4>Professor</h4>
-                            {{ indexcardform.professor }}
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                <div class="form-submit">
-                    <input class="btn" type="submit" name="indexsubmit" value="save">
-                </div>
-                <button name="pup-add-button" class="ta_add" onclick="">
-                    <img src="../static/img/button-add.svg">
-                </button>
-                <button name="pup-del-button" class="ta_trash" onclick="">
-                    <img src="../static/img/button-trash.svg">
-                </button>
-            </form>
-        </div>
-    </div> -->
     <div class="modal-content">
         <span class="close">&times;</span>
+        <div class="tutorial">
+            <div class="landing">
+                <img src="../static/img/tutorialImg.svg">
+                <h1>Enlistment Buddy</h1>
+                <h2>A schedule generator for ADMU enlistment</h2>
+                <p>Copy-paste full rows from the AISIS Class Schedule page and generate random, possible schedules. Paste rows onto an empty line if you want to add onto existing classes currently in the text box.</p>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
