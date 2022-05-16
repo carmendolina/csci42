@@ -183,6 +183,12 @@ textarea:focus, .textarea:focus {
     transition: 100ms ease-in-out;
 }
 
+#id_filter_end, #id_filter_start {
+    color: var(--midpurple1);
+    border: solid var(--lightpurple);
+    border-radius: 4px;
+}
+
 .classtable {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -265,37 +271,6 @@ td, th {
     grid-column: span 7;
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr 2fr;
-    grid-template-areas: 
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-    "m t w th f s"
-;
 }
 
 /* .row {
