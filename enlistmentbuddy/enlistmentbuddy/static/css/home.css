@@ -230,7 +230,6 @@ textarea:focus, .textarea:focus {
 
 .classtable {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
     background-color: var(--lightpurple);
     font-size: 12px;
     border-radius: 25px;
